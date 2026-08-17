@@ -9,9 +9,9 @@ import { detectTopics } from '../utils/topicDetection'
 import { local, translate } from '../utils/i18n'
 
 const demoTranscripts = {
-  ru: 'Собеседник: По Будапештскому меморандуму Запад обещал Украине полные гарантии безопасности. Александр: Давайте откроем текст и уточним, какой именно пункт предусматривает автоматическое военное вмешательство. Собеседник: Но Россия нарушила границы. Александр: Это отдельный и важный вопрос. Нужно различить содержание заверений, механизм исполнения и правовую оценку Крыма.',
-  en: 'Speaker: Under the Budapest Memorandum the West promised Ukraine full security guarantees. Alexander: Let us open the text and identify which clause provides automatic military intervention. Speaker: But Russia violated the borders. Alexander: That is a separate and important issue. We should distinguish the assurances, enforcement mechanism and legal assessment of Crimea.',
-  uk: 'Співрозмовник: За Будапештським меморандумом Захід обіцяв Україні повні гарантії безпеки. Олександр: Відкриймо текст і уточнімо, який саме пункт передбачає автоматичне військове втручання. Співрозмовник: Але Росія порушила кордони. Олександр: Це окреме й важливе питання. Треба розрізнити зміст запевнень, механізм виконання та правову оцінку Криму.',
+  ru: 'Собеседник: Вы же дали клятву Украине. Как с этим воевали против тех, кто жил там же? Александр: В самой клятве есть верность народу Украины и обязанность соблюдать Конституцию и законы. Там нет фразы «если они стали сепаратистами, ты больше не связан». Собеседник: Но мы говорим о зрадниках. Александр: Это другая политическая оценка; по тексту присяги это отдельный вопрос.',
+  en: 'Interviewer: You swore allegiance to Ukraine. How did you then fight against people living there? Alexander: The oath says loyalty to the Ukrainian people and compliance with the Constitution and laws. There is no clause saying “if they become separatists, the oath is void.” Interviewer: But we call them traitors. Alexander: That is a political assessment; the oath text is a separate legal question.',
+  uk: 'Співрозмовник: Ви ж дали клятву Україні. Як тоді воювали проти людей там же? Олександр: У самій присязі є вірність народові України й обов’язок дотримуватися Конституції та законів. Там немає формули “якщо вони стали сепаратистами, присяга вже не чинна”. Співрозмовник: Але ми називаємо їх зрадниками. Олександр: Це політична оцінка; по тексту присяги — окреме правове питання.',
 }
 
 const genericSuggestions = {
