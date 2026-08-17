@@ -304,7 +304,6 @@ export function ChronoView() {
 
         <div className="chrono-readout" aria-live="polite">
           <span>{visibleRange}</span>
-          <span>{Math.round(zoom * 100)}%</span>
         </div>
 
         <div className="chrono-zoom-controls" aria-label="Zoom controls">

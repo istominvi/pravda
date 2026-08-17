@@ -1,17 +1,18 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { HashRouter } from 'react-router'
+import { BrowserRouter } from 'react-router'
 import '@xyflow/react/dist/style.css'
 import './styles.css'
 import App from './App'
 
 const root = document.getElementById('root')
 if (!root) throw new Error('Root element was not found')
+const browserBase = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL.replace(/\/$/, '')
 
 createRoot(root).render(
   <StrictMode>
-    <HashRouter>
+    <BrowserRouter basename={browserBase}>
       <App />
-    </HashRouter>
+    </BrowserRouter>
   </StrictMode>,
 )
