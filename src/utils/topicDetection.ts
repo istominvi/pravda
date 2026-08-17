@@ -5,7 +5,7 @@ function normalise(value: string): string {
   return value
     .toLocaleLowerCase()
     .replace(/ё/g, 'е')
-    .replace(/[“”«»"'.,!?;:()[\]{}—–\-]/g, ' ')
+    .replace(/[“”«»"'.,!?;:()[\]{}—–-]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim()
 }
