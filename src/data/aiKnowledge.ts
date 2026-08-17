@@ -382,7 +382,7 @@ export const aiTopics: AITopic[] = [
     },
     summary: L('Он спорит с тезисом «всё просто незаконно/все законно», настаивая на разложении текста, полномочий и фактов конкретного акта.', 'He challenges both “everything was illegal” and “everything was legal” claims by separating text, competence, and evidence in each concrete act.', 'Він не зводить спір до «усе незаконно» чи «все законно», а розділяє текст, повноваження і докази для кожного конкретного акта.'),
     nodeIds: ['concept-constitutional-interpretation', 'concept-constitutional-procedure', 'concept-elite-continuity'],
-    sourceEventIds: ['power-2014', 'constitution'],
+    sourceEventIds: ['power-2014'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Уточнить норму', text:'Какая именно норма и какая процедура нарушены/соблюдены: момент вступления в силу, форма акта, порядок имплементации.' },
