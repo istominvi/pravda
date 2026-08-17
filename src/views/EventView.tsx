@@ -105,21 +105,6 @@ export function EventView() {
             </section>
           </div>
 
-          <aside className="event-infobox">
-            <div className="infobox-head">
-              <span>{t('event')}</span>
-              <strong>{local(event.title, language)}</strong>
-            </div>
-            <dl>
-              <div><dt>{t('date')}</dt><dd>{formattedDate}</dd></div>
-              <div><dt>{t('place')}</dt><dd>{local(event.meta.place, language)}</dd></div>
-              <div><dt>{t('actors')}</dt><dd>{local(event.meta.actors, language)}</dd></div>
-              <div><dt>{t('status')}</dt><dd>{local(event.meta.status, language)}</dd></div>
-            </dl>
-            <div className="tag-row">
-              {event.tags.map((tag) => <span key={tag}>{tag}</span>)}
-            </div>
-          </aside>
         </div>
 
         <nav className="event-pagination" aria-label="Adjacent events">
