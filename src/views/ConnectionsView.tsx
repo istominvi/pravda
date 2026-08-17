@@ -33,7 +33,7 @@ function formatNodeDate(date: string | undefined, language: FlowNodeData['langua
   if (!date) return null
   return new Intl.DateTimeFormat(languageLocale(language), {
     month: 'short', year: 'numeric', timeZone: 'UTC',
-  }).format(new Date(`${date}T00:00:00Z`))
+  }).format(new Date(date))
 }
 
 function PravdaKnowledgeNode({ data }: NodeProps<PravdaNode>) {

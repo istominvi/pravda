@@ -33,7 +33,7 @@ export function EventView() {
   const locale = languageLocale(language)
   const formattedDate = new Intl.DateTimeFormat(locale, {
     day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
-  }).format(new Date(`${event.date}T00:00:00Z`))
+  }).format(new Date(event.date))
 
   const openGraph = () => {
     setMapFocusId(event.id)

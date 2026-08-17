@@ -13,7 +13,7 @@ const MIN_ZOOM = 0.45
 const MAX_ZOOM = 4.8
 
 function dateMs(value: string): number {
-  return new Date(`${value}T00:00:00Z`).getTime()
+  return new Date(value).getTime()
 }
 
 function baseXForDate(value: string): number {
@@ -247,7 +247,7 @@ export function ChronoView() {
 
   const formatDate = (value: string) => new Intl.DateTimeFormat(languageLocale(language), {
     day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC',
-  }).format(new Date(`${value}T00:00:00Z`))
+  }).format(new Date(value))
 
   return (
     <section className="chrono-view" aria-label={t('chrono')}>
