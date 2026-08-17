@@ -84,7 +84,7 @@ export function AIAssistantView() {
     <section className="ai-view">
       <div className="ai-topline">
         <div>
-          <span className="section-kicker">BAZA / AI <em>{t('pro')}</em></span>
+          <span className="section-kicker">PRAVDA / AI <em>{t('pro')}</em></span>
           <h1>{t('aiTitle')}</h1>
           <p>{t('aiIntro')}</p>
         </div>

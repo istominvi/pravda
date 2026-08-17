@@ -46,9 +46,9 @@ if (eventIds.length < 10) errors.push(`Expected at least 10 events, found ${even
 if (relations.length < 20) errors.push(`Expected at least 20 relations, found ${relations.length}`)
 
 if (errors.length) {
-  console.error('BAZA data verification failed:')
+  console.error('PRAVDA data verification failed:')
   for (const error of errors) console.error(`- ${error}`)
   process.exit(1)
 }
 
-console.log(`BAZA data OK: ${eventIds.length} events, ${conceptIds.length} concepts, ${relations.length} relations.`)
+console.log(`PRAVDA data OK: ${eventIds.length} events, ${conceptIds.length} concepts, ${relations.length} relations.`)

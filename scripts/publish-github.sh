@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_NAME="${1:-baza}"
+REPO_NAME="${1:-pravda}"
 VISIBILITY="${2:-private}"
 
 if ! command -v gh >/dev/null 2>&1; then

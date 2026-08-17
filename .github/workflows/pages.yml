@@ -1,4 +1,4 @@
-name: Deploy BAZA to GitHub Pages
+name: Deploy PRAVDA to GitHub Pages
 
 on:
   push:

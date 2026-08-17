@@ -1,9 +1,9 @@
 {
-  "name": "baza",
+  "name": "pravda",
   "private": true,
   "version": "0.2.0",
   "type": "module",
-  "description": "BAZA — Chrono, evidence connections and a live debate-assistant prototype.",
+  "description": "PRAVDA — Chrono, evidence connections and a live debate-assistant prototype.",
   "engines": {
     "node": ">=22.12.0"
   },

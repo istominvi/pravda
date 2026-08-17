@@ -12,12 +12,12 @@ function RouteEffects() {
   useEffect(() => {
     const view = location.pathname.split('/')[1] || 'chrono'
     document.title = view === 'connections'
-      ? 'BAZA — Связи'
+      ? 'PRAVDA — Связи'
       : view === 'ai'
-        ? 'BAZA — AI'
+        ? 'PRAVDA — AI'
         : view === 'event'
-          ? 'BAZA — Событие'
-          : 'BAZA — Хроно'
+          ? 'PRAVDA — Событие'
+          : 'PRAVDA — Хроно'
   }, [location.pathname])
   return null
 }

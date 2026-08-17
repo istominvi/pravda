@@ -27,7 +27,7 @@ interface FlowNodeData extends Record<string, unknown> {
   language: ReturnType<typeof useAppStore.getState>['language']
 }
 
-type BazaNode = Node<FlowNodeData, 'baza'>
+type PravdaNode = Node<FlowNodeData, 'pravda'>
 
 function formatNodeDate(date: string | undefined, language: FlowNodeData['language']): string | null {
   if (!date) return null
@@ -36,7 +36,7 @@ function formatNodeDate(date: string | undefined, language: FlowNodeData['langua
   }).format(new Date(`${date}T00:00:00Z`))
 }
 
-function BazaKnowledgeNode({ data }: NodeProps<BazaNode>) {
+function PravdaKnowledgeNode({ data }: NodeProps<PravdaNode>) {
   const { knowledgeNode, active, relationCount, language } = data
   const date = formatNodeDate(knowledgeNode.date, language)
   return (
@@ -57,7 +57,7 @@ function BazaKnowledgeNode({ data }: NodeProps<BazaNode>) {
   )
 }
 
-const nodeTypes = { baza: BazaKnowledgeNode }
+const nodeTypes = { pravda: PravdaKnowledgeNode }
 
 function edgeFor(relation: KnowledgeRelation, language: FlowNodeData['language'], dimmed = false): Edge {
   const interpretive = relation.confidence === 'interpretive'
@@ -76,7 +76,7 @@ function edgeFor(relation: KnowledgeRelation, language: FlowNodeData['language']
   }
 }
 
-function GraphViewport({ nodes, edges, onFocus }: { nodes: BazaNode[]; edges: Edge[]; onFocus: (id: string) => void }) {
+function GraphViewport({ nodes, edges, onFocus }: { nodes: PravdaNode[]; edges: Edge[]; onFocus: (id: string) => void }) {
   const { fitView } = useReactFlow()
 
   useEffect(() => {
@@ -122,9 +122,9 @@ export function ConnectionsView() {
   const focus = knowledgeNodesById.get(focusId) ?? knowledgeNodesById.get('budapest')!
   const graph = useMemo(() => {
     const layout = buildFocusedKnowledgeGraph(focus.id, depth)
-    const nodes: BazaNode[] = layout.nodes.map((item) => ({
+    const nodes: PravdaNode[] = layout.nodes.map((item) => ({
       id: item.id,
-      type: 'baza',
+      type: 'pravda',
       position: item.position,
       data: {
         knowledgeNode: item.knowledgeNode,
@@ -159,7 +159,7 @@ export function ConnectionsView() {
       <div className="connections-canvas-column">
         <div className="connections-heading">
           <div>
-            <span className="section-kicker">BAZA / {t('connections')}</span>
+            <span className="section-kicker">PRAVDA / {t('connections')}</span>
             <h1>{t('connectionTitle')}</h1>
             <p>{t('connectionIntro')}</p>
           </div>

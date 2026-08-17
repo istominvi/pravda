@@ -33,7 +33,7 @@ export const useAppStore = create<AppState>()(
       setMapDepth: (mapDepth) => set({ mapDepth }),
     }),
     {
-      name: 'baza-app',
+      name: 'pravda-app',
       partialize: (state) => ({
         language: state.language,
         theme: state.theme,

@@ -16,8 +16,8 @@ export function AppHeader() {
 
   return (
     <header className="app-header">
-      <button className="brand-button" type="button" onClick={() => navigate('/chrono')} aria-label="BAZA — home">
-        BAZA
+      <button className="brand-button" type="button" onClick={() => navigate('/chrono')} aria-label="PRAVDA — home">
+        PRAVDA
       </button>
 
       <nav className="app-tabs" aria-label="Views">
