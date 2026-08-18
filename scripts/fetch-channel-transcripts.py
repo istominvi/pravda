@@ -392,7 +392,7 @@ def main() -> None:
     parser.add_argument("--max-videos", type=int, default=None, help="Limit number of videos to process.")
     parser.add_argument("--skip-existing", action="store_true", default=True, help="Skip if outputs already exist.")
     parser.add_argument("--force", action="store_true", help="Overwrite existing files.")
-    parser.add_argument("--asr-model", default="large-v3-turbo", help="faster-whisper model name.")
+    parser.add_argument("--asr-model", default="large-v3", help="faster-whisper model name.")
     parser.add_argument("--asr-device", default="cpu", help="faster-whisper device.")
     parser.add_argument("--asr-compute", default="int8", help="faster-whisper compute type.")
     parser.add_argument("--sub-timeout", type=int, default=180, help="yt-dlp subtitle step timeout, seconds.")
