@@ -14,6 +14,7 @@ export const aiTopics: AITopic[] = [
     summary: L('Отделите конкретные заверения документа от отсутствующего механизма автоматической коллективной обороны.', 'Separate the document’s concrete assurances from an absent automatic collective-defence mechanism.', 'Відокремте конкретні запевнення документа від відсутнього механізму автоматичної колективної оборони.'),
     nodeIds: ['un-charter', 'budapest', 'concept-security-assurances', 'concept-territorial-integrity'],
     sourceEventIds: ['budapest'],
+    argumentIds: ['budapest-assurances-and-disarmament'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Уточнить термин', text:'Какой именно пункт меморандума вы называете гарантией автоматического военного вмешательства?' },
@@ -36,13 +37,14 @@ export const aiTopics: AITopic[] = [
     id: 'nato',
     title: L('НАТО и безопасность', 'NATO and security', 'НАТО та безпека'),
     keywords: {
-      ru: ['нато', 'расширение', 'бухарест', 'неделимая безопасность', 'военная инфраструктура', 'официальные источники', 'официальная позиция', 'официальная риторика', 'кремль', 'враг', 'диалог', 'риск', 'безопасность', 'цена решения', 'уверенные оценки'],
-      en: ['nato', 'enlargement', 'bucharest', 'indivisible security', 'military infrastructure', 'official sources', 'official position', 'official rhetoric', 'kremlin', 'enemy', 'dialogue', 'risk', 'security', 'policy trade-off', 'position costs'],
-      uk: ['нато', 'розширення', 'бухарест', 'неподільна безпека', 'військова інфраструктура', 'офіційні джерела', 'офіційна позиція', 'кремль', 'ворог', 'діалог', 'ризик', 'безпека', 'офіційна риторика'],
+      ru: ['нато', 'расширение', 'бухарест', 'неделимая безопасность', 'военная инфраструктура', 'официальные источники', 'официальная позиция', 'официальная риторика', 'кремль', 'враг', 'диалог', 'риск', 'безопасность', 'цена решения', 'гибкость позиций', 'волатильность сигналов', 'чехия', 'франция', 'израиль', 'европа'],
+      en: ['nato', 'enlargement', 'bucharest', 'indivisible security', 'military infrastructure', 'official sources', 'official position', 'official rhetoric', 'kremlin', 'enemy', 'dialogue', 'risk', 'security', 'policy trade-off', 'signal volatility', 'czech republic', 'france', 'israel', 'europe'],
+      uk: ['нато', 'розширення', 'бухарест', 'неподільна безпека', 'військова інфраструктура', 'офіційні джерела', 'офіційна позиція', 'кремль', 'ворог', 'діалог', 'ризик', 'безпека', 'волатильність сигналів', 'чехія', 'франція', 'ізраїль', 'європа'],
     },
     summary: L('Анализировать НАТО нужно в двух измерениях: легитимность выбора и управляемый политический риск; официальная позиция важна как сигнал, но решение принимается через цену риска и последствия для безопасности.', 'NATO should be analyzed in two dimensions: legitimacy of the choice and manageable political risk; official position is a signal, while policy choice depends on risk appetite and security consequences.', 'Аналіз НАТО має бути в двох вимірах: легітимність вибору та контрольований політичний ризик; офіційна позиція важлива як сигнал, але рішення залежить від ціни ризику й безпекових наслідків.'),
     nodeIds: ['nato-russia-act', 'bucharest', 'astana', 'concept-alliance-choice', 'concept-indivisible-security', 'concept-security-dilemma'],
     sourceEventIds: ['nato-russia-act', 'bucharest', 'astana'],
+    argumentIds: ['security-dilemma-and-escalation-chain'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Разделить уровень', text:'Зафиксируйте, где идёт юридический вопрос (есть ли право на выбор), а где политическая оценка риска (насколько этот выбор оптимален сегодня).' },
@@ -65,6 +67,35 @@ export const aiTopics: AITopic[] = [
     },
   },
   {
+    id: 'alliance-volatility',
+    title: L('Волатильность союзных сигналов', 'Alliance signaling volatility', 'Волатильність союзницьких сигналів'),
+    keywords: {
+      ru: ['волатильность сигналов', 'чехия', 'франция', 'израиль', 'позиция союзников', 'колебание поддержки', 'эскалация сигнала', 'гибкость риторики'],
+      en: ['signal volatility', 'czech republic', 'france', 'israel', 'allied positioning', 'support drift', 'rhetorical shifts'],
+      uk: ['волатильність сигналів', 'чехія', 'франція', 'ізраїль', 'положення союзників', 'дрейф підтримки', 'зміна риторики'],
+    },
+    summary: L('Сигналы союзников оцениваются по динамике: важны не только слова в моменте, но и устойчивость институционального поведения и его цена для режима.', 'Alliance signals are assessed dynamically: not only current statements but continuity of institutional behavior and its cost matter.', 'Сигнали союзників оцінюються динамічно: важливі не лише слова в моменті, а й сталість інституційної поведінки та її ціна для політики.'),
+    nodeIds: ['concept-alliance-signals', 'concept-alliance-volatility', 'concept-evidence-trust', 'concept-russia-ukraine-relationship'],
+    sourceEventIds: ['full-invasion', 'astana'],
+    suggestions: {
+      ru: [
+        { kind:'clarify', title:'Разделить фазу', text:'Уточните, это моментальный публичный сигнал или повторяемая политика с ресурсами и сроками.' },
+        { kind:'evidence', title:'Сравнить речь и действия', text:'Сопоставьте заявления с решениями, финансированием, инфраструктурными шагами и правовой архитектурой.' },
+        { kind:'boundary', title:'Не делать автоматизм', text:'Сигнал сессии не равен автоматическому стратегическому выбору на годы.' },
+      ],
+      en: [
+        { kind:'clarify', title:'Split the phase', text:'Is this a one-off public statement or an actionable, repeated policy with budget and deadlines?' },
+        { kind:'evidence', title:'Match rhetoric and action', text:'Compare statements with concrete decisions, funding, infrastructure and legal framework.' },
+        { kind:'boundary', title:'Avoid determinism', text:'A one-time signal does not automatically lock in long-term policy outcomes.' },
+      ],
+      uk: [
+        { kind:'clarify', title:'Розділити фазу', text:'Уточніть, це одноразовий публічний сигнал чи політика, що повторюється з ресурсами та термінами.' },
+        { kind:'evidence', title:'Зв’язати риторику й дії', text:'Порівняйте заяви з конкретними рішеннями, фінансуванням, інфраструктурними кроками та правовою основою.' },
+        { kind:'boundary', title:'Не робити детермінізму', text:'Разовий сигнал не дорівнює автоматичному стратегічному курсу на роки.' },
+      ],
+    },
+  },
+  {
     id: 'power-2014',
     title: L('Смена власти в 2014 году', 'Transfer of power in 2014', 'Зміна влади у 2014 році'),
     keywords: {
@@ -75,6 +106,7 @@ export const aiTopics: AITopic[] = [
     summary: L('Не смешивайте вопрос о буквальной конституционной процедуре с вопросом о последующей непрерывности институтов и выборах.', 'Do not conflate literal constitutional procedure with later institutional continuity and elections.', 'Не змішуйте буквальну конституційну процедуру з подальшою безперервністю інституцій та виборами.'),
     nodeIds: ['power-2014', 'concept-constitutional-procedure', 'crimea', 'ato'],
     sourceEventIds: ['power-2014'],
+    argumentIds: ['transfer-2014-and-ato-authority'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Попросить критерий', text:'Какую конкретно конституционную процедуру вы считаете соблюдённой или нарушенной и на каком этапе?' },
@@ -220,6 +252,7 @@ export const aiTopics: AITopic[] = [
     summary: L('Проверяйте пункт, ответственного актора и спорную последовательность безопасности и политических шагов.', 'Check the clause, responsible actor and contested sequencing of security and political steps.', 'Перевіряйте пункт, відповідального актора та спірну послідовність безпеки й політичних кроків.'),
     nodeIds: ['ato', 'minsk', 'concept-ceasefire-sequencing', 'full-invasion'],
     sourceEventIds: ['minsk'],
+    argumentIds: ['security-dilemma-and-escalation-chain'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Назвать пункт', text:'Какой именно из пунктов Минска вы имеете в виду, кто был указан ответственным и что по тексту должно было произойти до него?' },
@@ -319,6 +352,7 @@ export const aiTopics: AITopic[] = [
     summary: L('Стройте причинную цепочку, но отдельно проверяйте правовое основание, заявленные цели и фактические последствия.', 'Build a causal chain, while separately testing legal basis, stated aims and actual consequences.', 'Будуйте причинний ланцюг, але окремо перевіряйте правову підставу, заявлені цілі та фактичні наслідки.'),
     nodeIds: ['concept-security-dilemma', 'minsk', 'concept-cause-vs-justification', 'full-invasion', 'concept-use-of-force'],
     sourceEventIds: ['full-invasion', 'un-charter'],
+    argumentIds: ['security-dilemma-and-escalation-chain', 'war-as-political-instrument', 'urban-objectives-and-civilian-risk'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Уточнить уровень', text:'Мы сейчас выясняем причины решения, заявленное правовое обоснование или моральную оценку последствий? Это три разных вопроса.' },
@@ -405,6 +439,96 @@ export const aiTopics: AITopic[] = [
     },
   },
   {
+    id: 'protest-legitimacy',
+    title: L('Майдан и легитимность решений', 'Maidan and decision legitimacy', 'Майдан і легітимність рішень'),
+    keywords: {
+      ru: ['майдан', 'протест', 'майдановцы', 'янукович', 'прогнать', 'чей лбов', 'карта', 'хто прогнал', 'конституционная легитимность', 'народ'],
+      en: ['maidan', 'protest', 'yanukovych', 'who removed', 'constitutional legitimacy', 'popular pressure', 'revolution'],
+      uk: ['майдан', 'протест', 'янукович', 'хто усунув', 'легітимність', 'права'],
+    },
+    summary: L('Важно не смешивать право народа на протест с автоматическим итогом по легитимности конкретной процедуры смены власти.', 'Do not conflate the right to protest with automatic validity of every subsequent institutional claim.', 'Важливо не змішувати право народу на протест із автоматичною законністю кожного наступного політичного кроку.'),
+    nodeIds: ['concept-right-to-protest', 'concept-constitutional-procedure', 'concept-constitutional-interpretation', 'concept-democratic-accountability'],
+    sourceEventIds: ['power-2014'],
+    suggestions: {
+      ru: [
+        { kind:'clarify', title:'Разделить тезис', text:'Вы говорите о праве протестовать или о правомерности того, что случилось после протеста? Это разные вещи.' },
+        { kind:'evidence', title:'Проверить процедуру', text:'Нужно отдельно: кто принимал решение, на каком основании и как оно прошло через институты, а не только через массовую мобилизацию.' },
+        { kind:'evidence', title:'Считать динамику', text:'Политика после спонтанного акта требует институциональной проверки непрерывности, а не только опоры на эмоциональный контур события.' },
+        { kind:'boundary', title:'Не подменять легитимность', text:'Динамика улицы важна, но она не отменяет различий между публичной волей и юридическим порядком.' },
+      ],
+      en: [
+        { kind:'clarify', title:'Split the claim', text:'Are we evaluating protest rights, or the legal validity of what was done after the protest? Those are different.' },
+        { kind:'evidence', title:'Verify procedure', text:'Name who adopted each decision, what legal basis was used, and whether institutions implemented continuity checks.' },
+        { kind:'evidence', title:'Track sequence', text:'The period after street mobilization must be assessed through institutional transitions, not only public pressure.' },
+        { kind:'boundary', title:'Do not conflate with legitimacy', text:'Public mobilization is important, but it does not replace constitutional legal testing.' },
+      ],
+      uk: [
+        { kind:'clarify', title:'Розділити тезис', text:'Ви говорите про право на протест чи про правомірність рішень після протесту? Це різні тези.' },
+        { kind:'evidence', title:'Перевірити процедуру', text:'Потрібно окремо: хто ухвалив рішення, на якій підставі й як воно пройшло інституціями.' },
+        { kind:'evidence', title:'Відстежити послідовність', text:'Після мобілізації вулиці потрібна інституційна перевірка безперервності влади, а не лише емоційна історія.' },
+        { kind:'boundary', title:'Не підмінювати легітимність', text:'Публічний рух важливий, але не замінює правову перевірку рішень.' },
+      ],
+    },
+  },
+  {
+    id: 'speech-trust',
+    title: L('Свобода слова и проверяемость', 'Speech, truth and verifiability', 'Свобода слова й перевірюваність'),
+    keywords: {
+      ru: ['правда', 'свобода слова', 'доступ к правде', 'не нужно никакой правды', 'фейки', 'доказ', 'источник', 'публика'],
+      en: ['truth', 'freedom of speech', 'access to truth', 'no truth', 'proof', 'source', 'public claim'],
+      uk: ['правда', 'свобода слова', 'доступ до правди', 'жодної правди', 'доказ', 'джерело', 'публічна теза'],
+    },
+    summary: L('Александр акцентирует: критический спор держится не на громкости мнения, а на проверяемости источника, контекста и повторяемости.', 'He emphasizes that meaningful argument rests not on volume of opinion, but on verifiable sources, context, and reproducibility.' , 'Александр підкреслює: змістовна суперечка базується на перевірюваності джерела, контексті й відтворюваності, а не на гучності думки.'),
+    nodeIds: ['concept-public-speech', 'concept-evidence-trust', 'concept-democratic-accountability'],
+    sourceEventIds: [],
+    suggestions: {
+      ru: [
+        { kind:'clarify', title:'Назвать формулировку', text:'Какая именно фраза считается источником тезиса: дословная цитата или пересказ?' },
+        { kind:'evidence', title:'Отфильтровать эмоцию', text:'Сначала выделите фактовую часть, потом оцените доказательства, время публикации и контекст.' },
+        { kind:'boundary', title:'Не делать «все проезжают в правах», как замену', text:'Защита свободы слова не отменяет требования к доказательному стандарту при юридических выводах.' },
+      ],
+      en: [
+        { kind:'clarify', title:'Pin the quotation', text:'What exact wording is the evidence base: verbatim quote or paraphrase?' },
+        { kind:'evidence', title:'Separate rhetoric and facts', text:'Split the rhetorical layer from provable facts, then verify timing, sourcing, and context.' },
+        { kind:'boundary', title:'Do not skip standards', text:'Freedom of speech is not a substitute for evidentiary standards when making legal claims.' },
+      ],
+      uk: [
+        { kind:'clarify', title:'Вказати цитату', text:'Яку саме фразу вважаєте фактичним джерелом: дослівну цитату чи переказ?' },
+        { kind:'evidence', title:'Відділити риторику і факт', text:'Спершу фіксуйте факти, потім перевіряйте час публікації, джерело та контекст.' },
+        { kind:'boundary', title:'Не замінювати стандарти', text:'Свобода слова важлива, але не скасовує стандарт доказовості в юридичних висновках.' },
+      ],
+    },
+  },
+  {
+    id: 'alliance-signals',
+    title: L('Сигналы союзников и внешняя политика', 'Alliance signals and foreign policy', 'Сигнали союзників і зовнішня політика'),
+    keywords: {
+      ru: ['чехия', 'израиль', 'европа', 'сша', 'франция', 'санкции', 'поддержка', 'нато', 'союзник', 'цели украины'],
+      en: ['czech', 'israel', 'europe', 'usa', 'france', 'sanctions', 'support', 'allies', 'nato', 'ukraine goals'],
+      uk: ['чехія', 'ізраїль', 'європа', 'сша', 'франція', 'санкції', 'підтримка', 'союзники', 'нато', 'цілі україни'],
+    },
+    summary: L('Он отделяет сигналы внешних акторов от юридических обязательств: заявления важны, но в споре решает, что оформлено как договор и как политический контекст.', 'He distinguishes external actor signaling from binding commitments: statements matter, but legal force depends on institutionalization and context.' , 'Він відокремлює сигнали зовнішніх акторів від юридичних зобов’язань: заяви важливі, але юридична сила залежить від інституціоналізації та контексту.'),
+    nodeIds: ['concept-alliance-signals', 'concept-russia-ukraine-relationship', 'concept-security-dilemma'],
+    sourceEventIds: ['full-invasion'],
+    suggestions: {
+      ru: [
+        { kind:'clarify', title:'Классифицировать уровень', text:'Что это: официальная позиция, политический жест, или юридически оформленный механизм?' },
+        { kind:'evidence', title:'Сравнить действие и речь', text:'Сопоставьте заявления с конкретными действиями, ресурсами и выполнением обязательств.' },
+        { kind:'boundary', title:'Не приписывать автоматические последствия', text:'Симпатия/критика от союзника не делает позицию автоматически правилом внутренней политики.' },
+      ],
+      en: [
+        { kind:'clarify', title:'Classify the level', text:'Is it an official position, a political signal, or an institutionalized commitment?' },
+        { kind:'evidence', title:'Match words to action', text:'Pair statements with concrete actions, resource decisions, and enforceable implementation.' },
+        { kind:'boundary', title:'Do not over-assign effects', text:'Ally sympathy or criticism does not automatically determine domestic policy outcomes.' },
+      ],
+      uk: [
+        { kind:'clarify', title:'Класифікувати рівень', text:'Це офіційна позиція, політичний сигнал чи інституціональне зобовʼязання?' },
+        { kind:'evidence', title:'Порівняти слова й дію', text:'Зіставте заяви з конкретними діями, ресурсами й механізмами виконання.' },
+        { kind:'boundary', title:'Не переоцінювати наслідки', text:'Симпатія або критика союзника сама по собі не визначає автоматично внутрішні рішення.' },
+      ],
+    },
+  },
+  {
     id: 'evidence-trust',
     title: L('Как отличить факт от спекуляции', 'How to distinguish fact from speculation', 'Як відрізнити факт від спекуляції'),
     keywords: {
@@ -415,6 +539,7 @@ export const aiTopics: AITopic[] = [
     summary: L('В споре он настаивает на доказательной цепочке: цитата, источник, проверка, а не произвольное повторение эмоциональной версии.', 'In argumentation he repeatedly asks for citation, source, and method, rather than repeating an emotional narrative as proof.', 'У дискусіях він наполягає на доказовій ланцюжку: цитата, джерело, перевірка, а не лише емоційна версія.'), 
     nodeIds: ['concept-evidence-trust', 'concept-constitutional-interpretation'],
     sourceEventIds: ['full-invasion', 'annexation-2022'],
+    argumentIds: ['ideological-examples-and-social-prevalence', 'tactical-effect-vs-strategic-outcome'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Попросить первоисточник', text:'«Что именно сказано в тексте/документе?» — это закрывает 80% споров по смыслу.' },
@@ -437,6 +562,65 @@ export const aiTopics: AITopic[] = [
     },
   },
   {
+    id: 'state-capacity',
+    title: L('Государственная способность и устойчивость институтов', 'State capacity and institutional resilience', 'Державна спроможність та стійкість інститутів'),
+    keywords: {
+      ru: ['способность государства', 'институты', 'производство', 'бизнес', 'организация', 'ресурсный потенциал', 'субъектность', 'админка'],
+      en: ['state capacity', 'institutional resilience', 'administration', 'production', 'business environment', 'governance capability', 'human capital'],
+      uk: ['державна спроможність', 'інституційна стійкість', 'адміністрація', 'виробництво', 'бізнес середовище', 'людський потенціал', 'урядування'],
+    },
+    summary: L('В аргументации о «рабочем государстве» выделяется способность институций нести ответственность и не сводить все к политической фигуре или настроению.', 'The argument treats institutional capacity as a core condition for sustainability: capacity to absorb shocks and enforce accountable decisions beyond personalities.', 'У тезі про «працюючу державу» акцент на спроможності інституцій підтримувати керованість, а не на фігурах чи настроях.'),
+    nodeIds: ['concept-state-capacity', 'concept-democratic-accountability', 'concept-war-endgame'],
+    sourceEventIds: ['full-invasion'],
+    argumentIds: ['state-capacity-before-symbolic-power', 'war-as-political-instrument'],
+    suggestions: {
+      ru: [
+        { kind:'clarify', title:'Что проверяем', text:'Нужна граница между политической риторикой о «работе государства» и измеримыми институциональными метриками.' },
+        { kind:'evidence', title:'Показать метрики', text:'Здесь полезно выделять качество суда, логистики, финансового контроля и социальной интеграции.' },
+        { kind:'boundary', title:'Не подменять личностью', text:'Способность системы держать кризис не равна оценке одного лидера или одной кампании.' },
+      ],
+      en: [
+        { kind:'clarify', title:'Define capacity', text:'Separate rhetorical claims from measurable institutional indicators (courts, logistics, fiscal control, service delivery).' },
+        { kind:'evidence', title:'Use system metrics', text:'Track continuity of administrative routines and enforcement quality across policy domains.' },
+        { kind:'boundary', title:'Avoid personalization', text:'System endurance is broader than popularity or personality of a single political actor.' },
+      ],
+      uk: [
+        { kind:'clarify', title:'Визначити спроможність', text:'Розділіть риторику про «робочу державу» від вимірюваних інституційних показників.' },
+        { kind:'evidence', title:'Дати метрики', text:'Тут важливо відстежувати якість суду, логістики, фіскального контролю й соціальної інтеграції.' },
+        { kind:'boundary', title:'Не персоніфікувати', text:'Здатність системи тримати кризу не дорівнює оцінці однієї фігури.' },
+      ],
+    },
+  },
+  {
+    id: 'captive-verification',
+    title: L('Проверка по цепочке: пленники и источники', 'Evidence chain for detainee claims', 'Перевірка ланцюжка: полонені та джерела'),
+    keywords: {
+      ru: ['пленные', 'доказательства', 'военкомат', 'расследование', 'приказ командира', 'официальная проверка', 'журналисты', 'стадия проверки'],
+      en: ['prisoners', 'allegations', 'military order', 'official verification', 'journalist report', 'evidence chain', 'proof burden'],
+      uk: ['полонені', 'докази', 'військове керівництво', 'офіційна перевірка', 'журналісти', 'ланцюжок доказів'],
+    },
+    summary: L('По теме «пленные» акцентируется последовательность: публичная претензия → первичный сигнал → официальная проверка → юридическая квалификация.', 'For POW-related claims the sequence matters: public allegation → initial signal → official verification → legal qualification.' , 'У тезах про полонених акцент на послідовність: публічна претензія → первинний сигнал → офіційна перевірка → юридична кваліфікація.'),
+    nodeIds: ['concept-captive-verification', 'concept-evidence-trust', 'concept-military-oath'],
+    sourceEventIds: ['full-invasion'],
+    suggestions: {
+      ru: [
+        { kind:'clarify', title:'Назвать этап', text:'Какая именно часть цепочки обсуждается: публикация, заявление, фактологическое подтверждение или квалификация?' },
+        { kind:'evidence', title:'Разделить уровни', text:'Выполните разбивку «что сказали», «что зафиксировано», «что проверил начальник».' },
+        { kind:'boundary', title:'Не делать из СМИ доказательство', text:'Журналистские данные важны для старта проверки, но юридический вывод требует подтвержденных процедур.' },
+      ],
+      en: [
+        { kind:'clarify', title:'Name the stage', text:'Specify whether we discuss the allegation, the primary incident, official verification, or legal qualification.' },
+        { kind:'evidence', title:'Separate stages', text:'Use chain: what was said, what was logged, what was verified by command and what legal label follows.' },
+        { kind:'boundary', title:'Media vs legal proof', text:'Media reports can trigger review; legal claims require verified procedural proof.' },
+      ],
+      uk: [
+        { kind:'clarify', title:'Назвати етап', text:'Вкажіть, про яку частину ланцюжка йдеться: публічне зауваження, фіксацію факту, перевірку командиром чи юридичну кваліфікацію.' },
+        { kind:'evidence', title:'Відокремити етапи', text:'Розбийте на «що сказали», «що зафіксовано», «що перевірив керівник», «яка правова кваліфікація».' },
+        { kind:'boundary', title:'Не плутати медію і доказ', text:'Журналістика важлива для старту перевірки, але правовий висновок потребує підтверджених процедур.' },
+      ],
+    },
+  },
+  {
     id: 'war-end-game',
     title: L('Как заканчивается война и почему не по формуле', 'How war ends and why it is not a simple formula', 'Як закінчується війна і чому це не проста формула'),
     keywords: {
@@ -447,6 +631,7 @@ export const aiTopics: AITopic[] = [
     summary: L('Александр показывает, что «закончится/не закончится» — это не бинарная моральная формула, а набор ограничений: безопасность, переговорная цена и политические последствия.', 'He frames end-of-war framing as a constrained process, not a binary moral formula: security, negotiation costs, and political consequences matter together.', 'Олександр показує, що питання «коли закінчиться» — це не бінарна моральна формула, а набір обмежень: безпека, вартість переговорів і політичні наслідки.'),
     nodeIds: ['concept-war-endgame', 'concept-cause-vs-justification', 'full-invasion'],
     sourceEventIds: ['full-invasion', 'un-charter'],
+    argumentIds: ['war-as-political-instrument', 'security-dilemma-and-escalation-chain'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Разбить на сценарии', text:'Задайте отдельные сценарии: прекращение огня, политическое урегулирование, долгосрочный режим безопасности.' },
@@ -565,13 +750,14 @@ export const aiTopics: AITopic[] = [
     id: 'russia-ukraine-dialogue',
     title: L('Как улучшать отношения с Россией', 'How to improve ties with Russia', 'Як покращувати відносини з Росією'),
     keywords: {
-      ru: ['отношения с россией', 'диалог', 'дипломатия', 'санкции', 'необходимость', 'пределы', 'безопасные зоны'],
-      en: ['relationship with russia', 'dialogue', 'diplomacy', 'sanctions', 'conditions', 'security', 'boundaries'],
-      uk: ['відносини з росією', 'діалог', 'дипломатія', 'санкції', 'умови', 'безпека', 'межі'],
+      ru: ['отношения с россией', 'диалог', 'дипломатия', 'санкции', 'необходимость', 'пределы', 'безопасные зоны', 'ссср', 'распад союза', 'правопреемство', 'один народ', 'общая история'],
+      en: ['relationship with russia', 'dialogue', 'diplomacy', 'sanctions', 'conditions', 'security', 'boundaries', 'ussr', 'soviet dissolution', 'state continuity', 'one people', 'shared history'],
+      uk: ['відносини з росією', 'діалог', 'дипломатія', 'санкції', 'умови', 'безпека', 'межі', 'срср', 'розпад союзу', 'правонаступництво', 'один народ', 'спільна історія'],
     },
     summary: L('В этих дискуссиях он настаивает на прагматичном споре: даже при конфликте возможно рамочное улучшение конкретных форматов — без иллюзии мгновенной нормализации.', 'These discussions stress pragmatic framing: normalization can only be selective and conditional, not an illusion of full immediate reset.', 'У цих розмовах він наполягає на прагматичному підході: поліпшення можливе лише умовно й точково, а не як повне миттєве «перезавантаження».'),
     nodeIds: ['concept-russia-ukraine-relationship', 'concept-security-dilemma', 'concept-elite-continuity'],
     sourceEventIds: ['full-invasion', 'annexation-2022'],
+    argumentIds: ['shared-history-vs-statehood', 'ussr-dissolution-and-present-consent', 'state-continuity-vs-ideology'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Назвать формат', text:'Нужна ли точечная кооперация (гуманитарная, энергетика, обмен), либо вопрос о полном стратегическом сближении?' },

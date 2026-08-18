@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { eventsById } from '../data/events'
+import { argumentsById } from '../data/arguments'
 import type { AISuggestionKind } from '../domain/types'
 import { CopyIcon, MicrophoneIcon, SparkIcon, StopIcon } from '../components/Icons'
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition'
@@ -172,6 +173,15 @@ export function AIAssistantView() {
                       const event = eventsById.get(eventId)
                       if (!event) return null
                       return <button type="button" key={eventId} onClick={() => navigate(`/event/${eventId}`)}>{local(event.title, language)}</button>
+                    })}
+                    {topic.argumentIds?.slice(0, 3).map((argumentId) => {
+                      const argument = argumentsById.get(argumentId)
+                      if (!argument) return null
+                      return (
+                        <button className="is-argument" type="button" key={argumentId} onClick={() => navigate(`/argument/${argumentId}`)}>
+                          {t('argument')}: {local(argument.title, language)}
+                        </button>
+                      )
                     })}
                   </div>
                 </article>

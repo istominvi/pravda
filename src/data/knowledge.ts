@@ -1,16 +1,19 @@
 import type { KnowledgeNode, KnowledgeRelation, Localized } from '../domain/types'
+import { argumentsData, youtubeTimestampUrl } from './arguments'
 import { events } from './events'
 
 const L = (ru: string, en: string, uk: string): Localized => ({ ru, en, uk })
 
 const documentIds = new Set([
   'un-charter',
+  'ukraine-sovereignty-1990',
   'budapest',
   'nato-russia-act',
   'bucharest',
   'astana',
   'minsk',
   'language-law',
+  'munich-security-2022',
 ])
 
 const eventNodes: KnowledgeNode[] = events.map((event) => ({
@@ -155,11 +158,53 @@ const conceptNodes: KnowledgeNode[] = [
     tags: ['конституционное право', 'интерпретация', 'норма'],
   },
   {
+    id: 'concept-right-to-protest', type: 'concept',
+    title: L('Право на протест', 'Right to protest', 'Право на протест'),
+    eyebrow: L('Конституционный механизм', 'Constitutional mechanism', 'Конституційний механізм'),
+    summary: L('Конституционное право на собрания и протест не равно автоматическому признанию любых действий как легитимных политических требований.', 'The constitutional right to assembly and protest is not equivalent to automatic legitimacy of any political claim or method.', 'Конституційне право на зібрання і протест не означає автоматичну легітимність будь-якої політичної вимоги чи методу.'),
+    tags: ['майдан', 'демократия', 'протест'],
+  },
+  {
+    id: 'concept-public-speech', type: 'concept',
+    title: L('Свобода слова и публичная коммуникация', 'Freedom of speech and public communication', 'Свобода слова та публічна комунікація'),
+    eyebrow: L('Публичная сфера', 'Public sphere', 'Громадська сфера'),
+    summary: L('В полемике важны не только мнения, а верифицируемость высказываний: кто сказал, на чем основано и где проверка.', 'In debate, opinions alone are not enough; verifiability of claims matters: who said it, what it is based on, and where it can be checked.', 'У суперечці важливо не лише думка, а й перевірюваність висловлювань: хто сказав, на чому ґрунтується і де перевірка.'),
+    tags: ['свобода слова', 'информационная среда', 'публичный спор'],
+  },
+  {
+    id: 'concept-alliance-signals', type: 'concept',
+    title: L('Сигналы союзников и международная опора', 'Alliance signals and external support', 'Сигнали союзників і зовнішня опора'),
+    eyebrow: L('Внешняя политика', 'Foreign policy', 'Зовнішня політика'),
+    summary: L('Заявления государств и их действия важны, но не одно и то же: риторика не равна юридическому обязательству, а поддержка — политической безальтернативности.', 'State statements and actions matter, but they are not identical: rhetoric is not a legal obligation, and support is not policy lock-in.', 'Заяви держав і їх дії важливі, але це не одне й те саме: риторика — не юридичне зобов’язання, а підтримка — не політична безальтернативність.'),
+    tags: ['международная политика', 'союзники', 'санкции'],
+  },
+  {
     id: 'concept-evidence-trust', type: 'concept',
     title: L('Доказательный уровень', 'Evidentiary standard', 'Рівень доказовості'),
     eyebrow: L('Метод', 'Method', 'Метод'),
     summary: L('Снижение напряжения достигается через последовательную проверку источника, метрик и воспроизводимости, а не через повторение позиции.', 'Tension reduces when argument relies on source checks, metrics, and replicability instead of mere repetition.' , 'Напруга зменшується, коли аргумент спирається на перевірку джерел, метрик і відтворюваності, а не на просте повторення позиції.'),
     tags: ['факты', 'проверка', 'источник'],
+  },
+  {
+    id: 'concept-state-capacity', type: 'concept',
+    title: L('Институциональная государственная способность', 'State capacity', 'Інституційна державна спроможність'),
+    eyebrow: L('Аналитика', 'Analytics', 'Аналітика'),
+    summary: L('Способность институций превращать политические решения в работающие механизмы — от экономики до безопасности.', 'Capacity is the ability of institutions to turn political decisions into operational mechanisms in economy, security and public services.', 'Спроможність інституцій переводити політичні рішення на рівень роботи економіки, безпеки й публічних сервісів.'),
+    tags: ['институты', 'управление', 'эффективность'],
+  },
+  {
+    id: 'concept-alliance-volatility', type: 'concept',
+    title: L('Волатильность союзной поддержки', 'Alliance support volatility', 'Волатильність союзницької підтримки'),
+    eyebrow: L('Международная динамика', 'International dynamics', 'Міжнародна динаміка'),
+    summary: L('Внешние сигналы меняются по фазам; в споре важно отличать устойчивые обязательства от ситуативных политических высказываний.', 'External support signals can swing; the distinction is between durable commitments and episodic political statements.', 'Зовнішні сигнали змінюються по фазах; у спорі важливо відділяти стійкі зобовʼязання від ситуативних політичних заяв.' ),
+    tags: ['альянсы', 'сигналы', 'политический риск'],
+  },
+  {
+    id: 'concept-captive-verification', type: 'concept',
+    title: L('Критерии проверки обвинений по пленным', 'Evidence standards for captive allegations', 'Критерії перевірки звинувачень щодо полонених'),
+    eyebrow: L('Метод', 'Method', 'Метод'),
+    summary: L('Заявления о пленниках и «расследованиях» требуют сопоставления первичных данных, компетенции проверяющего и публичной ответственности.', 'Claims about prisoners and investigations require alignment of raw data, authority of the verifier, and public accountability.', 'Заяви про полонених і розслідування мають поєднувати первинні дані, повноваження перевіряючого та публічну відповідальність.'),
+    tags: ['пленные', 'проверка', 'право'],
   },
   {
     id: 'concept-population-consent', type: 'concept',
@@ -203,10 +248,76 @@ const conceptNodes: KnowledgeNode[] = [
     summary: L('Видеоформат акцентирует различение: диалог полезен как инструмент, но не отменяет конфликтности базовых интересов.', 'The videos distinguish engagement as an instrument, not as a cancellation of core conflicting interests.', 'У відеодискусіях проговорюється: діалог — інструмент, але не скасування базової конфліктності інтересів.'),
     tags: ['россия', 'дипломатия', 'безопасность'],
   },
+  {
+    id: 'concept-strategic-effect', type: 'concept',
+    title: L('Стратегический эффект', 'Strategic effect', 'Стратегічний ефект'),
+    eyebrow: L('Критерий результата', 'Outcome test', 'Критерій результату'),
+    summary: L('Устойчивое изменение ресурсов, темпа операций или переговорных возможностей нужно отличать от локального и медийного успеха.', 'A durable change in resources, operational tempo, or bargaining power must be distinguished from a local or media success.', 'Тривалу зміну ресурсів, темпу операцій або переговорних можливостей слід відрізняти від локального чи медійного успіху.'),
+    tags: ['стратегия', 'эффект', 'метрики'],
+  },
+  {
+    id: 'concept-civilian-protection', type: 'concept',
+    title: L('Защита гражданских', 'Civilian protection', 'Захист цивільних'),
+    eyebrow: L('Международное гуманитарное право', 'International humanitarian law', 'Міжнародне гуманітарне право'),
+    summary: L('Стороны обязаны принимать практически возможные меры предосторожности: и при размещении военных объектов, и при планировании атак.', 'Parties must take feasible precautions both when locating military objectives and when planning attacks.', 'Сторони мають уживати практично можливих запобіжних заходів і при розміщенні військових об’єктів, і при плануванні атак.'),
+    tags: ['МГП', 'гражданские', 'соразмерность'],
+  },
+  {
+    id: 'concept-shared-history', type: 'concept',
+    title: L('Общая историческая рамка', 'Shared historical frame', 'Спільна історична рамка'),
+    eyebrow: L('Идентичность', 'Identity', 'Ідентичність'),
+    summary: L('Историческая и культурная связанность может объяснять политическое восприятие, но не отменяет современную государственность и признанные границы.', 'Historical and cultural connection may explain political perception but does not erase modern statehood or recognised borders.', 'Історична й культурна пов’язаність може пояснювати політичне сприйняття, але не скасовує сучасну державність і визнані кордони.'),
+    tags: ['история', 'идентичность', 'суверенитет'],
+  },
+  {
+    id: 'concept-war-aims', type: 'concept',
+    title: L('Политические цели войны', 'Political aims of war', 'Політичні цілі війни'),
+    eyebrow: L('Аналитическая рамка', 'Analytical frame', 'Аналітична рамка'),
+    summary: L('Военное действие оценивается через заявленную цель, затраченные ресурсы и способ превратить военный эффект в политический результат.', 'Military action is assessed through its stated objective, resources spent, and the mechanism linking military effect to political outcome.', 'Військову дію оцінюють через заявлену мету, витрачені ресурси та механізм перетворення військового ефекту на політичний результат.'),
+    tags: ['война', 'политика', 'ресурсы'],
+  },
+  {
+    id: 'concept-state-continuity', type: 'concept',
+    title: L('Правопродолжение государства', 'Continuity of a state', 'Правопродовження держави'),
+    eyebrow: L('Международное право', 'International law', 'Міжнародне право'),
+    summary: L('Продолжение прав и обязательств государства не требует сохранения прежней идеологии, экономической модели или политического режима.', 'Continuation of state rights and obligations does not require retaining the former ideology, economy, or political regime.', 'Продовження державних прав і зобов’язань не потребує збереження колишньої ідеології, економіки чи політичного режиму.'),
+    tags: ['СССР', 'правопреемство', 'обязательства'],
+  },
+  {
+    id: 'concept-ideology-prevalence', type: 'concept',
+    title: L('Распространённость идеологии', 'Ideological prevalence', 'Поширеність ідеології'),
+    eyebrow: L('Стандарт сравнения', 'Comparison standard', 'Стандарт порівняння'),
+    summary: L('Идеологию общества проверяют по массовому распространению, институтам и политике, а не по одному автору, памятнику или цитате.', 'A society’s ideology is tested through prevalence, institutions, and policy—not one author, monument, or quotation.', 'Ідеологію суспільства перевіряють за масовим поширенням, інституціями й політикою, а не за одним автором, пам’ятником чи цитатою.'),
+    tags: ['идеология', 'сравнение', 'доказательность'],
+  },
 ]
 
-export const knowledgeNodes = [...eventNodes, ...conceptNodes] satisfies KnowledgeNode[]
+const argumentNodes: KnowledgeNode[] = argumentsData.map((argument) => ({
+  id: argument.id,
+  type: 'claim',
+  title: argument.title,
+  eyebrow: L('Аргумент Александра', 'Alexander’s argument', 'Аргумент Олександра'),
+  summary: argument.thesis,
+  argumentId: argument.id,
+  tags: argument.tags,
+  sourceUrls: argument.citations.map((item) => youtubeTimestampUrl(item.videoId, item.start)),
+}))
+
+export const knowledgeNodes = [...eventNodes, ...conceptNodes, ...argumentNodes] satisfies KnowledgeNode[]
 export const knowledgeNodesById = new Map(knowledgeNodes.map((node) => [node.id, node]))
+
+const argumentRelations: KnowledgeRelation[] = argumentsData.flatMap((argument) =>
+  argument.relatedNodeIds.map((target, index) => ({
+    id: `r-argument-${argument.id}-${index + 1}`,
+    source: argument.id,
+    target,
+    kind: 'raises-question',
+    label: L('развивает спор', 'develops the dispute', 'розвиває суперечку'),
+    note: argument.thesis,
+    confidence: 'interpretive',
+    sourceUrls: argument.citations.map((item) => youtubeTimestampUrl(item.videoId, item.start)),
+  })),
+)
 
 export const knowledgeRelations: KnowledgeRelation[] = [
   { id:'r-un-force', source:'un-charter', target:'concept-use-of-force', kind:'reaffirms', label:L('закрепляет', 'establishes', 'закріплює'), note:L('Статья 2(4) задаёт общий запрет угрозы силой или её применения.', 'Article 2(4) sets the general prohibition on the threat or use of force.', 'Стаття 2(4) встановлює загальну заборону погрози силою або її застосування.'), confidence:'direct' },
@@ -245,6 +356,25 @@ export const knowledgeRelations: KnowledgeRelation[] = [
   { id:'r-invasion-martial', source:'full-invasion', target:'martial-law', kind:'response', label:L('вызывает', 'triggers', 'спричиняє'), note:L('Полномасштабное вторжение стало основанием для введения и продления военного положения в Украине.', 'The full-scale invasion prompted the introduction and extension of martial law in Ukraine.', 'Повномасштабне вторгнення стало підставою для запровадження та продовження воєнного стану в Україні.'), confidence:'direct' },
   { id:'r-invasion-annex', source:'full-invasion', target:'annexation-2022', kind:'precedes', label:L('создаёт условия', 'creates the conditions', 'створює умови'), note:L('Оккупация территорий предшествовала организованным голосованиям и заявленной аннексии.', 'Occupation preceded the organised votes and claimed annexations.', 'Окупація територій передувала організованим голосуванням і заявленій анексії.'), confidence:'documented' },
   { id:'r-annex-territory', source:'annexation-2022', target:'concept-territorial-integrity', kind:'contradiction', label:L('противоречит признанным границам', 'conflicts with recognised borders', 'суперечить визнаним кордонам'), note:L('Генеральная Ассамблея ООН осудила попытку незаконной аннексии.', 'The UN General Assembly condemned the attempted illegal annexation.', 'Генеральна Асамблея ООН засудила спробу незаконної анексії.'), confidence:'documented' },
+  { id:'r-protest-right', source:'concept-right-to-protest', target:'concept-constitutional-procedure', kind:'contested-link', label:L('не сводит в одно плоскость', 'does not collapse into one plane', 'не зводить до однієї площини'), note:L('Наличие протестов не заменяет проверку конституционной процедуры смены власти и последующего правопреемства.', 'The fact of protests does not replace checking constitutional transfer procedures and subsequent succession of authority.', 'Наявність протестів не замінює перевірки конституційної процедури зміни влади та наступного правонаступництва.'), confidence:'interpretive' },
+  { id:'r-protest-accountability', source:'concept-right-to-protest', target:'concept-democratic-accountability', kind:'reaffirms', label:L('подтверждает роль граждан', 'reaffirms civic role', 'підтверджує роль громадян'), note:L('Протест рассматривается как один из каналов общественной обратной связи, но не как единственный критерий легитимности.', 'Protest is one feedback channel, not the only legitimacy criterion.', 'Протест — один із каналів зворотного зв’язку суспільства, але не єдиний критерій легітимності.'), confidence:'interpretive' },
+  { id:'r-speech-trust', source:'concept-public-speech', target:'concept-evidence-trust', kind:'raises-question', label:L('требует верификации', 'requires verification', 'вимагає верифікації'), note:L('Публичные заявления должны проверяться по источнику, дате и метрикам, а не только по эмоциональной убедительности.', 'Public statements require checking source, date, and metrics, not only emotional persuasiveness.', 'Публічні заяви потрібно перевіряти за джерелом, датою й метриками, а не лише емоційною переконливістю.'), confidence:'documented' },
+  { id:'r-speech-accountability', source:'concept-public-speech', target:'concept-democratic-accountability', kind:'raises-question', label:L('зависит от институтов', 'depends on institutions', 'залежить від інститутів'), note:L('Вопросы свободы речи важны для демократии только вместе с институциональной ответственностью за последствия.', 'Speech questions support democracy only together with institutional accountability for outcomes.', 'Питання свободи слова працюють для демократії лише разом з інституційною відповідальністю за наслідки.'), confidence:'interpretive' },
+  { id:'r-alliance-signals-sovereignty', source:'concept-alliance-signals', target:'concept-sovereignty', kind:'raises-question', label:L('переопределяет ли рамку', 'asks whether it redefines the frame', 'запитує, чи переозначує рамку'), note:L('Не каждая внешнеполитическая поддержка меняет суверенитетный стандарт; часто это ограниченная политическая координация.', 'Not every foreign-policy support changes the sovereignty standard; often it is limited political coordination.', 'Не кожна зовнішньополітична підтримка змінює стандарт суверенітету; часто це обмежена політична координація.'), confidence:'documented' },
+  { id:'r-alliance-signals-relationship', source:'concept-alliance-signals', target:'concept-russia-ukraine-relationship', kind:'political-context', label:L('формирует тон', 'sets the tone', 'формує тон'), note:L('Сигналы союзников влияют на риторику и горизонты диалога, но не заменяют внутреннюю оценку интересов.', 'Alliance signaling affects rhetoric and dialogue horizons, but does not replace domestic interest assessment.', 'Сигнали союзників впливають на риторику й горизонти діалогу, але не замінюють оцінку внутрішніх інтересів.'), confidence:'interpretive' },
+  { id:'r-alliance-volatility', source:'concept-alliance-signals', target:'concept-alliance-volatility', kind:'raises-question', label:L('разделяет уровень сигнала', 'separates signaling level', 'відокремлює рівень сигналу'), note:L('Смена формули поддержки означает, что позиция страны не всегда равна долгосрочному обязательству.', 'A shift in support framing means a government’s line is not always a long-term commitment.', 'Зміна формули підтримки означає, що позиція країни не завжди дорівнює довгостроковому зобовʼязанню.'), confidence:'interpretive' },
+  { id:'r-alliance-evidence', source:'concept-alliance-volatility', target:'concept-evidence-trust', kind:'reaffirms', label:L('требует проверки', 'requires verification', 'вимагає перевірки'), note:L('При нестабильных сигналах возрастает вес источников и сопоставления действий с репликами.', 'When signals are volatile, source quality and action-word consistency become more important.', 'При нестабільних сигналах зростає вагомість якості джерел і узгодженості дій з репліками.'), confidence:'interpretive' },
+  { id:'r-state-capacity-democracy', source:'concept-state-capacity', target:'concept-democratic-accountability', kind:'reaffirms', label:L('подкрепляет механизм', 'strengthens accountability mechanisms', 'посилює механізми відповідальності'), note:L('Тезис о «рабочем государстве» усиливает не роль лидера как личности, а институциональные процедуры проверки решений.', 'State-capacity framing shifts emphasis from personality to institutional audit of decisions.', 'Фрейм про «працездатну державу» переносить фокус з особистості лідера на інституційну перевірку рішень.'), confidence:'interpretive' },
+  { id:'r-state-capacity-war', source:'concept-state-capacity', target:'concept-war-endgame', kind:'political-context', label:L('связывает с исходом', 'connects to the outcome horizon', 'звʼязує з горизонтом завершення'), note:L('Обсуждение окончания войны для Александра часто упирается в то, какие институты смогут выдержать послевоенное управление.', 'His war-endgame framing repeatedly includes which institutions can manage the post-war order.', 'У його баченні етап завершення війни часто включає, які інституції здатні витримати повоєнне управління.'), confidence:'interpretive' },
+  { id:'r-captive-verification', source:'concept-captive-verification', target:'concept-evidence-trust', kind:'raises-question', label:L('повышает порог', 'raises the evidentiary bar', 'підвищує поріг доказовості'), note:L('Заявления о спецподразделениях и пленниках без прозрачной проверки должны рассматриваться как неполные.', 'Claims about special units and prisoners without transparent verification should be treated as incomplete.', 'Заяви про спецпідрозділи й полонених без прозорої перевірки слід розглядати як неповні.'), confidence:'interpretive' },
+  { id:'r-sovereignty-budapest-sequence', source:'ukraine-sovereignty-1990', target:'budapest', kind:'precedes', label:L('задаёт неядерный курс', 'sets the non-nuclear course', 'задає без’ядерний курс'), note:L('Декларация 1990 года зафиксировала будущую нейтральность и три неядерных принципа до оформления Будапештского меморандума.', 'The 1990 declaration recorded future neutrality and three non-nuclear principles before the Budapest Memorandum.', 'Декларація 1990 року зафіксувала майбутній нейтралітет і три без’ядерні принципи до Будапештського меморандуму.'), confidence:'direct' },
+  { id:'r-ussr-continuity', source:'ussr-dissolution-1991', target:'concept-state-continuity', kind:'raises-question', label:L('разделяет распад и продолжение', 'separates dissolution and continuity', 'розділяє розпад і правопродовження'), note:L('Распад СССР сосуществовал с продолжением Россией членства СССР в ООН и части международных обязательств.', 'The USSR dissolved while Russia continued its UN membership and parts of its international obligations.', 'Розпад СРСР співіснував із продовженням Росією членства СРСР в ООН і частини міжнародних зобов’язань.'), confidence:'documented' },
+  { id:'r-munich-budapest', source:'budapest', target:'munich-security-2022', kind:'raises-question', label:L('становится предметом консультаций', 'becomes a consultation issue', 'стає предметом консультацій'), note:L('В Мюнхене президент Украины инициировал консультации по меморандуму и поставил под сомнение пакет 1994 года при их очередном провале.', 'In Munich, Ukraine’s president initiated consultations and said another failure would put the 1994 package in doubt.', 'У Мюнхені президент України ініціював консультації й заявив, що новий провал поставить пакет 1994 року під сумнів.'), confidence:'direct' },
+  { id:'r-munich-invasion', source:'munich-security-2022', target:'full-invasion', kind:'precedes', label:L('предшествует на пять дней', 'precedes by five days', 'передує на п’ять днів'), note:L('Речь прозвучала 19 февраля 2022 года, за пять дней до полномасштабного вторжения.', 'The speech was delivered on 19 February 2022, five days before the full-scale invasion.', 'Промова прозвучала 19 лютого 2022 року, за п’ять днів до повномасштабного вторгнення.'), confidence:'direct' },
+  { id:'r-invasion-spiderweb', source:'full-invasion', target:'spiderweb-2025', kind:'political-context', label:L('создаёт военный контекст', 'creates the war context', 'створює воєнний контекст'), note:L('Операция была проведена Украиной внутри продолжающейся полномасштабной войны и нацелена на российскую стратегическую авиацию.', 'Ukraine conducted the operation during the ongoing full-scale war against Russian strategic aviation.', 'Україна провела операцію під час повномасштабної війни проти російської стратегічної авіації.'), confidence:'documented' },
+  { id:'r-spiderweb-effect', source:'spiderweb-2025', target:'concept-strategic-effect', kind:'raises-question', label:L('требует измерения эффекта', 'requires measuring the effect', 'потребує вимірювання ефекту'), note:L('Официальные заявления фиксируют тактическую цель и заявленный ущерб; долгосрочный стратегический эффект оценивается отдельно.', 'Official statements identify a tactical aim and claimed damage; long-term strategic effect remains a separate assessment.', 'Офіційні заяви фіксують тактичну мету й заявлену шкоду; довгостроковий стратегічний ефект оцінюють окремо.'), confidence:'interpretive' },
+  { id:'r-civilian-force', source:'concept-civilian-protection', target:'concept-use-of-force', kind:'legal-context', label:L('ограничивает ведение войны', 'constrains hostilities', 'обмежує ведення війни'), note:L('Даже атака военной цели подчиняется различению, соразмерности и практически возможным мерам предосторожности.', 'Even an attack on a military objective remains subject to distinction, proportionality, and feasible precautions.', 'Навіть атака військової цілі підпорядковується розрізненню, пропорційності та можливим запобіжним заходам.'), confidence:'direct' },
+  ...argumentRelations,
 ]
 
 export const relationsByNodeId = new Map<string, KnowledgeRelation[]>()

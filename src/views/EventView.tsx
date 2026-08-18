@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { events, eventsById } from '../data/events'
+import { argumentsData } from '../data/arguments'
 import { ArrowLeftIcon, ArrowRightIcon, ExternalIcon } from '../components/Icons'
 import { useAppStore } from '../store/useAppStore'
 import { languageLocale, local, translate } from '../utils/i18n'
@@ -30,6 +31,7 @@ export function EventView() {
   const index = events.findIndex((item) => item.id === event.id)
   const previous = index > 0 ? events[index - 1] : undefined
   const next = index < events.length - 1 ? events[index + 1] : undefined
+  const relatedArguments = argumentsData.filter((argument) => argument.relatedEventIds.includes(event.id))
   const locale = languageLocale(language)
   const formattedDate = new Intl.DateTimeFormat(locale, {
     day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
@@ -103,6 +105,20 @@ export function EventView() {
                 </div>
               ) : <p className="muted-copy">{t('noMedia')}</p>}
             </section>
+
+            {relatedArguments.length > 0 && (
+              <section className="event-section">
+                <h2>{t('relatedArguments')}</h2>
+                <div className="related-materials">
+                  {relatedArguments.map((argument) => (
+                    <button type="button" key={argument.id} onClick={() => navigate(`/argument/${argument.id}`)}>
+                      <small>{local(argument.topic, language)}</small>
+                      <strong>{local(argument.title, language)}</strong>
+                    </button>
+                  ))}
+                </div>
+              </section>
+            )}
           </div>
 
         </div>

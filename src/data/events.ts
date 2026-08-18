@@ -91,6 +91,168 @@ export const events = [
     "media": []
   },
   {
+    "id": "ukraine-sovereignty-1990",
+    "date": "1990-07-16",
+    "lane": 1,
+    "title": {
+      "ru": "Декларация о суверенитете Украины",
+      "en": "Declaration of State Sovereignty of Ukraine",
+      "uk": "Декларація про державний суверенітет України"
+    },
+    "short": {
+      "ru": "Суверенитет, будущая нейтральность и три неядерных принципа.",
+      "en": "Sovereignty, future neutrality, and three non-nuclear principles.",
+      "uk": "Суверенітет, майбутній нейтралітет і три без’ядерні принципи."
+    },
+    "lead": {
+      "ru": "Первичный документ для спора о том, как связаны независимость Украины, её первоначальный неядерный курс и последующий Будапештский меморандум.",
+      "en": "A primary document for disputes over Ukraine’s independence, its initial non-nuclear course, and the later Budapest Memorandum.",
+      "uk": "Первинний документ для суперечки про незалежність України, її початковий без’ядерний курс і подальший Будапештський меморандум."
+    },
+    "context": {
+      "ru": [
+        "16 июля 1990 года Верховная Рада Украинской ССР провозгласила государственный суверенитет республики.",
+        "В разделе о безопасности документ заявил о намерении в будущем стать постоянно нейтральным государством вне военных блоков и соблюдать принципы «не принимать, не производить и не приобретать» ядерное оружие."
+      ],
+      "en": [
+        "On 16 July 1990 the Verkhovna Rada of the Ukrainian SSR proclaimed the republic’s state sovereignty.",
+        "Its security section stated an intention to become a permanently neutral state outside military blocs and to follow three principles: not to accept, produce, or acquire nuclear weapons."
+      ],
+      "uk": [
+        "16 липня 1990 року Верховна Рада Української РСР проголосила державний суверенітет республіки.",
+        "У розділі про безпеку документ заявив намір у майбутньому стати постійно нейтральною державою поза військовими блоками й дотримуватися принципів «не приймати, не виробляти й не набувати» ядерну зброю."
+      ]
+    },
+    "dispute": {
+      "ru": [
+        "Декларация действительно содержит неядерную и неблоковую формулу, но из неё нельзя автоматически вывести, что международное признание независимости было юридически обусловлено вечным сохранением этой политики. Акт независимости 1991 года нужно читать отдельно."
+      ],
+      "en": [
+        "The declaration does contain non-nuclear and non-bloc language, but it does not by itself prove that international recognition of independence was legally conditional on that policy forever. The 1991 Independence Act must be read separately."
+      ],
+      "uk": [
+        "Декларація справді містить без’ядерну й позаблокову формулу, але з неї не випливає автоматично, що міжнародне визнання незалежності було юридично зумовлене вічним збереженням цієї політики. Акт незалежності 1991 року треба читати окремо."
+      ]
+    },
+    "checks": {
+      "ru": [
+        "Цитируется ли намерение на будущее или действующее бессрочное обязательство.",
+        "Не смешиваются ли Декларация 1990 года, Акт независимости 1991 года и Будапештский меморандум 1994 года.",
+        "Какой именно механизм безопасности обсуждается: нейтралитет, неядерность или внешние заверения."
+      ],
+      "en": [
+        "Whether the quotation describes a future intention or a permanent binding obligation.",
+        "Whether the 1990 Declaration, the 1991 Independence Act, and the 1994 Budapest Memorandum are being conflated.",
+        "Which security mechanism is at issue: neutrality, non-nuclear status, or external assurances."
+      ],
+      "uk": [
+        "Чи описує цитата майбутній намір або чинне безстрокове зобов’язання.",
+        "Чи не змішують Декларацію 1990 року, Акт незалежності 1991 року та Будапештський меморандум 1994 року.",
+        "Який саме механізм безпеки обговорюють: нейтралітет, без’ядерність чи зовнішні запевнення."
+      ]
+    },
+    "meta": {
+      "place": { "ru": "Киев / Украинская ССР", "en": "Kyiv / Ukrainian SSR", "uk": "Київ / Українська РСР" },
+      "actors": { "ru": "Верховная Рада Украинской ССР", "en": "Verkhovna Rada of the Ukrainian SSR", "uk": "Верховна Рада Української РСР" },
+      "status": { "ru": "Действующий исторический акт", "en": "Historic act in force", "uk": "Чинний історичний акт" }
+    },
+    "tags": ["суверенитет", "нейтралитет", "ядерное разоружение"],
+    "sources": [
+      {
+        "title": "Декларация о государственном суверенитете Украины",
+        "institution": "Верховная Рада Украины",
+        "url": "https://zakon.rada.gov.ua/laws/show/en/55-12"
+      },
+      {
+        "title": "Акт провозглашения независимости Украины",
+        "institution": "Верховная Рада Украины",
+        "url": "https://zakon.rada.gov.ua/laws/show/en/1427-12?lang=en"
+      }
+    ],
+    "media": []
+  },
+  {
+    "id": "ussr-dissolution-1991",
+    "date": "1991-12-26",
+    "lane": 2,
+    "title": {
+      "ru": "Распад СССР и продолжение обязательств Россией",
+      "en": "USSR dissolution and Russia’s continuity",
+      "uk": "Розпад СРСР і продовження зобов’язань Росією"
+    },
+    "short": {
+      "ru": "Распад союзного государства, спор о процедуре и международное правопродолжение.",
+      "en": "Dissolution, a procedural dispute, and international state continuity.",
+      "uk": "Розпад союзної держави, спір про процедуру та міжнародне правопродовження."
+    },
+    "lead": {
+      "ru": "Узел, где нужно разделять политико-правовую оценку решений декабря 1991 года и продолжение Российской Федерацией членства СССР и части его обязательств.",
+      "en": "A node separating the legal-political assessment of the December 1991 decisions from Russia’s continuation of USSR membership and obligations.",
+      "uk": "Вузол, де слід розділяти правово-політичну оцінку рішень грудня 1991 року та продовження Росією членства СРСР і частини його зобов’язань."
+    },
+    "context": {
+      "ru": [
+        "8 декабря 1991 года руководители России, Украины и Беларуси подписали соглашение о создании СНГ. 12 декабря Верховный Совет РСФСР ратифицировал его и отдельным постановлением денонсировал Договор об образовании СССР.",
+        "24 декабря Россия уведомила Генерального секретаря ООН, что продолжает членство СССР и ответственность по его правам и обязательствам. 26 декабря Совет Республик Верховного Совета СССР принял декларацию о прекращении существования Союза."
+      ],
+      "en": [
+        "On 8 December 1991 the leaders of Russia, Ukraine, and Belarus signed the CIS agreement. On 12 December the RSFSR Supreme Soviet ratified it and separately denounced the 1922 Union Treaty.",
+        "On 24 December Russia notified the UN Secretary-General that it continued the USSR’s membership and responsibility for its rights and obligations. On 26 December the Soviet of Republics declared the Union dissolved."
+      ],
+      "uk": [
+        "8 грудня 1991 року керівники Росії, України та Білорусі підписали угоду про СНД. 12 грудня Верховна Рада РРФСР ратифікувала її й окремою постановою денонсувала Договір про утворення СРСР.",
+        "24 грудня Росія повідомила Генерального секретаря ООН, що продовжує членство СРСР і відповідальність за його права та зобов’язання. 26 грудня Рада Республік оголосила про припинення існування Союзу."
+      ]
+    },
+    "dispute": {
+      "ru": [
+        "В 1996 году Государственная Дума отменила постановление о денонсации и подтвердила силу результатов союзного референдума для России. Эти акты создали правовую и политическую коллизию, но не восстановили СССР и не отменили международное признание возникших государств."
+      ],
+      "en": [
+        "In 1996 the State Duma annulled the denunciation resolution and reaffirmed the Union referendum result for Russia. Those acts created a legal-political controversy but did not restore the USSR or undo recognition of the successor states."
+      ],
+      "uk": [
+        "У 1996 році Державна Дума скасувала постанову про денонсацію та підтвердила результат союзного референдуму для Росії. Ці акти створили правово-політичну колізію, але не відновили СРСР і не скасували визнання нових держав."
+      ]
+    },
+    "checks": {
+      "ru": [
+        "Какой документ и какая дата названы: соглашение о СНГ, его ратификация, денонсация договора или декларация 26 декабря.",
+        "Различаются ли распад государства и продолжение отдельных международных прав и обязательств.",
+        "Не выдаётся ли постановление Думы 1996 года за фактическое восстановление СССР."
+      ],
+      "en": [
+        "Which document and date are meant: CIS agreement, ratification, denunciation, or the declaration of 26 December.",
+        "Whether dissolution is distinguished from continuity of selected international rights and obligations.",
+        "Whether the 1996 Duma resolution is wrongly treated as restoration of the USSR."
+      ],
+      "uk": [
+        "Який документ і дату мають на увазі: угоду про СНД, ратифікацію, денонсацію чи декларацію 26 грудня.",
+        "Чи розрізняють розпад держави й продовження окремих міжнародних прав та зобов’язань.",
+        "Чи не видають постанову Думи 1996 року за фактичне відновлення СРСР."
+      ]
+    },
+    "meta": {
+      "place": { "ru": "СССР / постсоветское пространство", "en": "USSR / post-Soviet space", "uk": "СРСР / пострадянський простір" },
+      "actors": { "ru": "Союзные республики, органы СССР и РСФСР, ООН", "en": "Union republics, USSR and RSFSR bodies, UN", "uk": "Союзні республіки, органи СРСР і РРФСР, ООН" },
+      "status": { "ru": "Завершённый распад; продолжающийся спор о процедуре", "en": "Completed dissolution; continuing procedural dispute", "uk": "Завершений розпад; тривалий спір про процедуру" }
+    },
+    "tags": ["СССР", "правопродолжение", "СНГ"],
+    "sources": [
+      {
+        "title": "Российская Федерация: продолжение членства СССР",
+        "institution": "ООН",
+        "url": "https://www.un.org/ru/about-us/member-states/russian-federation"
+      },
+      {
+        "title": "Стенограмма Государственной Думы о постановлениях 1991 и 1996 годов",
+        "institution": "Государственная Дума Российской Федерации",
+        "url": "https://api.duma.gov.ru/api/transcriptFull/1999-05-14"
+      }
+    ],
+    "media": []
+  },
+  {
     "id": "budapest",
     "date": "1994-12-05",
     "lane": 0,
@@ -956,6 +1118,82 @@ export const events = [
     "media": []
   },
   {
+    "id": "munich-security-2022",
+    "date": "2022-02-19",
+    "lane": 1,
+    "title": {
+      "ru": "Мюнхенская речь и консультации по Будапешту",
+      "en": "Munich speech and Budapest consultations",
+      "uk": "Мюнхенська промова й консультації за Будапештом"
+    },
+    "short": {
+      "ru": "Зеленский инициировал консультации и поставил под сомнение пакет 1994 года при их провале.",
+      "en": "Zelenskyy initiated consultations and said another failure would put the 1994 package in doubt.",
+      "uk": "Зеленський ініціював консультації й заявив, що новий провал поставить пакет 1994 року під сумнів."
+    },
+    "lead": {
+      "ru": "Первичный контекст для проверки распространённого утверждения, будто Украина в Мюнхене объявила о восстановлении ядерного статуса.",
+      "en": "Primary context for testing the common claim that Ukraine announced restoration of nuclear status in Munich.",
+      "uk": "Первинний контекст для перевірки поширеної тези, ніби Україна в Мюнхені оголосила про відновлення ядерного статусу."
+    },
+    "context": {
+      "ru": [
+        "19 февраля 2022 года президент Украины Владимир Зеленский заявил, что Украина в четвёртый раз инициирует консультации в рамках Будапештского меморандума.",
+        "Он сказал, что при новом провале консультаций или отсутствии результата, гарантирующего безопасность, Украина будет вправе считать меморандум неработающим, а пакетные решения 1994 года — поставленными под сомнение."
+      ],
+      "en": [
+        "On 19 February 2022 President Volodymyr Zelenskyy said Ukraine was initiating Budapest Memorandum consultations for a fourth time.",
+        "He said another failure, or results that did not guarantee security, would entitle Ukraine to regard the memorandum as non-operational and the 1994 package decisions as being in doubt."
+      ],
+      "uk": [
+        "19 лютого 2022 року президент України Володимир Зеленський заявив, що Україна вчетверте ініціює консультації в межах Будапештського меморандуму.",
+        "Він сказав, що новий провал консультацій або відсутність результату, який гарантує безпеку, дасть Україні право вважати меморандум непрацюючим, а пакетні рішення 1994 року — поставленими під сумнів."
+      ]
+    },
+    "dispute": {
+      "ru": [
+        "Речь допускает политико-правовой пересмотр пакета 1994 года, но не содержит прямого объявления о решении создать ядерное оружие. Эти формулы нельзя считать взаимозаменяемыми."
+      ],
+      "en": [
+        "The speech contemplates political and legal reconsideration of the 1994 package but does not explicitly announce a decision to build nuclear weapons. Those propositions are not interchangeable."
+      ],
+      "uk": [
+        "Промова допускає політико-правовий перегляд пакета 1994 року, але не містить прямого оголошення рішення створити ядерну зброю. Ці формули не є взаємозамінними."
+      ]
+    },
+    "checks": {
+      "ru": [
+        "Цитируется ли точная формулировка о консультациях и пакетных решениях.",
+        "Не подменяется ли условное сомнение прямым объявлением о создании оружия.",
+        "Учитывается ли, что речь прозвучала за пять дней до полномасштабного вторжения."
+      ],
+      "en": [
+        "Whether the exact wording on consultations and package decisions is quoted.",
+        "Whether a conditional doubt is being replaced with an explicit weapons announcement.",
+        "Whether the speech’s timing—five days before the invasion—is preserved."
+      ],
+      "uk": [
+        "Чи цитують точну формулу про консультації та пакетні рішення.",
+        "Чи не підмінюють умовний сумнів прямим оголошенням про створення зброї.",
+        "Чи враховують, що промова прозвучала за п’ять днів до вторгнення."
+      ]
+    },
+    "meta": {
+      "place": { "ru": "Мюнхен / международная безопасность", "en": "Munich / international security", "uk": "Мюнхен / міжнародна безпека" },
+      "actors": { "ru": "Президент Украины, государства — участники Будапештского меморандума", "en": "President of Ukraine, Budapest Memorandum states", "uk": "Президент України, держави — учасниці Будапештського меморандуму" },
+      "status": { "ru": "Публичная политическая речь", "en": "Public political speech", "uk": "Публічна політична промова" }
+    },
+    "tags": ["Будапешт", "ядерный статус", "2022"],
+    "sources": [
+      {
+        "title": "Выступление президента Украины на 58-й Мюнхенской конференции",
+        "institution": "Президент Украины",
+        "url": "https://www.president.gov.ua/en/news/vistup-prezidenta-ukrayini-na-58-j-myunhenskij-konferenciyi-72997"
+      }
+    ],
+    "media": []
+  },
+  {
     "id": "full-invasion",
     "date": "2022-02-24",
     "lane": 0,
@@ -1246,6 +1484,90 @@ export const events = [
         "title": "Резолюция Генеральной Ассамблеи ООН ES-11/4 «Территориальная целостность Украины»",
         "institution": "United Nations",
         "url": "https://docs.un.org/en/A/RES/ES-11/4"
+      }
+    ],
+    "media": []
+  },
+  {
+    "id": "spiderweb-2025",
+    "date": "2025-06-01",
+    "lane": 0,
+    "title": {
+      "ru": "Операция «Паутина»",
+      "en": "Operation Spiderweb",
+      "uk": "Операція «Павутина»"
+    },
+    "short": {
+      "ru": "Удар украинских FPV-дронов по российской стратегической авиации.",
+      "en": "A Ukrainian FPV-drone strike on Russian strategic aviation.",
+      "uk": "Удар українських FPV-дронів по російській стратегічній авіації."
+    },
+    "lead": {
+      "ru": "Операция стала поводом для спора о разнице между тактическим, информационным и долгосрочным стратегическим эффектом.",
+      "en": "The operation became a focal point for distinguishing tactical, informational, and long-term strategic effects.",
+      "uk": "Операція стала приводом для розрізнення тактичного, інформаційного й довгострокового стратегічного ефекту."
+    },
+    "context": {
+      "ru": [
+        "1 июня 2025 года Служба безопасности Украины провела операцию с FPV-дронами против самолётов на российских военных аэродромах.",
+        "Официальные украинские сообщения называют целью стратегические бомбардировщики, использовавшиеся для ударов по Украине, и заявляют о повреждении 41 самолёта. Эти цифры являются заявлением стороны операции и требуют независимой проверки для точной оценки ущерба."
+      ],
+      "en": [
+        "On 1 June 2025 the Security Service of Ukraine conducted an FPV-drone operation against aircraft at Russian military airfields.",
+        "Official Ukrainian statements identify strategic bombers used against Ukraine and claim that 41 aircraft were damaged. Those figures are a belligerent party’s claim and require independent verification for a precise damage assessment."
+      ],
+      "uk": [
+        "1 червня 2025 року Служба безпеки України провела операцію з FPV-дронами проти літаків на російських військових аеродромах.",
+        "Офіційні українські повідомлення називають цілями стратегічні бомбардувальники, які застосовували проти України, і заявляють про пошкодження 41 літака. Це твердження сторони операції, яке потребує незалежної перевірки для точної оцінки шкоди."
+      ]
+    },
+    "dispute": {
+      "ru": [
+        "Даже подтверждённый ущерб не отвечает автоматически на вопрос о стратегическом переломе. Нужно отдельно измерять сокращение доступных боевых возможностей, сроки восстановления, изменение операций и переговорный эффект."
+      ],
+      "en": [
+        "Even confirmed damage does not automatically prove a strategic turning point. Available capability, recovery time, operational change, and bargaining effect must be measured separately."
+      ],
+      "uk": [
+        "Навіть підтверджена шкода не доводить автоматично стратегічного перелому. Треба окремо вимірювати доступні спроможності, строк відновлення, зміну операцій і переговорний ефект."
+      ]
+    },
+    "checks": {
+      "ru": [
+        "Что подтверждено визуально или несколькими независимыми источниками.",
+        "Различаются ли повреждённые, уничтоженные и временно выведенные из строя самолёты.",
+        "Как операция изменила доступные силы, темп ударов и переговорную позицию.",
+        "Не выдаётся ли гипотеза об иностранном управлении за доказанный факт."
+      ],
+      "en": [
+        "What has been visually or independently corroborated.",
+        "Whether damaged, destroyed, and temporarily disabled aircraft are distinguished.",
+        "How the operation changed available forces, strike tempo, and bargaining position.",
+        "Whether a foreign-control hypothesis is being presented as fact."
+      ],
+      "uk": [
+        "Що підтверджено візуально або кількома незалежними джерелами.",
+        "Чи розрізняють пошкоджені, знищені й тимчасово виведені з ладу літаки.",
+        "Як операція змінила доступні сили, темп ударів і переговорну позицію.",
+        "Чи не видають гіпотезу про іноземне керування за доведений факт."
+      ]
+    },
+    "meta": {
+      "place": { "ru": "Российские военные аэродромы", "en": "Russian military airfields", "uk": "Російські військові аеродроми" },
+      "actors": { "ru": "Служба безопасности Украины, Вооружённые силы России", "en": "Security Service of Ukraine, Russian Armed Forces", "uk": "Служба безпеки України, Збройні сили Росії" },
+      "status": { "ru": "Военная операция; точный ущерб проверяется", "en": "Military operation; exact damage under verification", "uk": "Військова операція; точну шкоду перевіряють" }
+    },
+    "tags": ["Паутина", "стратегическая авиация", "дроны"],
+    "sources": [
+      {
+        "title": "Президент Украины об операции «Паутина»",
+        "institution": "Президент Украины",
+        "url": "https://www.president.gov.ua/en/news/volodimir-zelenskij-podyakuvav-voyinam-sbu-za-provedennya-op-98253"
+      },
+      {
+        "title": "Операция «Паутина» и тактические решения",
+        "institution": "Президент Украины",
+        "url": "https://www.president.gov.ua/en/news/dlya-zakinchennya-vijni-potribna-podalsha-oboronna-pidtrimka-98201"
       }
     ],
     "media": []

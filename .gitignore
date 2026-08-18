@@ -9,3 +9,6 @@ coverage
 playwright-report
 test-results
 .local/
+__pycache__/
+*.pyc
+:memory:.ses

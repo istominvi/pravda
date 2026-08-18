@@ -6,6 +6,7 @@ import { AIAssistantView } from './views/AIAssistantView'
 import { ChronoView } from './views/ChronoView'
 import { ConnectionsView } from './views/ConnectionsView'
 import { EventView } from './views/EventView'
+import { ArgumentView, ArgumentsView } from './views/ArgumentsView'
 
 function RouteEffects() {
   const location = useLocation()
@@ -13,6 +14,8 @@ function RouteEffects() {
     const view = location.pathname.split('/')[1] || 'chrono'
     document.title = view === 'connections'
       ? 'PRAVDA — Связи'
+      : view === 'arguments' || view === 'argument'
+        ? 'PRAVDA — Аргументы'
       : view === 'ai'
         ? 'PRAVDA — AI'
         : view === 'event'
@@ -39,6 +42,8 @@ export default function App() {
         <Routes>
           <Route path="/chrono" element={<ChronoView />} />
           <Route path="/connections" element={<ConnectionsView />} />
+          <Route path="/arguments" element={<ArgumentsView />} />
+          <Route path="/argument/:argumentId" element={<ArgumentView />} />
           <Route path="/ai" element={<AIAssistantView />} />
           <Route path="/event/:eventId" element={<EventView />} />
           <Route path="*" element={<Navigate to="/chrono" replace />} />

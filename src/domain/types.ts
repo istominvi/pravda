@@ -52,6 +52,7 @@ export interface KnowledgeNode {
   summary: Localized
   date?: string
   eventId?: string
+  argumentId?: string
   tags: string[]
   sourceUrls?: string[]
 }
@@ -87,11 +88,41 @@ export interface AITopic {
   summary: Localized
   nodeIds: string[]
   sourceEventIds: string[]
+  argumentIds?: string[]
   suggestions: Record<Language, Array<{
     kind: AISuggestionKind
     title: string
     text: string
   }>>
+}
+
+export type InterpretationConfidence = 'high' | 'medium' | 'low'
+
+export interface ArgumentCitation {
+  videoId: string
+  start: string
+  end: string
+  note: Localized
+}
+
+export interface ArgumentRecord {
+  id: string
+  title: Localized
+  topic: Localized
+  thesis: Localized
+  premises: Localized<string[]>
+  reasoning: Localized
+  conclusion: Localized
+  objection: Localized
+  response: Localized
+  limitations: Localized<string[]>
+  interpretationConfidence: InterpretationConfidence
+  relatedNodeIds: string[]
+  relatedEventIds: string[]
+  relatedArgumentIds: string[]
+  citations: ArgumentCitation[]
+  references: SourceLink[]
+  tags: string[]
 }
 
 export interface DetectedTopic {

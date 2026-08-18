@@ -223,6 +223,11 @@ export function ConnectionsView() {
               {t('openEvent')}
             </button>
           )}
+          {focus.argumentId && (
+            <button className="primary-outline-button" type="button" onClick={() => navigate(`/argument/${focus.argumentId}`)}>
+              {t('openArgument')}
+            </button>
+          )}
 
           <div className="inspector-section">
             <h3>{t('incoming')}</h3>
