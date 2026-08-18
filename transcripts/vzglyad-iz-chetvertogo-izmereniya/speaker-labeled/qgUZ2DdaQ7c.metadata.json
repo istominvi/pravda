@@ -1,0 +1,15 @@
+{
+  "video_id": "qgUZ2DdaQ7c",
+  "source_transcript": "transcripts/vzglyad-iz-chetvertogo-izmereniya/qgUZ2DdaQ7c.jsonl",
+  "diarization_model": "speechbrain/spkrec-ecapa-voxceleb",
+  "clustering": "agglomerative cosine",
+  "requested_speakers": 2,
+  "detected_speakers": 2,
+  "speaker_mapping": {
+    "SPEAKER_00": "Александр",
+    "SPEAKER_01": "Собеседник 1"
+  },
+  "speaker_mapping_source": "first transcript segment assumed to be Alexander",
+  "mapping_confidence": "heuristic; verify against the opening audio",
+  "segments": 256
+}
