@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""High-quality local transcription for mixed Russian/Ukrainian videos."""
+"""High-quality local transcription focused on Alexander's Russian speech."""
 
 from __future__ import annotations
 
@@ -14,13 +14,12 @@ from faster_whisper import WhisperModel
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_OUTPUT = PROJECT_ROOT / "transcripts/vzglyad-iz-chetvertogo-izmereniya/large-v3-multilingual"
+DEFAULT_OUTPUT = PROJECT_ROOT / ".local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya"
 DEFAULT_AUDIO_CACHE = PROJECT_ROOT / ".local/youtube-audio-original"
 DEFAULT_HOTWORDS = " ".join(
     [
-        "Александр", "Украина", "Україна", "Россия", "Росія", "Киев", "Київ",
-        "Москва", "Зеленский", "Зеленський", "Путин", "НАТО", "ВСУ", "ЗСУ",
-        "Крым", "Крим", "Донбасс", "Луганск", "Луганськ", "Донецк", "Донецьк",
+        "Александр", "Украина", "Россия", "Киев", "Москва", "Зеленский", "Путин",
+        "НАТО", "ВСУ", "Крым", "Донбасс", "Луганск", "Донецк",
         "Кравчук", "СССР",
     ]
 )
@@ -28,12 +27,12 @@ DEFAULT_HOTWORDS = " ".join(
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Full Whisper large-v3 with automatic Russian/Ukrainian switching"
+        description="Full Whisper large-v3 focused on Russian speech"
     )
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument("--video-id", help="YouTube video ID")
     source.add_argument("--audio", help="Existing original-quality audio file")
-    parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT))
+    parser.add_argument("--output-dir")
     parser.add_argument("--audio-cache", default=str(DEFAULT_AUDIO_CACHE))
     parser.add_argument("--model", default="large-v3")
     parser.add_argument("--device", default="cpu")
@@ -41,6 +40,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--beam-size", type=int, default=8)
     parser.add_argument("--patience", type=float, default=1.2)
     parser.add_argument("--extra-hotwords", default="")
+    parser.add_argument(
+        "--multilingual",
+        action="store_true",
+        help="Enable per-segment automatic language detection instead of fixed Russian",
+    )
     return parser.parse_args()
 
 
@@ -108,7 +112,11 @@ def main() -> None:
         video_id = audio_path.stem
         source_url = None
 
-    output_dir = Path(args.output_dir).resolve()
+    output_dir = (
+        Path(args.output_dir).resolve()
+        if args.output_dir
+        else DEFAULT_OUTPUT / video_id
+    )
     output_dir.mkdir(parents=True, exist_ok=True)
     hotwords = f"{DEFAULT_HOTWORDS} {args.extra_hotwords}".strip()
     print(f"Audio: {audio_path}", flush=True)
@@ -116,9 +124,9 @@ def main() -> None:
     model = WhisperModel(args.model, device=args.device, compute_type=args.compute_type)
     segments_iterator, info = model.transcribe(
         str(audio_path),
-        language=None,
+        language=None if args.multilingual else "ru",
         task="transcribe",
-        multilingual=True,
+        multilingual=args.multilingual,
         language_detection_segments=3,
         language_detection_threshold=0.5,
         beam_size=args.beam_size,
@@ -141,7 +149,9 @@ def main() -> None:
                 "start": segment.start,
                 "end": segment.end,
                 "text": segment.text.strip(),
-                "languageMode": "multilingual-auto",
+                "languageMode": (
+                    "multilingual-auto" if args.multilingual else "fixed-russian"
+                ),
                 "words": [
                     {
                         "start": word.start,
@@ -176,11 +186,15 @@ def main() -> None:
         "model": args.model,
         "device": args.device,
         "computeType": args.compute_type,
-        "language": None,
-        "languageMode": "automatic per-segment multilingual detection",
+        "language": None if args.multilingual else "ru",
+        "languageMode": (
+            "automatic per-segment multilingual detection"
+            if args.multilingual
+            else "fixed Russian for Alexander-focused extraction"
+        ),
         "initialDetectedLanguage": info.language,
         "initialLanguageProbability": info.language_probability,
-        "multilingual": True,
+        "multilingual": args.multilingual,
         "conditionOnPreviousText": False,
         "beamSize": args.beam_size,
         "patience": args.patience,
