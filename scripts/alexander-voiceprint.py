@@ -423,7 +423,17 @@ def classify_audio(
     negatives: np.ndarray,
     calibration: dict[str, object],
 ) -> dict[str, object]:
-    rows = [voice_scores(item, positives, negatives) for item in windowed_embeddings(embedder, samples)]
+    embeddings = windowed_embeddings(embedder, samples)
+    return classify_embeddings(embeddings, positives, negatives, calibration)
+
+
+def classify_embeddings(
+    embeddings: list[np.ndarray],
+    positives: np.ndarray,
+    negatives: np.ndarray,
+    calibration: dict[str, object],
+) -> dict[str, object]:
+    rows = [voice_scores(item, positives, negatives) for item in embeddings]
     labels = [classify_scores(row, calibration) for row in rows]
     alexander_count = labels.count("alexander")
     other_count = labels.count("other")
@@ -487,6 +497,7 @@ def identify_transcript(args: argparse.Namespace) -> None:
     embedder = VoiceEmbedder(Path(args.model).resolve())
     audio = decode_audio(audio_path)
     records = []
+    record_embeddings: list[list[np.ndarray]] = []
 
     for segment in load_transcript(transcript_path):
         start = float(segment["start"])
@@ -494,6 +505,7 @@ def identify_transcript(args: argparse.Namespace) -> None:
         start_sample = max(0, int(start * SAMPLE_RATE))
         end_sample = min(audio.size, int(end * SAMPLE_RATE))
         if end_sample - start_sample < SAMPLE_RATE // 2:
+            embeddings = []
             result = {
                 "speaker": "uncertain",
                 "positiveSimilarity": None,
@@ -502,13 +514,16 @@ def identify_transcript(args: argparse.Namespace) -> None:
                 "windows": 0,
             }
         else:
-            result = classify_audio(
-                embedder,
-                audio[start_sample:end_sample],
+            embeddings = windowed_embeddings(
+                embedder, audio[start_sample:end_sample]
+            )
+            result = classify_embeddings(
+                embeddings,
                 positives,
                 negatives,
                 calibration,
             )
+        record_embeddings.append(embeddings)
         records.append(
             {
                 "start": start,
@@ -517,6 +532,43 @@ def identify_transcript(args: argparse.Namespace) -> None:
                 **result,
             }
         )
+
+    episode_candidates = []
+    for record, embeddings in zip(records, record_embeddings):
+        if (
+            record["speaker"] == "alexander"
+            and record["margin"] is not None
+            and record["positiveSimilarity"] is not None
+            and float(record["margin"])
+            >= float(calibration["alexander_margin"]) + 0.06
+            and float(record["positiveSimilarity"])
+            >= float(calibration["alexander_similarity"]) + 0.04
+        ):
+            episode_candidates.extend(
+                (float(record["margin"]), embedding) for embedding in embeddings
+            )
+    episode_candidates.sort(key=lambda value: value[0], reverse=True)
+    episode_seeds = [embedding for _, embedding in episode_candidates[:32]]
+
+    if len(episode_seeds) >= 3:
+        adapted_positives = np.concatenate(
+            [positives, np.stack(episode_seeds)], axis=0
+        )
+        for record, embeddings in zip(records, record_embeddings):
+            record["firstPassSpeaker"] = record["speaker"]
+            if embeddings:
+                record.update(
+                    classify_embeddings(
+                        embeddings,
+                        adapted_positives,
+                        negatives,
+                        calibration,
+                    )
+                )
+            record["episodeAdapted"] = True
+    else:
+        for record in records:
+            record["episodeAdapted"] = False
 
     output_jsonl = Path(args.output_jsonl).resolve()
     output_jsonl.parent.mkdir(parents=True, exist_ok=True)
@@ -549,7 +601,12 @@ def identify_transcript(args: argparse.Namespace) -> None:
     output_markdown.write_text("\n".join(markdown_lines), encoding="utf-8")
 
     counts = {label: sum(row["speaker"] == label for row in records) for label in speaker_names}
-    print(json.dumps(counts, ensure_ascii=False))
+    print(
+        json.dumps(
+            {**counts, "episodeSeeds": len(episode_seeds)},
+            ensure_ascii=False,
+        )
+    )
 
 
 def parse_args() -> argparse.Namespace:

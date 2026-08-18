@@ -1,0 +1,17 @@
+{
+  "videoId": "SSFHoAdxR6s",
+  "sourceUrl": "https://youtu.be/SSFHoAdxR6s",
+  "title": "Кому на самом деле присягает украинский военнослужащий — государству или народу?",
+  "createdAt": "2026-08-18T04:48:35.039875+00:00",
+  "source": "faster_whisper",
+  "model": "large-v3-turbo",
+  "device": "cpu",
+  "computeType": "int8",
+  "language": "ru",
+  "languageProbability": 1,
+  "duration": 964.096,
+  "segmentCount": 221,
+  "wordTimestamps": true,
+  "vadFilter": true,
+  "beamSize": 5
+}
