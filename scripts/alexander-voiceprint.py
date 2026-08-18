@@ -294,6 +294,7 @@ def build_bank(args: argparse.Namespace) -> None:
     samples = load_existing_bank(bank_root)
     embedder = VoiceEmbedder(model_path)
     added = 0
+    review_comparisons = []
 
     for root_value in args.labels_root:
         label_root = Path(root_value).resolve()
@@ -303,6 +304,9 @@ def build_bank(args: argparse.Namespace) -> None:
         video_id = manifest["videoId"]
         for item in manifest["items"]:
             label = labels.get(item["id"])
+            initial_prediction = item.get("initialPrediction")
+            if label and initial_prediction:
+                review_comparisons.append((initial_prediction, label))
             if label not in {"alexander", "other"}:
                 continue
             source_id = f"{video_id}:{item['id']}"
@@ -366,9 +370,31 @@ def build_bank(args: argparse.Namespace) -> None:
         ],
         "calibration": calibration,
     }
+    if review_comparisons:
+        metadata["latestReview"] = {
+            "total": len(review_comparisons),
+            "exact": sum(
+                predicted == confirmed
+                for predicted, confirmed in review_comparisons
+            ),
+            "falseAlexander": sum(
+                predicted == "alexander" and confirmed != "alexander"
+                for predicted, confirmed in review_comparisons
+            ),
+            "missedAlexander": sum(
+                predicted != "alexander" and confirmed == "alexander"
+                for predicted, confirmed in review_comparisons
+            ),
+            "mixedOrUncertain": sum(
+                confirmed in {"mixed", "uncertain"}
+                for _, confirmed in review_comparisons
+            ),
+        }
     atomic_json(bank_root / "metadata.json", metadata)
     print(json.dumps(metadata["counts"], ensure_ascii=False))
     print(json.dumps(calibration["leave_one_out"], ensure_ascii=False))
+    if "latestReview" in metadata:
+        print(json.dumps(metadata["latestReview"], ensure_ascii=False))
 
 
 def load_bank(bank_root: Path) -> tuple[np.ndarray, np.ndarray, dict[str, object]]:
