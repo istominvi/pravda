@@ -292,6 +292,14 @@ def build_bank(args: argparse.Namespace) -> None:
     model_path = Path(args.model).resolve()
     bank_root = Path(args.bank).resolve()
     samples = load_existing_bank(bank_root)
+    removed_anonymous_other = 0
+    for video_id in args.drop_negative_source:
+        prefix = f"{video_id}:"
+        for source_id in list(samples):
+            label, _, _ = samples[source_id]
+            if label == "other" and source_id.startswith(prefix):
+                del samples[source_id]
+                removed_anonymous_other += 1
     embedder = VoiceEmbedder(model_path)
     added = 0
     review_comparisons = []
@@ -308,6 +316,8 @@ def build_bank(args: argparse.Namespace) -> None:
             if label and initial_prediction:
                 review_comparisons.append((initial_prediction, label))
             if label not in {"alexander", "other"}:
+                continue
+            if args.positive_only and label == "other":
                 continue
             source_id = f"{video_id}:{item['id']}"
             if source_id in samples and not args.replace:
@@ -359,6 +369,7 @@ def build_bank(args: argparse.Namespace) -> None:
             "alexander": len(positive_records),
             "anonymousOther": len(negative_records),
             "addedOrReplaced": added,
+            "removedAnonymousOther": removed_anonymous_other,
         },
         "alexanderSources": [
             {"sourceId": source_id, "duration": duration}
@@ -625,6 +636,22 @@ def parse_args() -> argparse.Namespace:
     build.add_argument("--model", default=str(DEFAULT_MODEL))
     build.add_argument("--bank", default=str(DEFAULT_BANK))
     build.add_argument("--replace", action="store_true")
+    build.add_argument(
+        "--positive-only",
+        action="store_true",
+        help="Add confirmed Alexander clips but never add other-speaker clips",
+    )
+    build.add_argument(
+        "--drop-negative-source",
+        action="append",
+        default=[],
+        help="Remove anonymous negative samples whose source ID starts with VIDEO_ID",
+    )
+    build.add_argument(
+        "--skip-default-labels",
+        action="store_true",
+        help="Recalibrate the existing bank without reading the default label set",
+    )
     build.set_defaults(handler=build_bank)
 
     identify = subparsers.add_parser(
@@ -640,7 +667,9 @@ def parse_args() -> argparse.Namespace:
 
     args = parser.parse_args()
     if args.command == "build" and args.labels_root is None:
-        args.labels_root = [str(DEFAULT_LABEL_ROOT)]
+        args.labels_root = (
+            [] if args.skip_default_labels else [str(DEFAULT_LABEL_ROOT)]
+        )
     return args
 
 
