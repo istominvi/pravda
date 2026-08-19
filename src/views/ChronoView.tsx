@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { events } from '../data/events'
-import { articleNumberById, articlePath } from '../data/articles'
+import { articlePath, articlesData } from '../data/articles'
 import { useAppStore } from '../store/useAppStore'
 import { languageLocale, local, translate } from '../utils/i18n'
 
@@ -12,6 +11,17 @@ const BASE_PX_PER_YEAR = 126
 const BASE_WORLD_WIDTH = 83 * BASE_PX_PER_YEAR
 const MIN_ZOOM = 0.45
 const MAX_ZOOM = 4.8
+type Article = (typeof articlesData)[number]
+
+function articleCountLabel(count: number, language: 'ru' | 'en' | 'uk'): string {
+  if (language === 'en') return count === 1 ? 'article' : 'articles'
+  const mod100 = count % 100
+  const mod10 = count % 10
+  if (mod100 >= 11 && mod100 <= 14) return language === 'ru' ? 'статей' : 'статей'
+  if (mod10 === 1) return language === 'ru' ? 'статья' : 'стаття'
+  if (mod10 >= 2 && mod10 <= 4) return language === 'ru' ? 'статьи' : 'статті'
+  return 'статей'
+}
 
 function dateMs(value: string): number {
   return new Date(value).getTime()
@@ -115,6 +125,11 @@ export function ChronoView() {
     const onWheel = (event: WheelEvent) => {
       event.preventDefault()
       setInteracted(true)
+      const clusterList = (event.target as HTMLElement).closest<HTMLElement>('.chrono-cluster-list')
+      if (clusterList && !event.metaKey && !event.ctrlKey && clusterList.scrollHeight > clusterList.clientHeight) {
+        clusterList.scrollTop += event.deltaY
+        return
+      }
       if (event.metaKey || event.ctrlKey) {
         const factor = Math.exp(-event.deltaY * 0.0022)
         setZoom(zoomRef.current * factor, event.clientX)
@@ -161,7 +176,7 @@ export function ChronoView() {
   }, [commitPan])
 
   const onPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (event.button !== 0 || (event.target as HTMLElement).closest('[data-event-card]')) return
+    if (event.button !== 0 || (event.target as HTMLElement).closest('[data-article-card]')) return
     stopInertia()
     setDragging(true)
     setInteracted(true)
@@ -217,13 +232,26 @@ export function ChronoView() {
     return output
   }, [zoom])
 
+  const articleClusters = useMemo(() => {
+    const grouped = new Map<string, Article[]>()
+    for (const article of articlesData) {
+      const calendarDate = article.chronologyDate.slice(0, 10)
+      const group = grouped.get(calendarDate) ?? []
+      group.push(article)
+      grouped.set(calendarDate, group)
+    }
+    return [...grouped.entries()]
+      .map(([date, articles]) => ({ date, articles: [...articles].sort((left, right) => left.number - right.number) }))
+      .sort((left, right) => left.date.localeCompare(right.date))
+  }, [])
+
   const lanes = useMemo(() => {
-    const cardWidth = viewportWidth <= 540 ? 154 : viewportWidth <= 820 ? 172 : 196
+    const cardWidth = viewportWidth <= 540 ? 168 : viewportWidth <= 820 ? 190 : 220
     const gap = 18
     const laneEnds: number[] = []
     const result = new Map<string, number>()
-    ;[...events].sort((a, b) => dateMs(a.date) - dateMs(b.date)).forEach((event) => {
-      const x = baseXForDate(event.date) * zoom
+    articleClusters.forEach((cluster) => {
+      const x = baseXForDate(cluster.date) * zoom
       let lane = laneEnds.findIndex((end) => x - end >= cardWidth + gap)
       if (lane === -1) {
         lane = laneEnds.length
@@ -231,10 +259,10 @@ export function ChronoView() {
       } else {
         laneEnds[lane] = x
       }
-      result.set(event.id, lane)
+      result.set(cluster.date, lane)
     })
     return result
-  }, [viewportWidth, zoom])
+  }, [articleClusters, viewportWidth, zoom])
 
   const visibleRange = useMemo(() => {
     const leftBase = -panX / zoom
@@ -273,26 +301,34 @@ export function ChronoView() {
             ))}
           </div>
           <div className="chrono-events">
-            {events.map((event) => {
-              const x = baseXForDate(event.date) * zoom
-              const lane = lanes.get(event.id) ?? 0
+            {articleClusters.map((cluster) => {
+              const x = baseXForDate(cluster.date) * zoom
+              const lane = lanes.get(cluster.date) ?? 0
               return (
-                <div className="chrono-event" key={event.id} style={{ left: x, '--lane': lane } as React.CSSProperties}>
+                <div className="chrono-event" key={cluster.date} style={{ left: x, '--lane': lane } as React.CSSProperties}>
                   <span className="chrono-marker" aria-hidden="true" />
                   <span className="chrono-stem" aria-hidden="true" />
-                  <button
-                    type="button"
-                    className="chrono-card"
-                    data-event-card
-                    onClick={() => navigate(articlePath(event.id))}
-                    aria-label={`${t('openArticle')}: ${local(event.title, language)}`}
-                  >
+                  <div className={`chrono-card chrono-cluster-card${cluster.articles.length > 1 ? ' has-many' : ''}`}>
                     <span className="chrono-card-date">
-                      {formatDate(event.date)} · № {String(articleNumberById.get(event.id) ?? 0).padStart(2, '0')}
+                      {formatDate(cluster.date)}
+                      {cluster.articles.length > 1 && ` · ${cluster.articles.length} ${articleCountLabel(cluster.articles.length, language)}`}
                     </span>
-                    <span className="chrono-card-title">{local(event.title, language)}</span>
-                    <span className="chrono-card-summary">{local(event.short, language)}</span>
-                  </button>
+                    <div className="chrono-cluster-list">
+                      {cluster.articles.map((article) => (
+                        <button
+                          type="button"
+                          data-article-card
+                          key={article.id}
+                          onClick={() => navigate(articlePath(article.id))}
+                          aria-label={`${t('openArticle')}: ${local(article.title, language)}`}
+                        >
+                          <span>№ {String(article.number).padStart(2, '0')}</span>
+                          <strong>{local(article.title, language)}</strong>
+                          {cluster.articles.length === 1 && <em>{local(article.summary, language)}</em>}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               )
             })}

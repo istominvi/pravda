@@ -1,8 +1,6 @@
 import { useMemo, useState } from 'react'
 import { useNavigate } from 'react-router'
-import { eventsById } from '../data/events'
-import { argumentsById } from '../data/arguments'
-import { articlePath } from '../data/articles'
+import { articlePath, articlesById } from '../data/articles'
 import type { AISuggestionKind } from '../domain/types'
 import { CopyIcon, MicrophoneIcon, SparkIcon, StopIcon } from '../components/Icons'
 import { useSpeechRecognition } from '../hooks/useSpeechRecognition'
@@ -11,25 +9,25 @@ import { detectTopics } from '../utils/topicDetection'
 import { local, translate } from '../utils/i18n'
 
 const demoTranscripts = {
-  ru: 'Собеседник: Вы же дали клятву Украине. Как с этим воевали против тех, кто жил там же? Александр: В самой клятве есть верность народу Украины и обязанность соблюдать Конституцию и законы. Там нет фразы «если они стали сепаратистами, ты больше не связан». Собеседник: Но мы говорим о зрадниках. Александр: Это другая политическая оценка; по тексту присяги это отдельный вопрос.',
-  en: 'Interviewer: You swore allegiance to Ukraine. How did you then fight against people living there? Alexander: The oath says loyalty to the Ukrainian people and compliance with the Constitution and laws. There is no clause saying “if they become separatists, the oath is void.” Interviewer: But we call them traitors. Alexander: That is a political assessment; the oath text is a separate legal question.',
-  uk: 'Співрозмовник: Ви ж дали клятву Україні. Як тоді воювали проти людей там же? Олександр: У самій присязі є вірність народові України й обов’язок дотримуватися Конституції та законів. Там немає формули “якщо вони стали сепаратистами, присяга вже не чинна”. Співрозмовник: Але ми називаємо їх зрадниками. Олександр: Це політична оцінка; по тексту присяги — окреме правове питання.',
+  ru: 'Участник 1: Как текст военной присяги соотносится с участием в боевых действиях против людей, живших в той же стране? Участник 2: Присяга говорит о верности народу Украины и обязанности соблюдать Конституцию и законы. Политическая характеристика противника не отменяет необходимость отдельно проверить текст присяги и правовые основания действий.',
+  en: 'Participant 1: How does the military oath relate to fighting people who lived in the same country? Participant 2: The oath speaks of loyalty to the people of Ukraine and compliance with the Constitution and laws. A political label for an opponent does not remove the need to examine the oath and the legal basis for action separately.',
+  uk: 'Учасник 1: Як текст військової присяги співвідноситься з бойовими діями проти людей, які жили в тій самій країні? Учасник 2: Присяга говорить про вірність народові України та обов’язок дотримуватися Конституції й законів. Політична характеристика супротивника не скасовує потреби окремо перевірити текст присяги та правові підстави дій.',
 }
 
 const genericSuggestions = {
   ru: [
     { kind: 'clarify' as const, title: 'Уточнить тезис', text: 'Сформулируйте, пожалуйста, одно проверяемое утверждение: кто, когда, каким документом и что именно сделал?' },
-    { kind: 'evidence' as const, title: 'Попросить источник', text: 'Давайте откроем первичный документ или полную стенограмму и проверим точную формулировку, а не пересказ.' },
+    { kind: 'evidence' as const, title: 'Попросить источник', text: 'Давайте откроем первичный документ или полный текст выступления и проверим точную формулировку, а не пересказ.' },
     { kind: 'boundary' as const, title: 'Развести уровни', text: 'Причина, юридическое основание и моральная оценка — разные вопросы. Лучше проверить каждый отдельно.' },
   ],
   en: [
     { kind: 'clarify' as const, title: 'Clarify the claim', text: 'Please turn that into one testable claim: who did what, when, and under which document?' },
-    { kind: 'evidence' as const, title: 'Ask for a source', text: 'Let us open the primary document or full transcript and check the exact wording rather than a paraphrase.' },
+    { kind: 'evidence' as const, title: 'Ask for a source', text: 'Let us open the primary document or full statement and check the exact wording rather than a paraphrase.' },
     { kind: 'boundary' as const, title: 'Separate levels', text: 'Cause, legal basis and moral assessment are different questions. Test each one separately.' },
   ],
   uk: [
     { kind: 'clarify' as const, title: 'Уточнити тезу', text: 'Сформулюйте, будь ласка, одне перевірюване твердження: хто, коли, яким документом і що саме зробив?' },
-    { kind: 'evidence' as const, title: 'Попросити джерело', text: 'Відкриймо первинний документ або повну стенограму й перевірмо точне формулювання, а не переказ.' },
+    { kind: 'evidence' as const, title: 'Попросити джерело', text: 'Відкриймо первинний документ або повний текст виступу й перевірмо точне формулювання, а не переказ.' },
     { kind: 'boundary' as const, title: 'Розвести рівні', text: 'Причина, юридична підстава й моральна оцінка — різні питання. Краще перевірити кожне окремо.' },
   ],
 }
@@ -77,8 +75,9 @@ export function AIAssistantView() {
     }
   }
 
-  const openTopicGraph = (nodeId: string) => {
-    setMapFocusId(nodeId)
+  const openTopicGraph = (articleId?: string) => {
+    if (!articleId || !articlesById.has(articleId)) return
+    setMapFocusId(articleId)
     navigate('/connections')
   }
 
@@ -150,7 +149,7 @@ export function AIAssistantView() {
             <div><strong>{t('conversationMap')}</strong><small>{detected.length ? `${detected.length} ${t('detectedTopics')}` : t('detectedTopics')}</small></div>
           </div>
 
-          <div className={`live-argument-map${detected.length ? ' has-topics' : ''}`}>
+          <div className={`live-article-map${detected.length ? ' has-topics' : ''}`}>
             <div className="utterance-node">
               <span>{t('live')}</span>
               <p>{lastExcerpt || t('noTopics')}</p>
@@ -161,7 +160,7 @@ export function AIAssistantView() {
                 <div className="empty-topic-state"><SparkIcon /><p>{t('noTopics')}</p></div>
               ) : detected.map(({ topic, score, matchedKeywords }, topicIndex) => (
                 <article className="detected-topic-card" key={topic.id} style={{ '--topic-index': topicIndex } as React.CSSProperties}>
-                  <button type="button" onClick={() => openTopicGraph(topic.nodeIds[0] ?? 'budapest')}>
+                  <button type="button" onClick={() => openTopicGraph(topic.articleIds[0])}>
                     <span className="topic-score">{String(score).padStart(2, '0')}</span>
                     <span>
                       <small>{matchedKeywords.slice(0, 3).join(' · ')}</small>
@@ -170,19 +169,10 @@ export function AIAssistantView() {
                     </span>
                   </button>
                   <div className="topic-source-row">
-                    {topic.sourceEventIds.slice(0, 3).map((eventId) => {
-                      const event = eventsById.get(eventId)
-                      if (!event) return null
-                      return <button type="button" key={eventId} onClick={() => navigate(articlePath(eventId))}>{local(event.title, language)}</button>
-                    })}
-                    {topic.argumentIds?.slice(0, 3).map((argumentId) => {
-                      const argument = argumentsById.get(argumentId)
-                      if (!argument) return null
-                      return (
-                        <button className="is-argument" type="button" key={argumentId} onClick={() => navigate(articlePath(argumentId))}>
-                          {t('argument')}: {local(argument.title, language)}
-                        </button>
-                      )
+                    {topic.articleIds.slice(0, 6).map((articleId) => {
+                      const article = articlesById.get(articleId)
+                      if (!article) return null
+                      return <button type="button" key={articleId} onClick={() => navigate(articlePath(articleId))}>{local(article.title, language)}</button>
                     })}
                   </div>
                 </article>

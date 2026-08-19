@@ -13,55 +13,47 @@ import {
   type Node,
   type NodeProps,
 } from '@xyflow/react'
-import { knowledgeNodes, knowledgeNodesById, knowledgeRelations } from '../data/knowledge'
-import { articleNumberById, articlePath } from '../data/articles'
-import type { KnowledgeNode, KnowledgeRelation } from '../domain/types'
+import { articleNumberById, articlePath, articleRelations, articlesById, articlesData } from '../data/articles'
 import { useAppStore } from '../store/useAppStore'
-import { buildFocusedKnowledgeGraph } from '../utils/buildFocusedGraph'
 import { languageLocale, local, translate } from '../utils/i18n'
-import { ExternalIcon, SearchIcon } from '../components/Icons'
+import { SearchIcon } from '../components/Icons'
+
+type Article = (typeof articlesData)[number]
+type ArticleRelation = (typeof articleRelations)[number]
 
 interface FlowNodeData extends Record<string, unknown> {
-  knowledgeNode: KnowledgeNode
+  article: Article
   active: boolean
-  relationCount: number
   language: ReturnType<typeof useAppStore.getState>['language']
 }
 
 type PravdaNode = Node<FlowNodeData, 'pravda'>
 
-function formatNodeDate(date: string | undefined, language: FlowNodeData['language']): string | null {
-  if (!date) return null
+function formatArticleDate(date: string, language: FlowNodeData['language']): string {
   return new Intl.DateTimeFormat(languageLocale(language), {
     month: 'short', year: 'numeric', timeZone: 'UTC',
   }).format(new Date(date))
 }
 
-function PravdaKnowledgeNode({ data }: NodeProps<PravdaNode>) {
-  const { knowledgeNode, active, relationCount, language } = data
-  const date = formatNodeDate(knowledgeNode.date, language)
+function PravdaArticleNode({ data }: NodeProps<PravdaNode>) {
+  const { article, active, language } = data
   return (
-    <article className={`knowledge-node type-${knowledgeNode.type}${active ? ' is-active' : ''}`}>
+    <article className={`knowledge-node${active ? ' is-active' : ''}`}>
       <Handle type="target" position={Position.Left} className="knowledge-handle" />
       <div className="knowledge-node-meta">
-        <span>{local(knowledgeNode.eyebrow, language)} · № {String(articleNumberById.get(knowledgeNode.id) ?? 0).padStart(2, '0')}</span>
-        {date && <span>{date}</span>}
+        <span>{translate(language, 'article')} № {String(articleNumberById.get(article.id) ?? article.number).padStart(2, '0')}</span>
+        <span>{formatArticleDate(article.chronologyDate, language)}</span>
       </div>
-      <h3>{local(knowledgeNode.title, language)}</h3>
-      <p>{local(knowledgeNode.summary, language)}</p>
-      <div className="knowledge-node-footer">
-        <span>{relationCount}</span>
-        <span className="node-type-dot" aria-hidden="true" />
-      </div>
+      <h3>{local(article.title, language)}</h3>
+      <p>{local(article.summary, language)}</p>
       <Handle type="source" position={Position.Right} className="knowledge-handle" />
     </article>
   )
 }
 
-const nodeTypes = { pravda: PravdaKnowledgeNode }
+const nodeTypes = { pravda: PravdaArticleNode }
 
-function edgeFor(relation: KnowledgeRelation, language: FlowNodeData['language'], dimmed = false): Edge {
-  const interpretive = relation.confidence === 'interpretive'
+function edgeFor(relation: ArticleRelation, language: FlowNodeData['language'], dimmed = false): Edge {
   return {
     id: relation.id,
     source: relation.source,
@@ -69,12 +61,83 @@ function edgeFor(relation: KnowledgeRelation, language: FlowNodeData['language']
     type: 'smoothstep',
     label: local(relation.label, language),
     markerEnd: { type: MarkerType.ArrowClosed, width: 14, height: 14 },
-    className: `knowledge-edge confidence-${relation.confidence}${dimmed ? ' is-secondary' : ''}`,
-    style: interpretive ? { strokeDasharray: '5 5' } : undefined,
+    className: `knowledge-edge${dimmed ? ' is-secondary' : ''}`,
     labelStyle: { fontSize: 10, fontWeight: 540 },
     labelBgPadding: [5, 3],
     labelBgBorderRadius: 3,
   }
+}
+
+function spread(index: number, count: number, gap: number): number {
+  return (index - (count - 1) / 2) * gap
+}
+
+function buildArticleGraph(focus: Article, depth: 1 | 2, language: FlowNodeData['language']) {
+  const incoming = articleRelations.filter((relation) => relation.target === focus.id)
+  const outgoing = articleRelations.filter((relation) => relation.source === focus.id)
+  const nodes: PravdaNode[] = [{
+    id: focus.id,
+    type: 'pravda',
+    position: { x: 0, y: 0 },
+    data: { article: focus, active: true, language },
+    zIndex: 5,
+  }]
+  const relations: Array<{ relation: ArticleRelation; secondary: boolean }> = []
+  const included = new Set([focus.id])
+
+  const addNode = (article: Article, x: number, y: number, secondary = false) => {
+    if (included.has(article.id)) return
+    included.add(article.id)
+    nodes.push({
+      id: article.id,
+      type: 'pravda',
+      position: { x, y },
+      data: { article, active: false, language },
+      className: secondary ? 'secondary-node' : undefined,
+    })
+  }
+
+  incoming.forEach((relation, index) => {
+    const article = articlesById.get(relation.source)
+    if (!article) return
+    addNode(article, -440, spread(index, incoming.length, 176))
+    relations.push({ relation, secondary: false })
+  })
+
+  outgoing.forEach((relation, index) => {
+    const article = articlesById.get(relation.target)
+    if (!article) return
+    addNode(article, 440, spread(index, outgoing.length, 176))
+    relations.push({ relation, secondary: false })
+  })
+
+  if (depth === 2) {
+    incoming.forEach((parentRelation, parentIndex) => {
+      const candidates = articleRelations
+        .filter((relation) => relation.target === parentRelation.source && !included.has(relation.source))
+        .slice(0, 3)
+      candidates.forEach((relation, childIndex) => {
+        const article = articlesById.get(relation.source)
+        if (!article) return
+        addNode(article, -850, spread(parentIndex, incoming.length, 176) + spread(childIndex, candidates.length, 138), true)
+        relations.push({ relation, secondary: true })
+      })
+    })
+
+    outgoing.forEach((parentRelation, parentIndex) => {
+      const candidates = articleRelations
+        .filter((relation) => relation.source === parentRelation.target && !included.has(relation.target))
+        .slice(0, 3)
+      candidates.forEach((relation, childIndex) => {
+        const article = articlesById.get(relation.target)
+        if (!article) return
+        addNode(article, 850, spread(parentIndex, outgoing.length, 176) + spread(childIndex, candidates.length, 138), true)
+        relations.push({ relation, secondary: true })
+      })
+    })
+  }
+
+  return { nodes, edges: relations.map((item) => edgeFor(item.relation, language, item.secondary)) }
 }
 
 function GraphViewport({ nodes, edges, onOpenArticle }: { nodes: PravdaNode[]; edges: Edge[]; onOpenArticle: (id: string) => void }) {
@@ -106,8 +169,8 @@ function GraphViewport({ nodes, edges, onOpenArticle }: { nodes: PravdaNode[]; e
   )
 }
 
-function relationOtherNode(relation: KnowledgeRelation, focusId: string): KnowledgeNode | undefined {
-  return knowledgeNodesById.get(relation.source === focusId ? relation.target : relation.source)
+function relationOtherArticle(relation: ArticleRelation, focusId: string): Article | undefined {
+  return articlesById.get(relation.source === focusId ? relation.target : relation.source)
 }
 
 export function ConnectionsView() {
@@ -120,42 +183,30 @@ export function ConnectionsView() {
   const [search, setSearch] = useState('')
   const t = (key: Parameters<typeof translate>[1]) => translate(language, key)
 
-  const focus = knowledgeNodesById.get(focusId) ?? knowledgeNodesById.get('budapest')!
-  const graph = useMemo(() => {
-    const layout = buildFocusedKnowledgeGraph(focus.id, depth)
-    const nodes: PravdaNode[] = layout.nodes.map((item) => ({
-      id: item.id,
-      type: 'pravda',
-      position: item.position,
-      data: {
-        knowledgeNode: item.knowledgeNode,
-        active: item.active,
-        relationCount: item.relationCount,
-        language,
-      },
-      zIndex: item.active ? 5 : undefined,
-      className: item.secondary ? 'secondary-node' : undefined,
-    }))
-    const edges = layout.relations.map((item) => edgeFor(item.relation, language, item.secondary))
-    return { nodes, edges }
-  }, [depth, focus.id, language])
-  const incoming = knowledgeRelations.filter((relation) => relation.target === focus.id)
-  const outgoing = knowledgeRelations.filter((relation) => relation.source === focus.id)
+  const focus = articlesById.get(focusId) ?? articlesData[0]
+  const graph = useMemo(
+    () => focus ? buildArticleGraph(focus, depth, language) : { nodes: [], edges: [] },
+    [depth, focus, language],
+  )
+  const incoming = focus ? articleRelations.filter((relation) => relation.target === focus.id) : []
+  const outgoing = focus ? articleRelations.filter((relation) => relation.source === focus.id) : []
 
   const searchResults = useMemo(() => {
     const query = search.trim().toLocaleLowerCase()
     if (!query) return []
-    return knowledgeNodes
-      .filter((node) => `${local(node.title, language)} ${node.tags.join(' ')}`.toLocaleLowerCase().includes(query))
+    return articlesData
+      .filter((article) => `${local(article.title, language)} ${local(article.summary, language)}`.toLocaleLowerCase().includes(query))
       .slice(0, 8)
   }, [language, search])
 
-  const selectNode = (id: string) => {
+  const selectArticle = (id: string) => {
     setFocusId(id)
     setSearch('')
   }
 
   const openArticle = (id: string) => navigate(articlePath(id))
+
+  if (!focus) return null
 
   return (
     <section className="connections-view">
@@ -172,54 +223,44 @@ export function ConnectionsView() {
               <input
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
-                placeholder={language === 'en' ? 'Find a node' : language === 'uk' ? 'Знайти вузол' : 'Найти узел'}
-                aria-label="Search nodes"
+                placeholder={t('findArticle')}
+                aria-label={t('findArticle')}
               />
               {searchResults.length > 0 && (
                 <div className="graph-search-results">
-                  {searchResults.map((node) => (
-                    <button type="button" key={node.id} onClick={() => selectNode(node.id)}>
-                      <span>{local(node.eyebrow, language)}</span>
-                      <strong>{local(node.title, language)}</strong>
+                  {searchResults.map((article) => (
+                    <button type="button" key={article.id} onClick={() => selectArticle(article.id)}>
+                      <span>{t('article')} № {String(article.number).padStart(2, '0')}</span>
+                      <strong>{local(article.title, language)}</strong>
                     </button>
                   ))}
                 </div>
               )}
             </div>
-            <div className="segmented-control" aria-label="Graph depth">
+            <div className="segmented-control" aria-label={t('graphDepth')}>
               <button type="button" className={depth === 1 ? 'is-active' : ''} onClick={() => setDepth(1)}>{t('oneStep')}</button>
               <button type="button" className={depth === 2 ? 'is-active' : ''} onClick={() => setDepth(2)}>{t('twoSteps')}</button>
             </div>
           </div>
         </div>
 
-        <div className="connections-graph" aria-label="Knowledge graph">
+        <div className="connections-graph" aria-label={t('connectionTitle')}>
           <ReactFlowProvider>
             <GraphViewport nodes={graph.nodes} edges={graph.edges} onOpenArticle={openArticle} />
           </ReactFlowProvider>
           <div className="graph-axis-label graph-axis-left">← {t('incoming')}</div>
           <div className="graph-axis-label graph-axis-right">{t('outgoing')} →</div>
-          <div className="graph-legend">
-            <span><i className="legend-line direct" />{t('relationDirect')}</span>
-            <span><i className="legend-line documented" />{t('relationDocumented')}</span>
-            <span><i className="legend-line interpretive" />{t('relationInterpretive')}</span>
-          </div>
         </div>
       </div>
 
       <aside className="connection-inspector">
         <div className="inspector-scroll">
           <div className="inspector-kicker">
-            <span>{local(focus.eyebrow, language)}</span>
-            {focus.date && <span>{formatNodeDate(focus.date, language)}</span>}
+            <span>{t('article')} № {String(focus.number).padStart(2, '0')}</span>
+            <span>{formatArticleDate(focus.chronologyDate, language)}</span>
           </div>
           <h2>{local(focus.title, language)}</h2>
           <p className="inspector-summary">{local(focus.summary, language)}</p>
-
-          <div className="inspector-stats">
-            <div><strong>{incoming.length}</strong><span>{t('incoming')}</span></div>
-            <div><strong>{outgoing.length}</strong><span>{t('outgoing')}</span></div>
-          </div>
 
           <button className="primary-outline-button" type="button" onClick={() => openArticle(focus.id)}>
             {t('openArticle')}
@@ -230,11 +271,10 @@ export function ConnectionsView() {
             <div className="relation-list">
               {incoming.length === 0 && <p>—</p>}
               {incoming.map((relation) => {
-                const other = relationOtherNode(relation, focus.id)
+                const other = relationOtherArticle(relation, focus.id)
                 if (!other) return null
                 return (
-                  <button type="button" key={relation.id} onClick={() => selectNode(other.id)}>
-                    <span className={`relation-confidence confidence-${relation.confidence}`} />
+                  <button type="button" key={relation.id} onClick={() => selectArticle(other.id)}>
                     <span>
                       <small>{local(relation.label, language)}</small>
                       <strong>{local(other.title, language)}</strong>
@@ -251,11 +291,10 @@ export function ConnectionsView() {
             <div className="relation-list">
               {outgoing.length === 0 && <p>—</p>}
               {outgoing.map((relation) => {
-                const other = relationOtherNode(relation, focus.id)
+                const other = relationOtherArticle(relation, focus.id)
                 if (!other) return null
                 return (
-                  <button type="button" key={relation.id} onClick={() => selectNode(other.id)}>
-                    <span className={`relation-confidence confidence-${relation.confidence}`} />
+                  <button type="button" key={relation.id} onClick={() => selectArticle(other.id)}>
                     <span>
                       <small>{local(relation.label, language)}</small>
                       <strong>{local(other.title, language)}</strong>
@@ -265,23 +304,6 @@ export function ConnectionsView() {
                 )
               })}
             </div>
-          </div>
-
-          {focus.sourceUrls && focus.sourceUrls.length > 0 && (
-            <div className="inspector-section">
-              <h3>{t('sources')}</h3>
-              <div className="compact-source-list">
-                {focus.sourceUrls.map((url, index) => (
-                  <a href={url} target="_blank" rel="noreferrer" key={url}>
-                    <span>{index + 1}. {new URL(url).hostname}</span><ExternalIcon />
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div className="tag-row">
-            {focus.tags.map((tag) => <span key={tag}>{tag}</span>)}
           </div>
         </div>
       </aside>

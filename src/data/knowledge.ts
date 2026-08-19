@@ -154,7 +154,7 @@ const conceptNodes: KnowledgeNode[] = [
     id: 'concept-constitutional-interpretation', type: 'concept',
     title: L('Толкование Конституции', 'Constitutional interpretation', 'Тлумачення Конституції'),
     eyebrow: L('Правовой инструментарий', 'Legal toolkit', 'Правовий інструментарій'),
-    summary: L('Одна формулировка может легитимировать разные политические действия; спор решается через формули текста + распределение полномочий + проверяемые факты.', 'The same text can support different claims, so disputes are resolved through text parsing, competence allocation, and verifiable facts.', 'Одна формула може підживлювати різні політичні дії; спір вирішується через текст, розподіл повноважень і перевірені факти.'),
+    summary: L('Одна формулировка может легитимировать разные политические действия; спор разрешается через точный текст, распределение полномочий и проверяемые факты.', 'The same text can support different claims, so disputes are resolved through exact wording, competence allocation, and verifiable facts.', 'Одна формула може підживлювати різні політичні дії; спір вирішується через точний текст, розподіл повноважень і перевірені факти.'),
     tags: ['конституционное право', 'интерпретация', 'норма'],
   },
   {
@@ -222,7 +222,7 @@ const conceptNodes: KnowledgeNode[] = [
   },
   {
     id: 'concept-war-endgame', type: 'concept',
-    title: L('Сценарное завершение войны', 'War endgame scenarios', 'Сценарії завершення війни'),
+    title: L('Как оценивать сценарии завершения войны', 'How to assess war endgame scenarios', 'Як оцінювати сценарії завершення війни'),
     eyebrow: L('Аналитика', 'Analytics', 'Аналітика'),
     summary: L('Точка завершения конфликта определяется не только юридическим итогом, а и безопасностной стоимостью, внутренней легитимностью и международной управляемостью.', 'Termination is shaped by legal closure plus security cost, internal legitimacy, and international manageability.', 'Завершення конфлікту визначається не лише юридичним фіналом, а й вартістю безпеки, внутрішньою легітимністю та міжнародною керованістю.'),
     tags: ['война', 'переговоры', 'безопасность'],
@@ -245,12 +245,12 @@ const conceptNodes: KnowledgeNode[] = [
     id: 'concept-russia-ukraine-relationship', type: 'concept',
     title: L('Долгий трек русско-украинских отношений', 'Long track of Russia-Ukraine relations', 'Довгострокова траєкторія російсько-українських відносин'),
     eyebrow: L('Стратегия', 'Strategy', 'Стратегія'),
-    summary: L('Видеоформат акцентирует различение: диалог полезен как инструмент, но не отменяет конфликтности базовых интересов.', 'The videos distinguish engagement as an instrument, not as a cancellation of core conflicting interests.', 'У відеодискусіях проговорюється: діалог — інструмент, але не скасування базової конфліктності інтересів.'),
+    summary: L('Диалог остаётся инструментом управления конфликтом интересов, но сам по себе не устраняет расхождения в вопросах безопасности, суверенитета и политических целей.', 'Dialogue remains a tool for managing conflicting interests, but does not by itself remove disagreements over security, sovereignty, and political aims.', 'Діалог залишається інструментом управління конфліктом інтересів, але сам по собі не усуває розбіжностей щодо безпеки, суверенітету та політичних цілей.'),
     tags: ['россия', 'дипломатия', 'безопасность'],
   },
   {
     id: 'concept-strategic-effect', type: 'concept',
-    title: L('Стратегический эффект', 'Strategic effect', 'Стратегічний ефект'),
+    title: L('Как проверять стратегический эффект', 'How to test strategic effect', 'Як перевіряти стратегічний ефект'),
     eyebrow: L('Критерий результата', 'Outcome test', 'Критерій результату'),
     summary: L('Устойчивое изменение ресурсов, темпа операций или переговорных возможностей нужно отличать от локального и медийного успеха.', 'A durable change in resources, operational tempo, or bargaining power must be distinguished from a local or media success.', 'Тривалу зміну ресурсів, темпу операцій або переговорних можливостей слід відрізняти від локального чи медійного успіху.'),
     tags: ['стратегия', 'эффект', 'метрики'],
@@ -271,7 +271,7 @@ const conceptNodes: KnowledgeNode[] = [
   },
   {
     id: 'concept-war-aims', type: 'concept',
-    title: L('Политические цели войны', 'Political aims of war', 'Політичні цілі війни'),
+    title: L('Как проверять политические цели войны', 'How to assess political aims of war', 'Як перевіряти політичні цілі війни'),
     eyebrow: L('Аналитическая рамка', 'Analytical frame', 'Аналітична рамка'),
     summary: L('Военное действие оценивается через заявленную цель, затраченные ресурсы и способ превратить военный эффект в политический результат.', 'Military action is assessed through its stated objective, resources spent, and the mechanism linking military effect to political outcome.', 'Військову дію оцінюють через заявлену мету, витрачені ресурси та механізм перетворення військового ефекту на політичний результат.'),
     tags: ['война', 'политика', 'ресурсы'],
@@ -285,7 +285,7 @@ const conceptNodes: KnowledgeNode[] = [
   },
   {
     id: 'concept-ideology-prevalence', type: 'concept',
-    title: L('Распространённость идеологии', 'Ideological prevalence', 'Поширеність ідеології'),
+    title: L('Как измерять распространённость идеологии', 'How to measure ideological prevalence', 'Як вимірювати поширеність ідеології'),
     eyebrow: L('Стандарт сравнения', 'Comparison standard', 'Стандарт порівняння'),
     summary: L('Идеологию общества проверяют по массовому распространению, институтам и политике, а не по одному автору, памятнику или цитате.', 'A society’s ideology is tested through prevalence, institutions, and policy—not one author, monument, or quotation.', 'Ідеологію суспільства перевіряють за масовим поширенням, інституціями й політикою, а не за одним автором, пам’ятником чи цитатою.'),
     tags: ['идеология', 'сравнение', 'доказательность'],

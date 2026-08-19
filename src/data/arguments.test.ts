@@ -1,65 +1,54 @@
 import { describe, expect, it } from 'vitest'
-import { argumentsData, argumentVideoIds } from './arguments'
-import { events } from './events'
-import { knowledgeNodesById } from './knowledge'
+import { aiTopics } from './aiKnowledge'
+import { articlesById, articlesData } from './articles'
 
-describe('canonical transcript arguments', () => {
-  it('uses unique argument ids and the thirty reviewed video ids', () => {
-    expect(new Set(argumentsData.map((argument) => argument.id)).size).toBe(argumentsData.length)
-    expect(argumentVideoIds).toEqual([
-      '4x8stl4ZzdE',
-      'LkHavUQ4nwc',
-      'Ol0ue_sDD48',
-      'wsqPJMI6noM',
-      'g0wrgfZqVm4',
-      '-GlUMn0YE1Q',
-      'QJaaNbt62EA',
-      'XzvQa4nB5LE',
-      'ZCO6n5SsXwQ',
-      'rVX-YnJht-4',
-      'R0EoG5eVsOo',
-      'lapcK0stuxA',
-      'KxBa0Lt-Mok',
-      'Q-iePxBnNTQ',
-      '_gO2fCj04xU',
-      'sf52Mzd6sss',
-      'FzMfd4Y0FY8',
-      'L-S-zI9CGOs',
-      'UiyzcTNxSho',
-      'KhamiqPbdHA',
-      'iqJaKlLyg1k',
-      'h1g_8rzhqps',
-      'url6SajVXEg',
-      'JKo3cmvTaNw',
-      'nHsb1-k5M8o',
-      'LMXxNA8cWEM',
-      'd5rh2vhGNyE',
-      'hchsw5sDcfg',
-      'YIB-Z9HBA8w',
-      'Hq6QtPJ2YxE',
-    ])
-  })
+const forbiddenAIResearchText = /(?:Александр|Олександр|Alexander|\b(?:интервью|interview|видео|відео|video|ролик|monologue|монолог)\b|\b225(?:th|-м)?\b|\bВ его (?:нарративе|трактовке)\b|(?:^|[.!?]\s+)(?:Он|Він|He|His)\b|(?:^|[.!?]\s+)(?:В диалоге|У діалозі|У розмові|The interview|The exchange|In the \d+(?:st|nd|rd|th) example)\b)/imu
 
-  it('keeps citations precise and inside the canonical corpus', () => {
-    const videoIds = new Set<string>(argumentVideoIds)
-    for (const argument of argumentsData) {
-      expect(argument.citations.length).toBeGreaterThan(0)
-      for (const citation of argument.citations) {
-        expect(videoIds.has(citation.videoId)).toBe(true)
-        expect(citation.start).toMatch(/^\d{2}:\d{2}:\d{2}$/)
-        expect(citation.end).toMatch(/^\d{2}:\d{2}:\d{2}$/)
-        expect(citation.start < citation.end).toBe(true)
+describe('public article model', () => {
+  it('uses one article-id namespace in AI topics', () => {
+    for (const topic of aiTopics) {
+      expect(topic).not.toHaveProperty('nodeIds')
+      expect(topic).not.toHaveProperty('sourceEventIds')
+      expect(topic).not.toHaveProperty('argumentIds')
+      expect(topic.articleIds.length, `${topic.id}:articleIds`).toBeGreaterThan(0)
+      for (const articleId of topic.articleIds) {
+        expect(articlesById.has(articleId), `${topic.id} -> ${articleId}`).toBe(true)
       }
     }
   })
 
-  it('references existing graph nodes, events, and arguments', () => {
-    const eventIds = new Set(events.map((event) => event.id))
-    const argumentIds = new Set(argumentsData.map((argument) => argument.id))
-    for (const argument of argumentsData) {
-      for (const nodeId of argument.relatedNodeIds) expect(knowledgeNodesById.has(nodeId)).toBe(true)
-      for (const eventId of argument.relatedEventIds) expect(eventIds.has(eventId)).toBe(true)
-      for (const argumentId of argument.relatedArgumentIds) expect(argumentIds.has(argumentId)).toBe(true)
+  it('keeps internal interview framing out of public AI copy', () => {
+    const publicText = aiTopics.flatMap((topic) => [
+      ...Object.values(topic.title),
+      ...Object.values(topic.summary),
+      ...Object.values(topic.keywords).flat(),
+      ...Object.values(topic.suggestions).flatMap((suggestions) => (
+        suggestions.flatMap((suggestion) => [suggestion.title, suggestion.text])
+      )),
+    ]).join('\n')
+
+    expect(publicText).not.toMatch(forbiddenAIResearchText)
+  })
+
+  it('does not expose legacy entity or transcript fields', () => {
+    const legacyFields = [
+      'kind',
+      'nodeId',
+      'eventId',
+      'argumentId',
+      'interpretationConfidence',
+      'citations',
+      'tags',
+    ]
+
+    for (const article of articlesData) {
+      for (const field of legacyFields) expect(article).not.toHaveProperty(field)
     }
+  })
+
+  it('keeps the editorial research source out of published article prose', () => {
+    const publishedCorpus = JSON.stringify(articlesData)
+    expect(publishedCorpus).not.toMatch(/Александр|Олександр|Alexander/)
+    expect(publishedCorpus).not.toMatch(/VIDEO_ID|каноническ(?:ий|ого) транскрипт|canonical transcript/i)
   })
 })

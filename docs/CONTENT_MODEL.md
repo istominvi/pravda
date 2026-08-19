@@ -1,225 +1,179 @@
-# PRAVDA — модель контента
+# PRAVDA — единая модель контента
 
-## 1. Цель
+## 1. Принцип
 
-Модель должна одинаково обслуживать Хроно, Связи, статьи и realtime AI. Нельзя поддерживать четыре несвязанных набора данных для одного и того же события.
+Публичная сущность проекта только одна — **статья**. Хроно, Связи и каталог не
+поддерживают отдельные наборы событий, понятий или аргументов: это три способа
+увидеть один и тот же корпус.
 
-## 2. Базовые типы
+- Хроно располагает статьи по `chronologyDate`.
+- Связи соединяют статьи направленными переходами.
+- Статьи показывают тот же корпус как нумерованный и сортируемый список.
+- AI определяет тему и возвращает `articleIds` из того же корпуса.
+
+Событие, документ, понятие, тезис, возражение и вывод могут быть частью текста
+статьи. Они не получают отдельного публичного типа, маршрута, карточки или счётчика.
+
+## 2. Публичный контракт
 
 ```ts
-type EditorialStatus = 'draft' | 'review' | 'published' | 'disputed' | 'archived'
-type Confidence = 'direct' | 'documented' | 'interpretive' | 'insufficient'
 type Language = 'ru' | 'en' | 'uk'
+type Localized<T = string> = Record<Language, T>
 
-type Localized<T = string> = Partial<Record<Language, T>> & { ru: T }
-```
+interface SourceLink {
+  title: string
+  institution: string
+  url: string
+}
 
-## 3. Event
-
-```ts
-interface Event {
-  id: string
-  slug: string
+interface ArticleSection {
   title: Localized
-  summary: Localized
-  startDate: string
-  endDate?: string
-  precision: 'day' | 'month' | 'year' | 'range'
-  placeIds: string[]
-  actorIds: string[]
-  documentIds: string[]
-  mediaIds: string[]
-  claimIds: string[]
-  tagIds: string[]
-  editorialStatus: EditorialStatus
-  reviewedAt?: string
-}
-```
-
-## 4. Document
-
-```ts
-interface Document {
-  id: string
-  title: Localized
-  documentType: 'treaty' | 'law' | 'resolution' | 'declaration' | 'judgment' | 'transcript' | 'other'
-  institutionIds: string[]
-  signedAt?: string
-  effectiveAt?: string
-  languageVersions: string[]
-  currentVersionId: string
-  editorialStatus: EditorialStatus
+  paragraphs: Localized<string[]>
+  sourceUrls?: string[]
 }
 
-interface DocumentVersion {
-  id: string
-  documentId: string
-  language: string
-  sourceUrl: string
-  retrievedAt: string
-  checksum: string
-  mimeType: string
-  objectStorageKey?: string
-}
-```
-
-## 5. Chunk и citation
-
-```ts
-interface SourceChunk {
-  id: string
-  documentVersionId: string
-  parentChunkId?: string
-  structurePath: string[]
-  locator: string
-  text: string
-  startOffset: number
-  endOffset: number
-  embeddingVersion?: string
-}
-
-interface Citation {
-  id: string
-  chunkId: string
-  startOffset: number
-  endOffset: number
-  quote: string
-  verified: boolean
-  verifiedBy?: string
-  verifiedAt?: string
-}
-```
-
-## 6. Claim
-
-```ts
-interface Claim {
-  id: string
-  text: Localized
-  claimType: 'document_text' | 'historical' | 'legal' | 'causal' | 'moral' | 'definition' | 'prediction'
-  confidence: Confidence
-  supportingCitationIds: string[]
-  opposingCitationIds: string[]
-  counterclaimIds: string[]
-  whatNotToClaim?: Localized<string[]>
-  editorialStatus: EditorialStatus
-}
-```
-
-## 7. Relation
-
-```ts
-interface Relation {
-  id: string
-  sourceId: string
-  targetId: string
-  kind:
-    | 'precedes'
-    | 'causes'
-    | 'contributes_to'
-    | 'responds_to'
-    | 'implements'
-    | 'contradicts'
-    | 'reaffirms'
-    | 'cites'
-    | 'raises_question'
-  confidence: Confidence
+interface ArticleLink {
+  articleId: string
   label: Localized
   note: Localized
-  citationIds: string[]
-  counterRelationIds: string[]
-  editorialStatus: EditorialStatus
+}
+
+interface ArticleRecord {
+  id: string
+  number: number
+  title: Localized
+  summary: Localized
+  lead: Localized
+  chronologyDate: string
+  sections: ArticleSection[]
+  sources: SourceLink[]
+  links: ArticleLink[]
+}
+
+interface ArticleRelation {
+  id: string
+  source: string
+  target: string
+  label: Localized
+  note: Localized
 }
 ```
 
-`causes` использовать только при сильном доказательстве. Для большинства политических цепочек безопаснее `contributes_to` или `political_context`.
+`id` — стабильный ключ и часть URL `/articles/:id`. `number` — вычисляемая
+позиция после хронологической сортировки; хранить номер вручную или использовать
+его как постоянный ключ нельзя.
 
-### 7.1. Текущая реализация аргументов из видео
+## 3. Содержание статьи
 
-До перехода на нормализованные `Claim` / `Citation` в приложении используется `ArgumentRecord` из `src/domain/types.ts`. Он хранит тему, тезис, посылки, ход рассуждения, вывод, возражение, ответ, ограничения, уровень уверенности интерпретации и связи с событиями, узлами и другими аргументами.
+Каждая статья должна быть самостоятельным документальным материалом, а не
+аннотацией к узлу графа. Минимальный редакционный состав:
 
-`ArgumentCitation` фиксирует только источник реконструкции позиции Александра: `VIDEO_ID`, начало, конец и редакционное описание фрагмента. Это доказательство того, что позиция прозвучала, но не доказательство внешнего исторического или юридического утверждения. Поле `references` хранит отдельные первичные источники для такой проверки.
+1. развёрнутый лид, объясняющий, зачем тема важна для общего контекста;
+2. четыре содержательных раздела, в каждом не менее двух абзацев;
+3. описание фактов, правового или исторического контекста и границ вывода;
+4. ссылки на официальные документы и публикации институтов внутри релевантных
+   разделов;
+5. осмысленные переходы к связанным статьям.
 
-Каждый аргумент автоматически становится узлом типа `claim` в графе. Его связи с документами, событиями и концептами имеют `interpretive` confidence, пока конкретная связь не подтверждена первичным документом.
+Inline-ссылки назначаются по смыслу конкретного раздела. Механическое чередование
+общего списка источников не считается цитированием и запрещено также во внутреннем
+builder: каждому разделу нужен осмысленный редакционный план источников.
 
-### 7.2. Единая проекция статей
+Текущая автоматическая проверка требует не менее 400 слов в каждой языковой
+версии, четыре раздела и минимум два абзаца в каждом разделе. Это нижняя граница
+целостности, а не повод добирать объём общими редакционными формулами.
 
-`src/data/articles.ts` не создаёт параллельный корпус. Он проецирует в каталог статей каждый `KnowledgeNode` с тем же стабильным `id`:
+В тексте можно разбирать разные аргументы и контраргументы. Не нужно превращать
+их в отдельную сущность или воспроизводить структуру диалога «возражение — ответ».
 
-- узел события или документа получает полный материал из `EventRecord`;
-- узел аргумента получает реконструкцию из `ArgumentRecord`;
-- узел понятия получает редакционное введение из `KnowledgeNode.summary`, входящие и исходящие `KnowledgeRelation` и источники непосредственно связанных материалов.
+## 4. Источники
 
-Поэтому множество идентификаторов в Статьях и Связях должно полностью совпадать. Все элементы Хроно являются датированными статьями и узлами графа. Понятия и аргументы без собственной исторической даты не получают вымышленную дату: Хроно остаётся временной проекцией общего корпуса, а переходы из него ведут на тот же маршрут `/articles/:id`.
+Публичные источники статьи должны вести по HTTPS на официальные или
+институциональные страницы: ООН, ОБСЕ, органы государственной власти, суды,
+международные организации и официальные архивы документов.
 
-Каталог сортируется по `chronologyDate`. Для события или документа это собственная дата. Для понятия или аргумента — дата ближайшего связанного датированного узла; она показывается как «хронологический контекст» и не считается датой возникновения понятия или высказывания. Если на одинаковом расстоянии найдено несколько датированных узлов, берётся самый ранний.
+Исследовательские видео и транскрипты используются только внутри редакционного
+процесса для поиска тем и построения нарратива. Они:
 
-Отображаемый номер статьи равен позиции в отсортированном `articlesData` и вычисляется заново при каждой сборке. При добавлении материала в 1953 год все последующие номера автоматически сдвигаются. Номер нельзя использовать как постоянный ключ или часть URL: постоянным идентификатором остаётся `id`.
+- не публикуются как доказательство утверждения;
+- не попадают в `sources` или `sourceUrls`;
+- не показываются в статье, Хроно, Связях или AI;
+- не создают персональной атрибуции проекта автору исходного разговора.
 
-Новые материалы добавляются в исходную сущность — событие, понятие или аргумент. Отдельно дублировать текст в реестре статей запрещено.
+## 5. Связи
 
-## 8. NarrativePattern
+`ArticleLink` — редакционный переход от одной статьи к другой. `articleRelations`
+является плоской проекцией этих переходов для графа. Публичная связь содержит
+только направление, название и короткое объяснение; служебные уровни уверенности
+и тип исходного материала читателю не показываются.
 
-Паттерн описывает повторяющийся способ вести спор, а не факт.
+Каждая ссылка обязана вести на существующую статью. Изолированных статей в
+корпусе быть не должно.
+
+## 6. Хронология и нумерация
+
+Все статьи имеют `chronologyDate`. Для материала о конкретном событии это дата
+события или документа. Для обзорной правовой или политической темы редакция
+выбирает дату, с которой начинается её исторический контекст, и раскрывает этот
+выбор в тексте.
+
+Сортировка по умолчанию:
+
+1. `chronologyDate` по возрастанию;
+2. стабильный `id` при совпадении даты;
+3. присвоение `number` начиная с 1.
+
+Одинаковая дата не требует искусственно разносить статьи по времени: Хроно
+группирует их в одной точке и позволяет открыть каждую.
+
+## 7. Внутренние редакционные данные
+
+Во время миграции старые `EventRecord`, `KnowledgeNode`, `ArgumentRecord` и их
+связи могут оставаться в исходниках как внутреннее сырьё Node-side builder-файла
+`src/data/articleBuilder.ts`. Команда `npm run generate:data` записывает очищенный
+реестр в `src/data/articles.public.ts`; только его импортирует браузерная обёртка
+`src/data/articles.ts`. Поэтому legacy-строки, видеоидентификаторы и исследовательские
+ссылки не входят ни в JavaScript bundle, ни в source map. Новые материалы
+проектируются как статьи, а временный legacy-слой постепенно удаляется.
+
+## 8. AI
 
 ```ts
-interface NarrativePattern {
+interface AITopic {
   id: string
   title: Localized
-  description: Localized
-  examples: Array<{
-    mediaId: string
-    startMs: number
-    endMs: number
-    transcriptSegmentIds: string[]
-  }>
-  risks: Localized<string[]>
-  usefulQuestions: Localized<string[]>
-  editorialStatus: EditorialStatus
+  keywords: Record<Language, string[]>
+  summary: Localized
+  articleIds: string[]
+  suggestions: Record<Language, Array<{
+    kind: 'clarify' | 'evidence' | 'boundary'
+    title: string
+    text: string
+  }>>
 }
 ```
 
-Примеры: буквальное чтение документа, тест на двойной стандарт, возврат к более ранней точке хронологии, разделение государства и элит.
+AI не ссылается на отдельные события, понятия или аргументы. Любой результат
+ведёт к одной или нескольким статьям.
 
-## 9. Media и transcript
+## 9. Проверки целостности
 
-```ts
-interface MediaItem {
-  id: string
-  provider: 'youtube' | 'rutube' | 'upload' | 'external'
-  externalId?: string
-  url: string
-  title: string
-  publishedAt?: string
-  durationMs?: number
-  rightsStatus: 'unknown' | 'linked' | 'licensed' | 'owned'
-}
+`npm run verify:data` и тесты должны подтверждать:
 
-interface TranscriptSegment {
-  id: string
-  mediaId: string
-  speakerId?: string
-  startMs: number
-  endMs: number
-  language: string
-  text: string
-  confidence?: number
-  verificationStatus: 'machine' | 'reviewed' | 'approved'
-}
-```
+- ровно 85 индивидуально написанных статей в текущем корпусе;
+- уникальность `id` и номера каждой статьи;
+- хронологическую нумерацию без разрывов;
+- наличие ровно четырёх разделов, минимум двух абзацев в каждом и хотя бы одного
+  официального HTTPS-источника;
+- отсутствие YouTube, транскриптов и персональной атрибуции в публичном корпусе;
+- валидность всех `articleId`, ссылок и графовых отношений;
+- совпадение множеств статей в Хроно, Связях и каталоге.
 
-## 10. Conversation session
+`npm run verify:data` также проверяет актуальность generated-файла относительно
+builder-а. После production-сборки `npm run verify:dist` сканирует публикуемый
+артефакт на исследовательские имена, `VIDEO_ID`, YouTube и ссылки на транскрипты.
 
-Session content не должен автоматически становиться редакционным контентом.
-
-```ts
-interface ConversationSession {
-  id: string
-  userId: string
-  createdAt: string
-  endedAt?: string
-  retentionMode: 'ephemeral' | 'transcript_only' | 'full_history'
-  consentVersion: string
-  status: 'active' | 'ended' | 'deleting' | 'deleted'
-}
-```
+Полная локальная цепочка перед фиксацией: `npm run generate:data` →
+`npm run verify:data` → `npm test` → `npm run typecheck` → `npm run lint` →
+`npm run build`. После неё изменения коммитятся и отправляются в `main`; push
+автоматически запускает повторную сборку и публикацию GitHub Pages.

@@ -9,6 +9,61 @@ export interface SourceLink {
   url: string
 }
 
+export interface ArticleSection {
+  title: Localized
+  paragraphs: Localized<string[]>
+  sourceUrls?: string[]
+}
+
+export interface ArticleLink {
+  articleId: string
+  label: Localized
+  note: Localized
+}
+
+export interface ArticleRecord {
+  id: string
+  number: number
+  title: Localized
+  summary: Localized
+  lead: Localized
+  chronologyDate: string
+  sections: ArticleSection[]
+  sources: SourceLink[]
+  links: ArticleLink[]
+}
+
+export interface ArticleRelation {
+  id: string
+  source: string
+  target: string
+  label: Localized
+  note: Localized
+}
+
+export type AISuggestionKind = 'clarify' | 'evidence' | 'boundary'
+
+export interface AITopic {
+  id: string
+  title: Localized
+  keywords: Record<Language, string[]>
+  summary: Localized
+  articleIds: string[]
+  suggestions: Record<Language, Array<{
+    kind: AISuggestionKind
+    title: string
+    text: string
+  }>>
+}
+
+export interface DetectedTopic {
+  topic: AITopic
+  score: number
+  matchedKeywords: string[]
+}
+
+// Internal editorial inputs. These legacy structures feed the article normalizer
+// during the migration and must not be consumed by public views or graph code.
 export interface MediaLink {
   title: string
   url: string
@@ -79,23 +134,6 @@ export interface KnowledgeRelation {
   sourceUrls?: string[]
 }
 
-export type AISuggestionKind = 'clarify' | 'evidence' | 'boundary'
-
-export interface AITopic {
-  id: string
-  title: Localized
-  keywords: Record<Language, string[]>
-  summary: Localized
-  nodeIds: string[]
-  sourceEventIds: string[]
-  argumentIds?: string[]
-  suggestions: Record<Language, Array<{
-    kind: AISuggestionKind
-    title: string
-    text: string
-  }>>
-}
-
 export type InterpretationConfidence = 'high' | 'medium' | 'low'
 
 export interface ArgumentCitation {
@@ -123,29 +161,4 @@ export interface ArgumentRecord {
   citations: ArgumentCitation[]
   references: SourceLink[]
   tags: string[]
-}
-
-export type ArticleKind = 'event' | 'document' | 'concept' | 'argument'
-
-export interface ArticleRecord {
-  id: string
-  nodeId: string
-  number: number
-  kind: ArticleKind
-  title: Localized
-  eyebrow: Localized
-  summary: Localized
-  date?: string
-  chronologyDate?: string
-  chronologyAnchorId?: string
-  chronologyIsDirect: boolean
-  eventId?: string
-  argumentId?: string
-  tags: string[]
-}
-
-export interface DetectedTopic {
-  topic: AITopic
-  score: number
-  matchedKeywords: string[]
 }

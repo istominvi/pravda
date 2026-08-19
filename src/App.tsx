@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Navigate, Route, Routes, useLocation, useParams } from 'react-router'
+import { Navigate, Route, Routes, useLocation } from 'react-router'
 import { AppHeader } from './components/AppHeader'
 import { useAppStore } from './store/useAppStore'
 import { AIAssistantView } from './views/AIAssistantView'
@@ -17,21 +17,9 @@ function RouteEffects() {
         ? 'PRAVDA — Статьи'
       : view === 'ai'
         ? 'PRAVDA — AI'
-        : view === 'event'
-          ? 'PRAVDA — Событие'
-          : 'PRAVDA — Хроно'
+        : 'PRAVDA — Хроно'
   }, [location.pathname])
   return null
-}
-
-function LegacyEventRedirect() {
-  const { eventId } = useParams()
-  return <Navigate to={eventId ? `/articles/${eventId}` : '/articles'} replace />
-}
-
-function LegacyArgumentRedirect() {
-  const { argumentId } = useParams()
-  return <Navigate to={argumentId ? `/articles/${argumentId}` : '/articles'} replace />
 }
 
 export default function App() {
@@ -53,10 +41,7 @@ export default function App() {
           <Route path="/connections" element={<ConnectionsView />} />
           <Route path="/articles" element={<ArticlesView />} />
           <Route path="/articles/:articleId" element={<ArticleView />} />
-          <Route path="/arguments" element={<Navigate to="/articles" replace />} />
-          <Route path="/argument/:argumentId" element={<LegacyArgumentRedirect />} />
           <Route path="/ai" element={<AIAssistantView />} />
-          <Route path="/event/:eventId" element={<LegacyEventRedirect />} />
           <Route path="*" element={<Navigate to="/chrono" replace />} />
         </Routes>
       </main>

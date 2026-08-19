@@ -745,8 +745,8 @@ export const argumentsData: ArgumentRecord[] = [
       citation('hchsw5sDcfg', '00:08:21', '00:11:54', L('Отсутствие референдума как основание критики передачи.', 'The absence of a referendum as the basis for challenging the transfer.', 'Відсутність референдуму як підстава критики передачі.')),
     ],
     references: [
-      { title: 'Decree on the transfer of the Crimean Region, 19 February 1954', institution: 'Documents of Soviet History', url: 'https://docs.historyrussia.org/ru/nodes/521406' },
-      { title: 'USSR law approving the transfer, 26 April 1954', institution: 'Documents of Soviet History', url: 'https://docs.historyrussia.org/ru/nodes/521407-ob-utverzhdenii-ukazov-prezidiuma-verhovnogo-soveta-sssr-zakon-prinyatyy-verhovnym-sovetom-sssr-4-go-sozyva-na-pervoy-sessii-moskva-26-aprelya-1954-g' },
+      { title: 'Archival copy: decree on the transfer of the Crimean Region, 19 February 1954', institution: 'Documents of Soviet History digital library', url: 'https://docs.historyrussia.org/ru/nodes/521406' },
+      { title: 'Archival copy: USSR law approving the transfer, 26 April 1954', institution: 'Documents of Soviet History digital library', url: 'https://docs.historyrussia.org/ru/nodes/521407-ob-utverzhdenii-ukazov-prezidiuma-verhovnogo-soveta-sssr-zakon-prinyatyy-verhovnym-sovetom-sssr-4-go-sozyva-na-pervoy-sessii-moskva-26-aprelya-1954-g' },
       { title: 'Resolution No. 2399-XII of 3 June 1992', institution: 'Verkhovna Rada of Ukraine', url: 'https://zakon.rada.gov.ua/laws/show/2399-12' },
     ],
     tags: ['Крым', '1954', 'конституционная процедура'],

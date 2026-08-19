@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import { articlesById } from '../data/articles'
 import { buildFocusedKnowledgeGraph } from './buildFocusedGraph'
 
 describe('buildFocusedKnowledgeGraph', () => {
@@ -6,6 +7,7 @@ describe('buildFocusedKnowledgeGraph', () => {
     const graph = buildFocusedKnowledgeGraph('budapest', 2)
     expect(graph.nodes.filter((node) => node.id === graph.focus.id)).toHaveLength(1)
     expect(graph.nodes.find((node) => node.id === graph.focus.id)?.active).toBe(true)
+    expect(graph.nodes.find((node) => node.id === graph.focus.id)?.article).toBe(articlesById.get('budapest'))
   })
 
   it('does not include second-order nodes at depth one', () => {

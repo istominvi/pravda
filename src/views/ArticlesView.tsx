@@ -1,77 +1,56 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { ArrowLeftIcon, ArrowRightIcon, ExternalIcon, SearchIcon } from '../components/Icons'
-import { articleNumberById, articlePath, articlesById, articlesData, sourcesForArticle } from '../data/articles'
-import { argumentsById, transcriptUrl, youtubeTimestampUrl } from '../data/arguments'
-import { eventsById } from '../data/events'
-import { knowledgeNodesById, knowledgeRelations } from '../data/knowledge'
-import type { ArticleKind, KnowledgeRelation, Language } from '../domain/types'
+import { articleNumberById, articlePath, articleRelations, articlesById, articlesData } from '../data/articles'
 import { useAppStore } from '../store/useAppStore'
 import { languageLocale, local, translate } from '../utils/i18n'
 
 const PAGE_SIZE = 9
 
-function confidenceLabel(confidence: 'high' | 'medium' | 'low', language: Language): string {
-  const labels = {
-    ru: { high: 'высокая', medium: 'средняя', low: 'низкая' },
-    en: { high: 'high', medium: 'medium', low: 'low' },
-    uk: { high: 'висока', medium: 'середня', low: 'низька' },
-  }
-  return labels[language][confidence]
-}
+type ArticleSort = 'number-asc' | 'number-desc' | 'title'
+type ArticleRelation = (typeof articleRelations)[number]
 
-function relationConfidenceLabel(confidence: KnowledgeRelation['confidence'], language: Language): string {
-  const labels = {
-    ru: { direct: 'прямая', documented: 'документированная', interpretive: 'интерпретационная' },
-    en: { direct: 'direct', documented: 'documented', interpretive: 'interpretive' },
-    uk: { direct: 'пряма', documented: 'документована', interpretive: 'інтерпретаційна' },
-  }
-  return labels[language][confidence]
-}
-
-function kindLabel(kind: ArticleKind, language: Language): string {
-  const labels = {
-    ru: { event: 'Событие', document: 'Документ', concept: 'Понятие', argument: 'Аргумент' },
-    en: { event: 'Event', document: 'Document', concept: 'Concept', argument: 'Argument' },
-    uk: { event: 'Подія', document: 'Документ', concept: 'Поняття', argument: 'Аргумент' },
-  }
-  return labels[language][kind]
-}
-
-function articleSearchText(articleId: string, language: Language): string {
+function articleSearchText(articleId: string, language: ReturnType<typeof useAppStore.getState>['language']): string {
   const article = articlesById.get(articleId)
   if (!article) return ''
-  const event = article.eventId ? eventsById.get(article.eventId) : undefined
-  const argument = article.argumentId ? argumentsById.get(article.argumentId) : undefined
   return [
     local(article.title, language),
-    local(article.eyebrow, language),
     local(article.summary, language),
-    article.tags.join(' '),
-    event ? local(event.lead, language) : '',
-    event ? local(event.context, language).join(' ') : '',
-    event ? local(event.dispute, language).join(' ') : '',
-    argument ? local(argument.topic, language) : '',
-    argument ? local(argument.reasoning, language) : '',
-    argument ? argument.citations.map((citation) => citation.videoId).join(' ') : '',
+    local(article.lead, language),
+    ...article.sections.flatMap((section) => [
+      local(section.title, language),
+      ...local(section.paragraphs, language),
+    ]),
   ].join(' ').toLocaleLowerCase()
+}
+
+function sortArticles(
+  articles: typeof articlesData,
+  sort: ArticleSort,
+  language: ReturnType<typeof useAppStore.getState>['language'],
+) {
+  return [...articles].sort((left, right) => {
+    if (sort === 'number-desc') return right.number - left.number
+    if (sort === 'title') return local(left.title, language).localeCompare(local(right.title, language), languageLocale(language))
+    return left.number - right.number
+  })
 }
 
 export function ArticlesView() {
   const navigate = useNavigate()
   const language = useAppStore((state) => state.language)
   const [search, setSearch] = useState('')
-  const [kind, setKind] = useState<ArticleKind | 'all'>('all')
+  const [sort, setSort] = useState<ArticleSort>('number-asc')
   const [page, setPage] = useState(1)
   const t = (key: Parameters<typeof translate>[1]) => translate(language, key)
 
   const filtered = useMemo(() => {
     const query = search.trim().toLocaleLowerCase()
-    return articlesData.filter((article) => {
-      if (kind !== 'all' && article.kind !== kind) return false
-      return !query || articleSearchText(article.id, language).includes(query)
-    })
-  }, [kind, language, search])
+    const matching = query
+      ? articlesData.filter((article) => articleSearchText(article.id, language).includes(query))
+      : articlesData
+    return sortArticles(matching, sort, language)
+  }, [language, search, sort])
 
   const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE))
   const currentPage = Math.min(page, pageCount)
@@ -82,66 +61,54 @@ export function ArticlesView() {
     setPage(1)
   }
 
-  const updateKind = (value: ArticleKind | 'all') => {
-    setKind(value)
+  const updateSort = (value: ArticleSort) => {
+    setSort(value)
     setPage(1)
   }
 
   return (
-    <section className="arguments-view articles-view">
-      <div className="arguments-view-inner">
-        <header className="arguments-heading articles-heading">
+    <section className="articles-view">
+      <div className="articles-view-inner">
+        <header className="articles-heading">
           <span className="section-kicker">PRAVDA / {t('articles')}</span>
           <h1>{t('articlesTitle')}</h1>
           <p>{t('articlesIntro')}</p>
           <div className="article-catalog-controls">
-            <label className="argument-search">
+            <label className="article-search">
               <SearchIcon />
               <span className="sr-only">{t('findArticle')}</span>
               <input value={search} onChange={(event) => updateSearch(event.target.value)} placeholder={t('findArticle')} />
             </label>
-            <label className="article-kind-filter">
-              <span className="sr-only">{t('articleType')}</span>
-              <select value={kind} onChange={(event) => updateKind(event.target.value as ArticleKind | 'all')}>
-                <option value="all">{t('allArticles')}</option>
-                <option value="event">{kindLabel('event', language)}</option>
-                <option value="document">{kindLabel('document', language)}</option>
-                <option value="concept">{kindLabel('concept', language)}</option>
-                <option value="argument">{kindLabel('argument', language)}</option>
+            <label className="article-sort-control">
+              <span className="sr-only">{t('sortArticles')}</span>
+              <select value={sort} onChange={(event) => updateSort(event.target.value as ArticleSort)}>
+                <option value="number-asc">{t('sortNumberAsc')}</option>
+                <option value="number-desc">{t('sortNumberDesc')}</option>
+                <option value="title">{t('sortTitle')}</option>
               </select>
             </label>
           </div>
         </header>
 
         <div className="article-catalog-meta">
-          <span>{filtered.length} {t('articleCount')} · {t('chronologicalOrder')}</span>
+          <span>{filtered.length} {t('articleCount')} · {t(sort === 'number-asc' ? 'sortNumberAsc' : sort === 'number-desc' ? 'sortNumberDesc' : 'sortTitle')}</span>
           <span>{currentPage} / {pageCount}</span>
         </div>
 
-        <div className="argument-list article-list" aria-live="polite">
-          {visible.length === 0 && <p className="arguments-empty">{t('noArticles')}</p>}
-          {visible.map((article) => {
-            const sourceCount = sourcesForArticle(article.id).length
-            return (
-              <button className="argument-card article-card" type="button" key={article.id} onClick={() => navigate(articlePath(article.id))}>
-                <span className="argument-card-index">№ {String(article.number).padStart(2, '0')}</span>
-                <span className="argument-card-copy">
-                  <small>{kindLabel(article.kind, language)} · {local(article.eyebrow, language)}</small>
-                  <strong>{local(article.title, language)}</strong>
-                  <em>{local(article.summary, language)}</em>
-                </span>
-                <span className="article-card-meta">
-                  {article.chronologyDate && (
-                    <time dateTime={article.chronologyDate}>
-                      {article.chronologyDate.slice(0, 4)}
-                      {!article.chronologyIsDirect && <small>{t('chronologyContextShort')}</small>}
-                    </time>
-                  )}
-                  <span>{sourceCount} {t('sourceCount')}</span>
-                </span>
-              </button>
-            )
-          })}
+        <div className="article-list" aria-live="polite">
+          {visible.length === 0 && <p className="articles-empty">{t('noArticles')}</p>}
+          {visible.map((article) => (
+            <button className="article-card" type="button" key={article.id} onClick={() => navigate(articlePath(article.id))}>
+              <span className="article-card-index">№ {String(article.number).padStart(2, '0')}</span>
+              <span className="article-card-copy">
+                <strong>{local(article.title, language)}</strong>
+                <em>{local(article.summary, language)}</em>
+              </span>
+              <span className="article-card-meta">
+                <time dateTime={article.chronologyDate}>{article.chronologyDate.slice(0, 4)}</time>
+              </span>
+            </button>
+          ))}
         </div>
 
         {pageCount > 1 && (
@@ -174,25 +141,26 @@ function ArticleRelations({ articleId }: { articleId: string }) {
   const navigate = useNavigate()
   const language = useAppStore((state) => state.language)
   const t = (key: Parameters<typeof translate>[1]) => translate(language, key)
-  const relations = knowledgeRelations.filter((relation) => relation.source === articleId || relation.target === articleId)
+  const relations = articleRelations.filter((relation) => relation.source === articleId || relation.target === articleId)
   const incoming = relations.filter((relation) => relation.target === articleId)
   const outgoing = relations.filter((relation) => relation.source === articleId)
 
-  const renderRelation = (relation: KnowledgeRelation) => {
+  const renderRelation = (relation: ArticleRelation) => {
     const otherId = relation.source === articleId ? relation.target : relation.source
-    const other = knowledgeNodesById.get(otherId)
+    const other = articlesById.get(otherId)
     if (!other) return null
     return (
       <button type="button" key={relation.id} onClick={() => navigate(articlePath(other.id))}>
-        <span className={`relation-confidence confidence-${relation.confidence}`} />
         <span>
-          <small>№ {String(articleNumberById.get(other.id) ?? 0).padStart(2, '0')} · {relationConfidenceLabel(relation.confidence, language)} · {local(relation.label, language)}</small>
+          <small>№ {String(articleNumberById.get(other.id) ?? 0).padStart(2, '0')} · {local(relation.label, language)}</small>
           <strong>{local(other.title, language)}</strong>
           <em>{local(relation.note, language)}</em>
         </span>
       </button>
     )
   }
+
+  if (relations.length === 0) return null
 
   return (
     <section className="event-section article-relations-section">
@@ -217,8 +185,6 @@ export function ArticleView() {
   const language = useAppStore((state) => state.language)
   const setMapFocusId = useAppStore((state) => state.setMapFocusId)
   const article = articleId ? articlesById.get(articleId) : undefined
-  const event = article?.eventId ? eventsById.get(article.eventId) : undefined
-  const argument = article?.argumentId ? argumentsById.get(article.argumentId) : undefined
   const t = (key: Parameters<typeof translate>[1]) => translate(language, key)
 
   useEffect(() => {
@@ -235,32 +201,22 @@ export function ArticleView() {
     )
   }
 
-  const index = articlesData.findIndex((item) => item.id === article.id)
-  const previous = index > 0 ? articlesData[index - 1] : undefined
-  const next = index < articlesData.length - 1 ? articlesData[index + 1] : undefined
-  const sources = sourcesForArticle(article.id)
-  const relations = knowledgeRelations.filter((relation) => relation.source === article.id || relation.target === article.id)
-  const formattedDate = article.date
-    ? new Intl.DateTimeFormat(languageLocale(language), { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(article.date))
-    : undefined
-  const formattedChronologyDate = article.chronologyDate
-    ? new Intl.DateTimeFormat(languageLocale(language), { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(article.chronologyDate))
-    : undefined
-  const chronologyAnchorArticle = article.chronologyAnchorId && article.chronologyAnchorId !== article.id
-    ? articlesById.get(article.chronologyAnchorId)
-    : undefined
-  const chronologyLabel = formattedChronologyDate
-    ? `${t('chronologyContext')}: ${formattedChronologyDate}${chronologyAnchorArticle ? ` · ${local(chronologyAnchorArticle.title, language)}` : ''}`
-    : undefined
+  const canonicalArticles = [...articlesData].sort((left, right) => left.number - right.number)
+  const index = canonicalArticles.findIndex((item) => item.id === article.id)
+  const previous = index > 0 ? canonicalArticles[index - 1] : undefined
+  const next = index < canonicalArticles.length - 1 ? canonicalArticles[index + 1] : undefined
+  const formattedDate = new Intl.DateTimeFormat(languageLocale(language), {
+    day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+  }).format(new Date(article.chronologyDate))
 
   const openGraph = () => {
-    setMapFocusId(article.nodeId)
+    setMapFocusId(article.id)
     navigate('/connections')
   }
 
   return (
-    <article className={`event-page article-page article-kind-${article.kind}${argument ? ' argument-page' : ''}`}>
-      <div className="event-page-inner argument-page-inner">
+    <article className="event-page article-page">
+      <div className="event-page-inner">
         <button className="back-link" type="button" onClick={() => navigate('/articles')}>
           <ArrowLeftIcon /> {t('backToArticles')}
         </button>
@@ -269,106 +225,47 @@ export function ArticleView() {
           <div className="event-article-main">
             <div className="event-kicker">
               <span>{t('article')} № {String(article.number).padStart(2, '0')}</span>
-              <span>{kindLabel(article.kind, language)}</span>
-              <span>{formattedDate ?? chronologyLabel ?? local(article.eyebrow, language)}</span>
+              <span>{formattedDate}</span>
             </div>
             <h1>{local(article.title, language)}</h1>
-            <p className="event-lead">{event ? local(event.lead, language) : local(article.summary, language)}</p>
+            <p className="event-lead">{local(article.lead, language)}</p>
 
-            <div className="event-action-row argument-action-row">
+            <div className="event-action-row">
               <button className="dark-button" type="button" onClick={openGraph}>{t('openConnections')}</button>
-              <span>{relations.length} {t('relationCount')} · {sources.length} {t('sourceCount')}</span>
-              {argument && (
-                <span className={`confidence-chip confidence-${argument.interpretationConfidence}`}>
-                  {t('confidence')}: {confidenceLabel(argument.interpretationConfidence, language)}
-                </span>
-              )}
             </div>
 
-            {event && (
-              <>
-                <section className="event-section">
-                  <h2>{t('context')}</h2>
-                  <div>{local(event.context, language).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
-                </section>
-                <section className="event-section">
-                  <h2>{t('dispute')}</h2>
-                  <div>{local(event.dispute, language).map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
-                </section>
-                <section className="event-section">
-                  <h2>{t('verify')}</h2>
-                  <ul className="verify-list">{local(event.checks, language).map((check) => <li key={check}>{check}</li>)}</ul>
-                </section>
-              </>
-            )}
-
-            {argument && (
-              <>
-                <section className="event-section">
-                  <h2>{t('premises')}</h2>
-                  <ul className="argument-point-list">{local(argument.premises, language).map((premise) => <li key={premise}>{premise}</li>)}</ul>
-                </section>
-                <section className="event-section">
-                  <h2>{t('reasoning')}</h2>
-                  <div><p>{local(argument.reasoning, language)}</p></div>
-                </section>
-                <section className="event-section">
-                  <h2>{t('conclusion')}</h2>
-                  <div><p>{local(argument.conclusion, language)}</p></div>
-                </section>
-                <section className="argument-dialogue-grid">
-                  <div><span>{t('objection')}</span><p>{local(argument.objection, language)}</p></div>
-                  <div><span>{t('response')}</span><p>{local(argument.response, language)}</p></div>
-                </section>
-                <section className="event-section">
-                  <h2>{t('limitations')}</h2>
-                  <ul className="verify-list">{local(argument.limitations, language).map((limitation) => <li key={limitation}>{limitation}</li>)}</ul>
-                </section>
-                <section className="event-section">
-                  <h2>{t('transcriptEvidence')}</h2>
-                  <div className="transcript-citation-list">
-                    {argument.citations.map((citation) => (
-                      <article key={`${citation.videoId}-${citation.start}`}>
-                        <div><span>VIDEO_ID</span><strong>{citation.videoId}</strong><small>{citation.start}–{citation.end} · Александр</small></div>
-                        <p>{local(citation.note, language)}</p>
-                        <div className="citation-actions">
-                          <a href={youtubeTimestampUrl(citation.videoId, citation.start)} target="_blank" rel="noreferrer">YouTube · {citation.start} <ExternalIcon /></a>
-                          <a href={transcriptUrl(citation.videoId)} target="_blank" rel="noreferrer">Markdown <ExternalIcon /></a>
-                        </div>
-                      </article>
-                    ))}
-                  </div>
-                </section>
-              </>
-            )}
-
-            {!event && !argument && (
-              <>
-                <section className="event-section">
-                  <h2>{t('articleOverview')}</h2>
+            {article.sections.map((section, sectionIndex) => {
+              const sectionSources = (section.sourceUrls ?? [])
+                .map((url) => article.sources.find((source) => source.url === url))
+                .filter((source): source is (typeof article.sources)[number] => Boolean(source))
+              return (
+                <section className="event-section" key={`${article.id}-section-${sectionIndex}`}>
+                  <h2>{local(section.title, language)}</h2>
                   <div>
-                    <p>{local(article.summary, language)}</p>
-                    <p>{t('conceptArticleMethod')}</p>
+                    {local(section.paragraphs, language).map((paragraph, paragraphIndex) => (
+                      <p key={`${article.id}-section-${sectionIndex}-paragraph-${paragraphIndex}`}>{paragraph}</p>
+                    ))}
+                    {sectionSources.length > 0 && (
+                      <div className="article-section-sources" aria-label={t('sectionSources')}>
+                        {sectionSources.map((source) => (
+                          <a href={source.url} target="_blank" rel="noreferrer" key={source.url}>
+                            {source.title} <ExternalIcon />
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </section>
-                <section className="event-section">
-                  <h2>{t('verify')}</h2>
-                  <ul className="verify-list">
-                    <li>{t('conceptCheckSource')}</li>
-                    <li>{t('conceptCheckConfidence')}</li>
-                    <li>{t('conceptCheckStandard')}</li>
-                  </ul>
-                </section>
-              </>
-            )}
+              )
+            })}
 
             <ArticleRelations articleId={article.id} />
 
-            {sources.length > 0 && (
+            {article.sources.length > 0 && (
               <section className="event-section" id="sources">
-                <h2>{article.kind === 'concept' ? t('relatedSources') : t('primarySources')}</h2>
+                <h2>{t('primarySources')}</h2>
                 <div className="source-list">
-                  {sources.map((source, sourceIndex) => (
+                  {article.sources.map((source, sourceIndex) => (
                     <a href={source.url} target="_blank" rel="noreferrer" key={source.url}>
                       <span className="source-number">{String(sourceIndex + 1).padStart(2, '0')}</span>
                       <span><strong>{source.title}</strong><small>{source.institution}</small></span>
@@ -378,23 +275,6 @@ export function ArticleView() {
                 </div>
               </section>
             )}
-
-            {event && (
-              <section className="event-section">
-                <h2>{t('media')}</h2>
-                {event.media.length ? (
-                  <div className="media-grid">
-                    {event.media.map((item) => (
-                      <a href={item.url} target="_blank" rel="noreferrer" key={item.url}>
-                        <small>{item.type ?? 'media'}</small><strong>{item.title}</strong><ExternalIcon />
-                      </a>
-                    ))}
-                  </div>
-                ) : <p className="muted-copy">{t('noMedia')}</p>}
-              </section>
-            )}
-
-            <div className="tag-row argument-tags">{article.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
           </div>
         </div>
 
