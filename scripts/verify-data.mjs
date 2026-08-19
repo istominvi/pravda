@@ -84,7 +84,7 @@ for (const url of argumentUrls) if (!/^https:\/\//.test(url)) errors.push(`Non-H
 
 if (eventIds.length < 10) errors.push(`Expected at least 10 events, found ${eventIds.length}`)
 if (relations.length < 20) errors.push(`Expected at least 20 relations, found ${relations.length}`)
-if (argumentIds.length < 10) errors.push(`Expected at least 10 arguments, found ${argumentIds.length}`)
+if (argumentIds.length < 14) errors.push(`Expected at least 14 arguments, found ${argumentIds.length}`)
 
 if (errors.length) {
   console.error('PRAVDA data verification failed:')

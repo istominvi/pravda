@@ -99,14 +99,14 @@ export const aiTopics: AITopic[] = [
     id: 'power-2014',
     title: L('Смена власти в 2014 году', 'Transfer of power in 2014', 'Зміна влади у 2014 році'),
     keywords: {
-      ru: ['майдан', 'переворот', 'янукович', 'смена власти', '2014', 'всеукраинский референдум', 'референдум 1991', 'референдум 2000'],
-      en: ['maidan', 'coup', 'yanukovych', 'transfer of power', '2014', 'all-Ukrainian referendum', '1991 referendum', '2000 referendum'],
-      uk: ['майдан', 'переворот', 'янукович', 'зміна влади', '2014', 'всеукраїнський референдум', 'референдум 1991', 'референдум 2000'],
+      ru: ['майдан', 'переворот', 'янукович', 'смена власти', '2014', 'мандат', 'самоустранение', 'всеукраинский референдум', 'референдум 1991', 'референдум 2000'],
+      en: ['maidan', 'coup', 'yanukovych', 'transfer of power', '2014', 'mandate', 'withdrawal from duties', 'all-Ukrainian referendum', '1991 referendum', '2000 referendum'],
+      uk: ['майдан', 'переворот', 'янукович', 'зміна влади', '2014', 'мандат', 'самоусунення', 'всеукраїнський референдум', 'референдум 1991', 'референдум 2000'],
     },
     summary: L('Не смешивайте вопрос о буквальной конституционной процедуре с вопросом о последующей непрерывности институтов и выборах.', 'Do not conflate literal constitutional procedure with later institutional continuity and elections.', 'Не змішуйте буквальну конституційну процедуру з подальшою безперервністю інституцій та виборами.'),
     nodeIds: ['power-2014', 'concept-constitutional-procedure', 'crimea', 'ato'],
     sourceEventIds: ['power-2014'],
-    argumentIds: ['transfer-2014-and-ato-authority'],
+    argumentIds: ['transfer-2014-and-ato-authority', 'electoral-mandate-vs-moral-judgment', 'armed-escalation-cannot-be-single-cause'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Попросить критерий', text:'Какую конкретно конституционную процедуру вы считаете соблюдённой или нарушенной и на каком этапе?' },
@@ -252,7 +252,7 @@ export const aiTopics: AITopic[] = [
     summary: L('Проверяйте пункт, ответственного актора и спорную последовательность безопасности и политических шагов.', 'Check the clause, responsible actor and contested sequencing of security and political steps.', 'Перевіряйте пункт, відповідального актора та спірну послідовність безпеки й політичних кроків.'),
     nodeIds: ['ato', 'minsk', 'concept-ceasefire-sequencing', 'full-invasion'],
     sourceEventIds: ['minsk'],
-    argumentIds: ['security-dilemma-and-escalation-chain'],
+    argumentIds: ['security-dilemma-and-escalation-chain', 'armed-escalation-cannot-be-single-cause'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Назвать пункт', text:'Какой именно из пунктов Минска вы имеете в виду, кто был указан ответственным и что по тексту должно было произойти до него?' },
@@ -532,14 +532,14 @@ export const aiTopics: AITopic[] = [
     id: 'evidence-trust',
     title: L('Как отличить факт от спекуляции', 'How to distinguish fact from speculation', 'Як відрізнити факт від спекуляції'),
     keywords: {
-      ru: ['правда', 'факты', 'верификация', 'доказ', 'статистика', 'ссылки', 'обвинение', 'проверка'],
-      en: ['truth', 'facts', 'verification', 'evidence', 'statistics', 'source checking', 'verification burden'],
-      uk: ['правда', 'факти', 'верифікація', 'доказ', 'статистика', 'джерела', 'перевірка'],
+      ru: ['правда', 'факты', 'верификация', 'доказ', 'статистика', 'ссылки', 'обвинение', 'проверка', 'гиркин', 'стрелков', 'причина войны'],
+      en: ['truth', 'facts', 'verification', 'evidence', 'statistics', 'source checking', 'verification burden', 'girkin', 'strelkov', 'cause of war'],
+      uk: ['правда', 'факти', 'верифікація', 'доказ', 'статистика', 'джерела', 'перевірка', 'гіркін', 'стрєлков', 'причина війни'],
     },
     summary: L('В споре он настаивает на доказательной цепочке: цитата, источник, проверка, а не произвольное повторение эмоциональной версии.', 'In argumentation he repeatedly asks for citation, source, and method, rather than repeating an emotional narrative as proof.', 'У дискусіях він наполягає на доказовій ланцюжку: цитата, джерело, перевірка, а не лише емоційна версія.'), 
     nodeIds: ['concept-evidence-trust', 'concept-constitutional-interpretation'],
     sourceEventIds: ['full-invasion', 'annexation-2022'],
-    argumentIds: ['ideological-examples-and-social-prevalence', 'tactical-effect-vs-strategic-outcome'],
+    argumentIds: ['ideological-examples-and-social-prevalence', 'tactical-effect-vs-strategic-outcome', 'armed-escalation-cannot-be-single-cause'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Попросить первоисточник', text:'«Что именно сказано в тексте/документе?» — это закрывает 80% споров по смыслу.' },
@@ -631,7 +631,7 @@ export const aiTopics: AITopic[] = [
     summary: L('Александр показывает, что «закончится/не закончится» — это не бинарная моральная формула, а набор ограничений: безопасность, переговорная цена и политические последствия.', 'He frames end-of-war framing as a constrained process, not a binary moral formula: security, negotiation costs, and political consequences matter together.', 'Олександр показує, що питання «коли закінчиться» — це не бінарна моральна формула, а набір обмежень: безпека, вартість переговорів і політичні наслідки.'),
     nodeIds: ['concept-war-endgame', 'concept-cause-vs-justification', 'full-invasion'],
     sourceEventIds: ['full-invasion', 'un-charter'],
-    argumentIds: ['war-as-political-instrument', 'security-dilemma-and-escalation-chain'],
+    argumentIds: ['war-as-political-instrument', 'security-dilemma-and-escalation-chain', 'self-determination-needs-consistent-criteria'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Разбить на сценарии', text:'Задайте отдельные сценарии: прекращение огня, политическое урегулирование, долгосрочный режим безопасности.' },
@@ -664,6 +664,7 @@ export const aiTopics: AITopic[] = [
     summary: L('В споре по Крыму Александр не сводит его только к формальной процедуре или к оппозиционной политике: отдельно взятые акты легитимации и реальное отношение жителей — разные плоскости.', 'In Crimea discussions he separates formal procedure from social identity and representation, treating each as a separate layer of legitimacy.' , 'У дискусіях про Крим він розділяє формальну процедуру, реальну самоідентифікацію людей і політичне представництво як окремі рівні легітимності.'),
     nodeIds: ['crimea', 'concept-self-determination', 'concept-population-consent'],
     sourceEventIds: ['crimea'],
+    argumentIds: ['self-determination-needs-consistent-criteria'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Разделить легитимность', text:'Что легитимирует? юридический акт, фактическое проживание или историческое самовосприятие жителей.' },

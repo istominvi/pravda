@@ -649,15 +649,18 @@ export const events = [
     "context": {
       "ru": [
         "22 февраля 2014 года Верховная Рада приняла постановление, в котором указала, что Виктор Янукович неконституционным образом самоустранился от исполнения полномочий, и назначила досрочные президентские выборы.",
-        "Спор о юридической форме этого решения необходимо отделять от вопроса о фактической непрерывности институтов и последующей электоральной легитимации."
+        "Спор о юридической форме этого решения необходимо отделять от вопроса о фактической непрерывности институтов и последующей электоральной легитимации.",
+        "Янукович получил президентский мандат на выборах 2010 года; итоговый доклад БДИПЧ ОБСЕ оценил второй тур как подтвердивший соответствие большинства обязательств перед ОБСЕ и Советом Европы."
       ],
       "en": [
         "On 22 February 2014 the Verkhovna Rada adopted a resolution stating that Viktor Yanukovych had withdrawn from performing his constitutional duties and scheduled an early presidential election.",
-        "The dispute over the legal form of that decision should be separated from institutional continuity and later electoral legitimation."
+        "The dispute over the legal form of that decision should be separated from institutional continuity and later electoral legitimation.",
+        "Yanukovych received a presidential mandate in the 2010 election; the OSCE/ODIHR final report said the second round confirmed that most OSCE and Council of Europe commitments were met."
       ],
       "uk": [
         "22 лютого 2014 року Верховна Рада ухвалила постанову, в якій зазначила, що Віктор Янукович самоусунувся від виконання конституційних повноважень, і призначила дострокові президентські вибори.",
-        "Суперечку про юридичну форму рішення слід відокремлювати від фактичної безперервності інститутів і подальшої електоральної легітимації."
+        "Суперечку про юридичну форму рішення слід відокремлювати від фактичної безперервності інститутів і подальшої електоральної легітимації.",
+        "Янукович отримав президентський мандат на виборах 2010 року; підсумковий звіт БДІПЛ ОБСЄ зазначив, що другий тур підтвердив виконання більшості зобов’язань перед ОБСЄ та Радою Європи."
       ]
     },
     "dispute": {
@@ -675,17 +678,20 @@ export const events = [
       "ru": [
         "Какая статья Конституции применялась или не применялась.",
         "Что именно установило постановление № 757-VII.",
-        "Не подменяется ли юридический вопрос политической оценкой протестов."
+        "Не подменяется ли юридический вопрос политической оценкой протестов.",
+        "Различаются ли происхождение избирательного мандата и предусмотренные способы его досрочного прекращения."
       ],
       "en": [
         "Which constitutional article was or was not applied.",
         "What Resolution No. 757-VII actually stated.",
-        "Whether a legal question is being replaced by a political judgement about the protests."
+        "Whether a legal question is being replaced by a political judgement about the protests.",
+        "Whether the origin of the electoral mandate is distinguished from the prescribed ways of terminating it early."
       ],
       "uk": [
         "Яку статтю Конституції застосували або не застосували.",
         "Що саме встановила постанова № 757-VII.",
-        "Чи не підміняють юридичне питання політичною оцінкою протестів."
+        "Чи не підміняють юридичне питання політичною оцінкою протестів.",
+        "Чи розрізняють походження виборчого мандата та передбачені способи його дострокового припинення."
       ]
     },
     "meta": {
@@ -720,6 +726,11 @@ export const events = [
         "title": "Конституция Украины",
         "institution": "Верховная Рада Украины",
         "url": "https://zakon.rada.gov.ua/laws/show/254%D0%BA/96-%D0%B2%D1%80?lang=en"
+      },
+      {
+        "title": "Ukraine Presidential Election 2010: OSCE/ODIHR Final Report",
+        "institution": "OSCE Office for Democratic Institutions and Human Rights",
+        "url": "https://odihr.osce.org/odihr/elections/ukraine/67844"
       }
     ],
     "media": []
@@ -852,15 +863,18 @@ export const events = [
     "context": {
       "ru": [
         "14 апреля 2014 года был введён в действие принятый Советом национальной безопасности и обороны Украины комплекс мер по преодолению террористической угрозы и сохранению территориальной целостности.",
-        "В тот же период Специальная мониторинговая миссия ОБСЕ фиксировала захваты административных зданий и быстро меняющуюся обстановку."
+        "В тот же период Специальная мониторинговая миссия ОБСЕ фиксировала захваты административных зданий и быстро меняющуюся обстановку.",
+        "Доклад Мониторинговой миссии ООН описывал одновременно вооружённые группы, присутствие в них граждан России, Гиркина как командира в Славянске и правительственную силовую операцию, начавшуюся 14 апреля."
       ],
       "en": [
         "On 14 April 2014 a decision of Ukraine’s National Security and Defence Council on measures to overcome the terrorist threat and preserve territorial integrity was put into effect.",
-        "At the same time the OSCE Special Monitoring Mission was recording seizures of administrative buildings and a rapidly changing situation."
+        "At the same time the OSCE Special Monitoring Mission was recording seizures of administrative buildings and a rapidly changing situation.",
+        "The UN Human Rights Monitoring Mission described armed groups, Russian citizens among them, Girkin as a commander in Sloviansk, and the government security operation that began on 14 April."
       ],
       "uk": [
         "14 квітня 2014 року ввели в дію рішення Ради національної безпеки і оборони України про заходи з подолання терористичної загрози та збереження територіальної цілісності.",
-        "У той самий період Спеціальна моніторингова місія ОБСЄ фіксувала захоплення адміністративних будівель і швидку зміну ситуації."
+        "У той самий період Спеціальна моніторингова місія ОБСЄ фіксувала захоплення адміністративних будівель і швидку зміну ситуації.",
+        "Доповідь Моніторингової місії ООН описувала водночас збройні групи, присутність у них громадян Росії, Гіркіна як командира у Слов’янську та урядову силову операцію, що почалася 14 квітня."
       ]
     },
     "dispute": {
@@ -878,17 +892,23 @@ export const events = [
       "ru": [
         "Какие события предшествовали указу 14 апреля.",
         "Кто контролировал конкретные здания и вооружённые группы.",
-        "Различаются ли политический протест, вооружённое восстание и внешнее участие."
+        "Различаются ли политический протест, вооружённое восстание и внешнее участие.",
+        "Не смешиваются ли публичные заявления 7 апреля, решение СНБО 13 апреля и указ 14 апреля.",
+        "Не подменяется ли многоакторная причинность объяснением через одного командира или одно решение."
       ],
       "en": [
         "Which events preceded the decree of 14 April.",
         "Who controlled specific buildings and armed groups.",
-        "Whether political protest, armed uprising and external involvement are distinguished."
+        "Whether political protest, armed uprising and external involvement are distinguished.",
+        "Whether public statements on 7 April, the NSDC decision of 13 April, and the decree of 14 April are being conflated.",
+        "Whether multi-actor causation is being replaced by a single commander or a single decision."
       ],
       "uk": [
         "Які події передували указу 14 квітня.",
         "Хто контролював конкретні будівлі та збройні групи.",
-        "Чи розрізняють політичний протест, збройне повстання та зовнішню участь."
+        "Чи розрізняють політичний протест, збройне повстання та зовнішню участь.",
+        "Чи не змішують публічні заяви 7 квітня, рішення РНБО 13 квітня та указ 14 квітня.",
+        "Чи не підміняють багатоакторну причинність поясненням через одного командира або одне рішення."
       ]
     },
     "meta": {
@@ -923,6 +943,11 @@ export const events = [
         "title": "Daily report of the OSCE Special Monitoring Mission, 14 April 2014",
         "institution": "OSCE",
         "url": "https://www.osce.org/ukraine-smm/117777"
+      },
+      {
+        "title": "Report on the human rights situation in Ukraine, 15 June 2014",
+        "institution": "Office of the UN High Commissioner for Human Rights",
+        "url": "https://www.ohchr.org/sites/default/files/Documents/Countries/UA/HRMMUReport15June2014.pdf"
       }
     ],
     "media": []
