@@ -51,10 +51,10 @@ export const editorialSourcePlans: Record<string, string[][]> = {
     ['astana'],
   ],
   'power-2014': [
-    ['power-2014#0', 'power-2014#1'],
+    ['@supplemental#0', 'power-2014#0', 'power-2014#1'],
     ['power-2014#0', 'power-2014#1', 'power-2014#2'],
-    ['power-2014#0', 'power-2014#1', 'power-2014#2'],
-    ['power-2014#0', 'power-2014#1', 'power-2014#2'],
+    ['@supplemental#0', 'power-2014#0', 'power-2014#1', 'power-2014#2'],
+    ['@supplemental#0', 'power-2014#0', 'power-2014#1', 'power-2014#2'],
   ],
   crimea: [
     ['crimea#0', 'crimea#2'],
@@ -287,8 +287,8 @@ export const editorialSourcePlans: Record<string, string[][]> = {
   'concept-evidence-trust': [
     ['ato', 'minsk', 'full-invasion'],
     ['ato', 'minsk', 'full-invasion'],
-    ['ato', 'minsk', 'full-invasion'],
-    ['ato', 'minsk', 'full-invasion'],
+    ['@supplemental#0', '@supplemental#1', 'ato', 'minsk'],
+    ['@supplemental#0', 'ato', 'minsk', 'full-invasion'],
   ],
   'concept-alliance-volatility': [
     ['nato-russia-act', 'bucharest', 'munich-security-2022'],

@@ -358,6 +358,23 @@ const ussrDissolutionSupplementalSources: SourceLink[] = [
 ]
 
 const supplementalSources: Record<string, SourceLink[]> = {
+  'power-2014': [{
+    title: 'Agreement on the Settlement of Crisis in Ukraine, 21 February 2014',
+    institution: 'Federal Foreign Office of Germany',
+    url: 'https://www.auswaertiges-amt.de/resource/blob/260130/db4f5326f21530cad8d351152feb5e26/140221-ukr-erklaerung-data.pdf',
+  }],
+  'concept-evidence-trust': [
+    {
+      title: 'Restrictions to the SMM’s freedom of movement and other impediments to the fulfilment of its mandate',
+      institution: 'Organization for Security and Co-operation in Europe',
+      url: 'https://www.osce.org/special-monitoring-mission-to-ukraine/508991',
+    },
+    {
+      title: 'Grand Chamber judgment in Ukraine and the Netherlands v. Russia, 9 July 2025',
+      institution: 'European Court of Human Rights',
+      url: 'https://www.echr.coe.int/w/grand-chamber-judgment-in-an-inter-state-case-1',
+    },
+  ],
   'ussr-dissolution-1991': ussrDissolutionSupplementalSources,
   'ussr-dissolution-and-present-consent': ussrDissolutionSupplementalSources,
   'urban-objectives-and-civilian-risk': [{

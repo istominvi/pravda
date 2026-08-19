@@ -1854,15 +1854,15 @@ export const publicArticles: ArticleRecord[] = [
         },
         "paragraphs": {
           "ru": [
-            "Порог убедительного волеизъявления включает определённый состав участников, ясный вопрос, равный доступ к кампании, тайну и безопасность голосования, независимое администрирование и возможность оспаривания. Даже большой заявленный процент не отвечает на эти вопросы. Самоидентификация может меняться со временем и быть множественной; язык, происхождение или место проживания не позволяют заранее приписать человеку одну политическую позицию.",
+            "Порог убедительного волеизъявления включает определённый состав участников, ясный вопрос, равный доступ к кампании, тайну и безопасность голосования, независимое администрирование и возможность оспаривания. Даже большой заявленный процент не отвечает на эти вопросы. Свободу процедуры нельзя свести к поиску видеозаписи, где конкретного избирателя непосредственно заставляют голосовать: военный контроль, устройство кампании, состав вариантов и независимость организаторов воздействуют на процесс и без такого кадра. Самоидентификация может меняться со временем и быть множественной; язык, происхождение или место проживания не позволяют заранее приписать человеку одну политическую позицию.",
             "Общенациональный выбор и региональное предпочтение имеют разный предмет. Решение о создании независимого государства принималось всем населением соответствующей республики, тогда как отделение части территории затрагивает права более широкого гражданского сообщества и международную границу. Это не делает местный голос несущественным, но требует согласовать его с конституционной процедурой, отсутствием силы и общими правилами самоопределения."
           ],
           "en": [
-            "A persuasive expression of will requires a defined electorate, clear question, equal campaign access, secrecy and safety, independent administration, and avenues for challenge. A large announced percentage answers none of these questions. Self-identification can change and be multiple; language, origin, or residence does not predetermine one political preference.",
+            "A persuasive expression of will requires a defined electorate, clear question, equal campaign access, secrecy and safety, independent administration, and avenues for challenge. A large announced percentage answers none of these questions. Procedural freedom cannot be reduced to finding footage of a particular voter being forced at gunpoint: military control, campaign conditions, available options, and organisers’ independence can shape a process without such an image. Self-identification can change and be multiple; language, origin, or residence does not predetermine one political preference.",
             "A nationwide choice and a regional preference have different objects. Creating an independent state was decided by the population of the republic as a whole, while detaching a territory affects the rights of a broader citizenry and an international border. Local opinion remains relevant, but it must be reconciled with constitutional procedure, absence of force, and the general framework of self-determination."
           ],
           "uk": [
-            "Переконливе волевиявлення потребує визначеного складу учасників, ясного питання, рівного доступу до кампанії, таємниці й безпеки голосування, незалежного адміністрування та оскарження. Великий оголошений відсоток сам не відповідає на ці питання. Самоідентифікація може змінюватися й бути множинною; мова, походження чи місце проживання не визначають наперед одну політичну позицію.",
+            "Переконливе волевиявлення потребує визначеного складу учасників, ясного питання, рівного доступу до кампанії, таємниці й безпеки голосування, незалежного адміністрування та оскарження. Великий оголошений відсоток сам не відповідає на ці питання. Свободу процедури не можна зводити до пошуку відео, де конкретного виборця безпосередньо змушують голосувати під дулом: військовий контроль, умови кампанії, набір варіантів і незалежність організаторів впливають на процес і без такого кадру. Самоідентифікація може змінюватися й бути множинною; мова, походження чи місце проживання не визначають наперед одну політичну позицію.",
             "Загальнонаціональний вибір і регіональна перевага мають різний предмет. Створення незалежної держави вирішувало все населення республіки, тоді як відокремлення території зачіпає права ширшої спільноти громадян і міжнародний кордон. Місцева думка важлива, але її треба узгоджувати з конституційною процедурою, відсутністю сили й загальною рамкою самовизначення."
           ]
         },
@@ -3130,15 +3130,15 @@ export const publicArticles: ArticleRecord[] = [
         },
         "paragraphs": {
           "ru": [
-            "Меморандум подтверждает уважение независимости, суверенитета и существующих границ Украины, воздержание от угрозы силой или её применения и консультации. Это буквальное содержание нельзя обнулить из-за отсутствия заранее назначенной военной реакции. Нарушение содержательного заверения и вопрос о том, какой способ принуждения к исполнению существовал, являются двумя разными этапами анализа.",
+            "Меморандум подтверждает уважение независимости, суверенитета и существующих границ Украины, воздержание от угрозы силой или её применения и консультации. Он обращён к Украине как государству и не содержит оговорки, прекращающей заверения после смены президента, правительства, Конституции или внешнеполитического курса. Это буквальное содержание нельзя обнулить из-за отсутствия заранее назначенной военной реакции. Нарушение содержательного заверения и вопрос о способе принуждения к исполнению являются двумя разными этапами анализа.",
             "Документ не содержит формулы автоматической коллективной обороны, сопоставимой с обязательством членов НАТО. Поэтому западным подписантам нельзя приписать именно такую неисполненную обязанность без другого основания. Одновременно отсутствие обязанности вступить в войну не означает, что Россия могла применять силу или менять границы. Точный текст создаёт асимметричный, но не пустой набор обещаний."
           ],
           "en": [
-            "The memorandum reaffirms Ukraine’s independence, sovereignty, existing borders, abstention from threats or force, and consultation. Absence of a pre-assigned military response does not erase this literal content. Breach of a substantive assurance and available enforcement are separate analytical stages.",
+            "The memorandum reaffirms Ukraine’s independence, sovereignty, existing borders, abstention from threats or force, and consultation. It addresses Ukraine as a state and contains no clause terminating the assurances after a change of president, government, constitution, or foreign-policy course. Absence of a pre-assigned military response does not erase this literal content. Breach of a substantive assurance and available enforcement are separate analytical stages.",
             "The instrument contains no automatic collective-defence formula comparable to NATO members’ duty. Western signatories cannot be assigned that particular breached duty without another basis. Equally, no duty to enter war did not permit Russia to use force or change borders. The exact text creates an asymmetric but non-empty set of promises."
           ],
           "uk": [
-            "Меморандум підтверджує незалежність, суверенітет і чинні кордони України, утримання від погрози силою чи її застосування та консультації. Відсутність наперед призначеної військової відповіді не стирає буквального змісту. Порушення змістовного запевнення й доступний механізм виконання є різними етапами аналізу.",
+            "Меморандум підтверджує незалежність, суверенітет і чинні кордони України, утримання від погрози силою чи її застосування та консультації. Він звернений до України як держави й не містить застереження про припинення запевнень після зміни президента, уряду, Конституції або зовнішньополітичного курсу. Відсутність наперед призначеної військової відповіді не стирає буквального змісту. Порушення змістовного запевнення й доступний механізм виконання є різними етапами аналізу.",
             "Документ не містить автоматичної колективної оборони, подібної до обов’язку членів НАТО. Західним підписантам не можна приписати саме таку порушену обіцянку без іншої підстави. Так само відсутність обов’язку вступити у війну не дозволяла Росії застосовувати силу чи змінювати кордони. Точний текст створює асиметричний, але не порожній набір обіцянок."
           ]
         },
@@ -6778,18 +6778,19 @@ export const publicArticles: ArticleRecord[] = [
         "paragraphs": {
           "ru": [
             "Постановление зафиксировало парламентскую оценку: президент прекратил выполнять конституционные полномочия и тем самым создал угрозу управляемости, территориальной целостности и суверенитету. На этой основе Рада назначила досрочные выборы. Документ не объявляет завершённую процедуру импичмента и не утверждает, что президент подал в отставку. Его собственная формула — неконституционное самоустранение.",
-            "Конституция перечисляла основания досрочного прекращения президентских полномочий и порядок временного исполнения функций. Спор возникает потому, что использованная парламентом категория не совпадает буквально с обычной завершённой процедурой одного из перечисленных оснований. Установление этого отклонения важно, но оно ещё не отвечает, как государство должно было действовать при фактическом отсутствии президента и кризисе управления."
+            "Подписанное накануне соглашение 21 февраля задавало другой переходный график: восстановление Конституции 2004 года в течение 48 часов, правительство национального единства, конституционную реформу и президентские выборы не позднее декабря 2014 года. Оно не прекращало полномочия президента само по себе и было обогнано событиями следующего дня. Конституция отдельно перечисляла основания досрочного прекращения полномочий; парламентская категория самоустранения не совпала буквально с обычной завершённой процедурой одного из них."
           ],
           "en": [
             "The resolution recorded parliament’s assessment that the president had ceased performing constitutional powers, threatening governability, territorial integrity, and sovereignty. It called an early election on that basis. It does not claim completed impeachment or presidential resignation. Its own formula is unconstitutional withdrawal from duties.",
-            "The Constitution listed grounds for early termination and rules for temporary performance. Controversy arises because parliament’s category does not literally match the ordinary completed procedure for one listed ground. Identifying that departure matters, but does not yet answer how the state should respond to effective presidential absence and a governance crisis."
+            "The agreement signed on 21 February set a different transition timetable: restoration of the 2004 Constitution within 48 hours, a national-unity government, constitutional reform, and a presidential election no later than December 2014. It did not itself terminate the president’s powers and was overtaken by the next day’s events. The Constitution separately listed grounds for early termination; parliament’s withdrawal-from-duties category did not literally match the ordinary completed procedure for one of them."
           ],
           "uk": [
             "Постанова зафіксувала оцінку парламенту: президент припинив виконувати конституційні повноваження й створив загрозу керованості, територіальній цілісності та суверенітету. На цій підставі Рада призначила дострокові вибори. Документ не оголошує завершений імпічмент і не стверджує про відставку. Його власна формула — неконституційне самоусунення.",
-            "Конституція перелічувала підстави дострокового припинення президентських повноважень і порядок тимчасового виконання функцій. Спір виникає, бо використана парламентом категорія буквально не збігається зі звичайною завершеною процедурою однієї з підстав. Це відхилення важливе, але ще не відповідає, як державі діяти за фактичної відсутності президента й кризи управління."
+            "Підписана напередодні угода 21 лютого задавала інший перехідний графік: відновлення Конституції 2004 року протягом 48 годин, уряд національної єдності, конституційну реформу та президентські вибори не пізніше грудня 2014 року. Вона сама не припиняла повноважень президента й була випереджена подіями наступного дня. Конституція окремо перелічувала підстави дострокового припинення; парламентська категорія самоусунення буквально не збіглася зі звичайною завершеною процедурою однієї з них."
           ]
         },
         "sourceUrls": [
+          "https://www.auswaertiges-amt.de/resource/blob/260130/db4f5326f21530cad8d351152feb5e26/140221-ukr-erklaerung-data.pdf",
           "https://zakon.rada.gov.ua/laws/show/757-18?lang=en",
           "https://zakon.rada.gov.ua/laws/show/254%D0%BA/96-%D0%B2%D1%80?lang=en"
         ]
@@ -6828,19 +6829,20 @@ export const publicArticles: ArticleRecord[] = [
         },
         "paragraphs": {
           "ru": [
-            "Конституцию нужно открывать в редакции, относящейся к февралю 2014 года, и различать прекращение полномочий, их временное исполнение и импичмент. Постановление № 757-VII устанавливает фактически принятую парламентом формулу и дату выборов. Сопоставление показывает расхождение между чрезвычайным решением и обычной конституционной схемой, но не превращает исследователя в суд, способный отменить весь последующий порядок.",
+            "Соглашение 21 февраля, Конституцию и постановление № 757-VII нужно читать как три документа разного типа. Соглашение фиксировало политический график деэскалации и досрочных выборов; Конституция определяла основания прекращения и временного исполнения полномочий; постановление показывает формулу, фактически использованную парламентом 22 февраля. Их сопоставление выявляет разрыв между согласованным переходом и чрезвычайным решением, но не превращает этот разрыв в готовый вывод обо всём последующем порядке.",
             "Доклад БДИПЧ о выборах 2010 года оценивает избирательный процесс, а не поведение президента через четыре года и не процедуру его отстранения. Последующие отчёты о выборах отвечают на вопрос качества нового голосования, а не исправляют прошлое задним числом. Каждый официальный источник имеет ограниченный предмет; их объединение даёт последовательную картину, но не одно всеохватывающее заключение."
           ],
           "en": [
-            "The Constitution must be opened in its February 2014 version, distinguishing termination, temporary performance, and impeachment. Resolution No. 757-VII establishes the formula parliament actually used and the election date. Comparison shows departure from the ordinary constitutional scheme under emergency, but does not turn an analyst into a court able to nullify the entire later order.",
+            "The 21 February agreement, the Constitution, and Resolution No. 757-VII are three different kinds of record. The agreement set a political timetable for de-escalation and an early election; the Constitution defined termination and temporary performance of presidential powers; the resolution records the formula parliament actually used on 22 February. Comparison reveals a gap between an agreed transition and an emergency decision, but does not turn that gap into a ready-made conclusion about the entire later order.",
             "The ODIHR report on the 2010 election evaluates that electoral process, not the president’s conduct four years later or his removal. Later election reports assess new voting quality without retroactively correcting the past. Each official source has a limited subject; together they create a sequence, not one all-purpose judgment."
           ],
           "uk": [
-            "Конституцію треба відкривати в редакції лютого 2014 року й розрізняти припинення повноважень, їх тимчасове виконання та імпічмент. Постанова № 757-VII встановлює формулу, фактично використану парламентом, і дату виборів. Зіставлення показує відхилення надзвичайного рішення від звичайної схеми, але не робить дослідника судом, здатним скасувати весь наступний порядок.",
+            "Угоду 21 лютого, Конституцію й постанову № 757-VII треба читати як три документи різного типу. Угода фіксувала політичний графік деескалації та дострокових виборів; Конституція визначала підстави припинення й тимчасового виконання президентських повноважень; постанова показує формулу, фактично використану парламентом 22 лютого. Зіставлення виявляє розрив між погодженим переходом і надзвичайним рішенням, але не перетворює його на готовий висновок про весь наступний порядок.",
             "Звіт БДІПЛ про вибори 2010 року оцінює той виборчий процес, а не поведінку президента через чотири роки чи процедуру його усунення. Наступні звіти оцінюють якість нового голосування, але не виправляють минуле заднім числом. Кожне офіційне джерело має обмежений предмет; разом вони створюють послідовність, а не один всеохопний вирок."
           ]
         },
         "sourceUrls": [
+          "https://www.auswaertiges-amt.de/resource/blob/260130/db4f5326f21530cad8d351152feb5e26/140221-ukr-erklaerung-data.pdf",
           "https://zakon.rada.gov.ua/laws/show/757-18?lang=en",
           "https://zakon.rada.gov.ua/laws/show/254%D0%BA/96-%D0%B2%D1%80?lang=en",
           "https://odihr.osce.org/odihr/elections/ukraine/67844"
@@ -6867,6 +6869,7 @@ export const publicArticles: ArticleRecord[] = [
           ]
         },
         "sourceUrls": [
+          "https://www.auswaertiges-amt.de/resource/blob/260130/db4f5326f21530cad8d351152feb5e26/140221-ukr-erklaerung-data.pdf",
           "https://zakon.rada.gov.ua/laws/show/757-18?lang=en",
           "https://zakon.rada.gov.ua/laws/show/254%D0%BA/96-%D0%B2%D1%80?lang=en",
           "https://odihr.osce.org/odihr/elections/ukraine/67844"
@@ -6874,6 +6877,11 @@ export const publicArticles: ArticleRecord[] = [
       }
     ],
     "sources": [
+      {
+        "title": "Agreement on the Settlement of Crisis in Ukraine, 21 February 2014",
+        "institution": "Federal Foreign Office of Germany",
+        "url": "https://www.auswaertiges-amt.de/resource/blob/260130/db4f5326f21530cad8d351152feb5e26/140221-ukr-erklaerung-data.pdf"
+      },
       {
         "title": "Постановление Верховной Рады № 757-VII",
         "institution": "Верховная Рада Украины",
@@ -9323,23 +9331,23 @@ export const publicArticles: ArticleRecord[] = [
         },
         "paragraphs": {
           "ru": [
-            "Закон и международная резолюция наиболее прямо устанавливают собственный текст, дату и юридико-политическое действие. Наблюдательная миссия описывает увиденное в пределах мандата и доступа. Заявление участника сообщает его позицию и заявленные результаты. Позднейший аналитический отчёт может собрать больше данных, но рискует потерять непосредственную близость к событию. Иерархия зависит от заданного вопроса.",
-            "Надёжное чтение использует перекрёстную проверку: документ органа сопоставляется с нормой о его компетенции, утверждение об обстановке — с независимыми наблюдениями, количественная цифра — с раскрытой методикой и последующими уточнениями. Отсутствие одного идеального источника не оправдывает произвольный выбор; оно требует составить доказательную цепь и отметить, какое звено пока отсутствует."
+            "Закон и международная резолюция наиболее прямо устанавливают собственный текст, дату и юридико-политическое действие. Наблюдательная миссия описывает увиденное в пределах мандата, времени, маршрута и фактического доступа. Поэтому отсутствие объекта в отчёте означает, что миссия не зафиксировала его в этих условиях, а не доказывает всеобщее отсутствие. Ограничения движения, риски для патрулей и помехи техническим средствам дополнительно сужают охват наблюдения.",
+            "Позднейшее судебное разбирательство может использовать более широкий массив доказательств и отвечать на иной вопрос. Большая палата Европейского суда по правам человека в решении 2025 года оценивала ответственность России за нарушения в конфликте с 2014 года на основе материалов сторон и международных записей; это не делает ежедневные отчёты ОБСЕ ошибочными, а показывает различие предмета и доказательной базы. Надёжное чтение сопоставляет источники по времени, доступу, компетенции и вопросу, который каждый из них способен решить."
           ],
           "en": [
-            "A statute or international resolution most directly establishes its own text, date, and legal-political act. A monitoring mission describes what it observed within its mandate and access. A participant's statement records its position and claimed results. A later analytical report may assemble more evidence but lose proximity to the event. The hierarchy depends on the question asked.",
-            "Reliable reading uses cross-checking: an institutional act is compared with the rule defining its authority, a situational claim with independent observations, and a number with a disclosed method and later revisions. The absence of one perfect source does not justify arbitrary selection; it calls for an evidence chain and a clear note about which link is still missing."
+            "A statute or international resolution most directly establishes its own text, date, and legal-political act. A monitoring mission describes what it observed within its mandate, time, route, and actual access. An object’s absence from a report therefore means that the mission did not record it under those conditions, not that universal absence has been proved. Movement restrictions, patrol risks, and interference with technical means narrow coverage further.",
+            "Later judicial proceedings may use a broader evidentiary record and answer a different question. In its 2025 judgment, the Grand Chamber of the European Court of Human Rights assessed Russia’s responsibility for violations in the conflict since 2014 using party submissions and international records; that does not make OSCE daily reports wrong, but shows a difference in subject and evidence base. Reliable reading compares sources by time, access, authority, and the question each can answer."
           ],
           "uk": [
-            "Закон або міжнародна резолюція найпряміше встановлюють власний текст, дату та правово-політичну дію. Спостережна місія описує побачене в межах мандата й доступу. Заява учасника фіксує його позицію та заявлені результати. Пізніший аналітичний звіт може зібрати більше даних, але втратити безпосередню близькість до події. Ієрархія залежить від поставленого питання.",
-            "Надійне читання використовує перехресну перевірку: акт органу зіставляють із нормою про його компетенцію, твердження про обстановку — з незалежними спостереженнями, кількісну цифру — з розкритою методикою й подальшими уточненнями. Відсутність одного ідеального джерела не виправдовує довільного вибору; вона вимагає скласти доказовий ланцюг і позначити, якої ланки поки бракує."
+            "Закон або міжнародна резолюція найпряміше встановлюють власний текст, дату та правово-політичну дію. Спостережна місія описує побачене в межах мандата, часу, маршруту й фактичного доступу. Тому відсутність об’єкта у звіті означає, що місія не зафіксувала його за цих умов, а не доводить загальну відсутність. Обмеження руху, ризики для патрулів і перешкоди технічним засобам додатково звужують охоплення.",
+            "Пізніший судовий розгляд може використовувати ширший масив доказів і відповідати на інше питання. Велика палата Європейського суду з прав людини у рішенні 2025 року оцінювала відповідальність Росії за порушення у конфлікті з 2014 року на основі матеріалів сторін і міжнародних записів; це не робить щоденні звіти ОБСЄ хибними, а показує відмінність предмета й доказової бази. Надійне читання зіставляє джерела за часом, доступом, компетенцією та питанням, на яке кожне здатне відповісти."
           ]
         },
         "sourceUrls": [
+          "https://www.osce.org/special-monitoring-mission-to-ukraine/508991",
+          "https://www.echr.coe.int/w/grand-chamber-judgment-in-an-inter-state-case-1",
           "https://zakon.rada.gov.ua/laws/show/405/2014?lang=en",
-          "https://www.osce.org/sites/default/files/f/documents/5/b/140221.pdf",
-          "https://docs.un.org/en/A/RES/ES-11/1",
-          "https://www.osce.org/ukraine-smm/117777"
+          "https://www.osce.org/sites/default/files/f/documents/5/b/140221.pdf"
         ]
       },
       {
@@ -9363,10 +9371,10 @@ export const publicArticles: ArticleRecord[] = [
           ]
         },
         "sourceUrls": [
+          "https://www.osce.org/special-monitoring-mission-to-ukraine/508991",
           "https://zakon.rada.gov.ua/laws/show/405/2014?lang=en",
           "https://www.osce.org/sites/default/files/f/documents/5/b/140221.pdf",
-          "https://docs.un.org/en/A/RES/ES-11/1",
-          "https://www.osce.org/ukraine-smm/117777"
+          "https://docs.un.org/en/A/RES/ES-11/1"
         ]
       }
     ],
@@ -9405,6 +9413,16 @@ export const publicArticles: ArticleRecord[] = [
         "title": "Устав Организации Объединённых Наций",
         "institution": "United Nations",
         "url": "https://www.un.org/en/about-us/un-charter/full-text"
+      },
+      {
+        "title": "Restrictions to the SMM’s freedom of movement and other impediments to the fulfilment of its mandate",
+        "institution": "Organization for Security and Co-operation in Europe",
+        "url": "https://www.osce.org/special-monitoring-mission-to-ukraine/508991"
+      },
+      {
+        "title": "Grand Chamber judgment in Ukraine and the Netherlands v. Russia, 9 July 2025",
+        "institution": "European Court of Human Rights",
+        "url": "https://www.echr.coe.int/w/grand-chamber-judgment-in-an-inter-state-case-1"
       }
     ],
     "links": []
@@ -10187,15 +10205,15 @@ export const publicArticles: ArticleRecord[] = [
         },
         "paragraphs": {
           "ru": [
-            "Комплекс мер не был одним обещанием прекратить стрельбу. Он объединял немедленный безопасностный блок, наблюдение ОБСЕ, гуманитарные и социально-экономические вопросы, политическое представительство и изменение режима границы. Некоторые положения содержали даты или привязку к другим действиям, другие оставляли пространство для толкования. Поэтому общий вопрос «кто выполнил Минск» нужно заменять разбором каждого положения и его взаимосвязей.",
+            "Комплекс мер не был одним обещанием прекратить стрельбу. Он объединял немедленный безопасностный блок, наблюдение ОБСЕ, гуманитарные и социально-экономические вопросы, политическое представительство и изменение режима границы применительно к отдельным районам Донецкой и Луганской областей. Крым, Херсонская и Запорожская области не были предметом его оперативных мер. Некоторые положения содержали даты или привязку к другим действиям, другие оставляли пространство для толкования. Поэтому общий вопрос «кто выполнил Минск» нужно заменять разбором каждого положения и его взаимосвязей.",
             "Для любого пункта необходима одна и та же карта: точная формулировка, адресат действия, срок, наблюдаемый результат и условие перехода дальше. Прекращение огня можно оценивать по зафиксированным нарушениям; принятие закона — по официальному акту; отвод вооружений — по наблюдению и доступу; восстановление границы — по фактической передаче контроля. Политическая декларация стороны не равна выполнению измеримого шага."
           ],
           "en": [
-            "The Package was not one promise to stop shooting. It combined immediate security measures, OSCE monitoring, humanitarian and socioeconomic issues, political representation, and a change in the border regime. Some provisions contained dates or links to other actions; others left room for interpretation. The broad question “who implemented Minsk?” must therefore be replaced with examination of each provision and its dependencies.",
+            "The Package was not one promise to stop shooting. It combined immediate security measures, OSCE monitoring, humanitarian and socioeconomic issues, political representation, and a change in the border regime for certain areas of the Donetsk and Luhansk regions. Crimea and the Kherson and Zaporizhzhia regions were not subjects of its operative measures. Some provisions contained dates or links to other actions; others left room for interpretation. The broad question “who implemented Minsk?” must therefore be replaced with examination of each provision and its dependencies.",
             "Every provision needs the same map: exact wording, actor responsible, deadline, observable outcome, and condition for moving onward. A ceasefire can be assessed through recorded violations; adoption of a law through the official act; weapons withdrawal through monitoring and access; restoration of the border through actual transfer of control. A party’s political declaration is not performance of a measurable step."
           ],
           "uk": [
-            "Комплекс заходів не був однією обіцянкою припинити стрілянину. Він поєднував негайний безпековий блок, спостереження ОБСЄ, гуманітарні й соціально-економічні питання, політичне представництво та зміну режиму кордону. Деякі положення містили дати або прив’язку до інших дій, інші залишали простір для тлумачення. Тому загальне питання «хто виконав Мінськ» слід замінювати розбором кожного положення та його взаємозв’язків.",
+            "Комплекс заходів не був однією обіцянкою припинити стрілянину. Він поєднував негайний безпековий блок, спостереження ОБСЄ, гуманітарні й соціально-економічні питання, політичне представництво та зміну режиму кордону щодо окремих районів Донецької та Луганської областей. Крим, Херсонська й Запорізька області не були предметом його оперативних заходів. Деякі положення містили дати або прив’язку до інших дій, інші залишали простір для тлумачення. Тому загальне питання «хто виконав Мінськ» слід замінювати розбором кожного положення та його взаємозв’язків.",
             "Для кожного пункту потрібна однакова карта: точне формулювання, адресат дії, строк, спостережуваний результат і умова переходу далі. Припинення вогню можна оцінювати за зафіксованими порушеннями; ухвалення закону — за офіційним актом; відведення озброєнь — за спостереженням і доступом; відновлення кордону — за фактичною передачею контролю. Політична декларація сторони не дорівнює виконанню вимірюваного кроку."
           ]
         },
