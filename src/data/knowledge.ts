@@ -306,8 +306,13 @@ const argumentNodes: KnowledgeNode[] = argumentsData.map((argument) => ({
 export const knowledgeNodes = [...eventNodes, ...conceptNodes, ...argumentNodes] satisfies KnowledgeNode[]
 export const knowledgeNodesById = new Map(knowledgeNodes.map((node) => [node.id, node]))
 
-const argumentRelations: KnowledgeRelation[] = argumentsData.flatMap((argument) =>
-  argument.relatedNodeIds.map((target, index) => ({
+const argumentRelations: KnowledgeRelation[] = argumentsData.flatMap((argument) => {
+  const targets = [...new Set([
+    ...argument.relatedNodeIds,
+    ...argument.relatedEventIds,
+    ...argument.relatedArgumentIds,
+  ])].filter((target) => target !== argument.id)
+  return targets.map((target, index) => ({
     id: `r-argument-${argument.id}-${index + 1}`,
     source: argument.id,
     target,
@@ -316,8 +321,8 @@ const argumentRelations: KnowledgeRelation[] = argumentsData.flatMap((argument) 
     note: argument.thesis,
     confidence: 'interpretive',
     sourceUrls: argument.citations.map((item) => youtubeTimestampUrl(item.videoId, item.start)),
-  })),
-)
+  }))
+})
 
 export const knowledgeRelations: KnowledgeRelation[] = [
   { id:'r-un-force', source:'un-charter', target:'concept-use-of-force', kind:'reaffirms', label:L('закрепляет', 'establishes', 'закріплює'), note:L('Статья 2(4) задаёт общий запрет угрозы силой или её применения.', 'Article 2(4) sets the general prohibition on the threat or use of force.', 'Стаття 2(4) встановлює загальну заборону погрози силою або її застосування.'), confidence:'direct' },

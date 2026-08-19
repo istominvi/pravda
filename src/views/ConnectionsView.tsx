@@ -14,6 +14,7 @@ import {
   type NodeProps,
 } from '@xyflow/react'
 import { knowledgeNodes, knowledgeNodesById, knowledgeRelations } from '../data/knowledge'
+import { articlePath } from '../data/articles'
 import type { KnowledgeNode, KnowledgeRelation } from '../domain/types'
 import { useAppStore } from '../store/useAppStore'
 import { buildFocusedKnowledgeGraph } from '../utils/buildFocusedGraph'
@@ -76,7 +77,7 @@ function edgeFor(relation: KnowledgeRelation, language: FlowNodeData['language']
   }
 }
 
-function GraphViewport({ nodes, edges, onFocus }: { nodes: PravdaNode[]; edges: Edge[]; onFocus: (id: string) => void }) {
+function GraphViewport({ nodes, edges, onOpenArticle }: { nodes: PravdaNode[]; edges: Edge[]; onOpenArticle: (id: string) => void }) {
   const { fitView } = useReactFlow()
 
   useEffect(() => {
@@ -91,7 +92,7 @@ function GraphViewport({ nodes, edges, onFocus }: { nodes: PravdaNode[]; edges: 
       nodes={nodes}
       edges={edges}
       nodeTypes={nodeTypes}
-      onNodeClick={(_, node) => onFocus(node.id)}
+      onNodeClick={(_, node) => onOpenArticle(node.id)}
       nodesDraggable={false}
       nodesConnectable={false}
       elementsSelectable
@@ -154,6 +155,8 @@ export function ConnectionsView() {
     setSearch('')
   }
 
+  const openArticle = (id: string) => navigate(articlePath(id))
+
   return (
     <section className="connections-view">
       <div className="connections-canvas-column">
@@ -192,7 +195,7 @@ export function ConnectionsView() {
 
         <div className="connections-graph" aria-label="Knowledge graph">
           <ReactFlowProvider>
-            <GraphViewport nodes={graph.nodes} edges={graph.edges} onFocus={selectNode} />
+            <GraphViewport nodes={graph.nodes} edges={graph.edges} onOpenArticle={openArticle} />
           </ReactFlowProvider>
           <div className="graph-axis-label graph-axis-left">← {t('incoming')}</div>
           <div className="graph-axis-label graph-axis-right">{t('outgoing')} →</div>
@@ -218,16 +221,9 @@ export function ConnectionsView() {
             <div><strong>{outgoing.length}</strong><span>{t('outgoing')}</span></div>
           </div>
 
-          {focus.eventId && (
-            <button className="primary-outline-button" type="button" onClick={() => navigate(`/event/${focus.eventId}`)}>
-              {t('openEvent')}
-            </button>
-          )}
-          {focus.argumentId && (
-            <button className="primary-outline-button" type="button" onClick={() => navigate(`/argument/${focus.argumentId}`)}>
-              {t('openArgument')}
-            </button>
-          )}
+          <button className="primary-outline-button" type="button" onClick={() => openArticle(focus.id)}>
+            {t('openArticle')}
+          </button>
 
           <div className="inspector-section">
             <h3>{t('incoming')}</h3>

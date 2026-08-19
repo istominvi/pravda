@@ -23,7 +23,7 @@ export function AppHeader() {
       <nav className="app-tabs" aria-label="Views">
         <NavLink to="/chrono" className={tabClass}>{t('chrono')}</NavLink>
         <NavLink to="/connections" className={tabClass}>{t('connections')}</NavLink>
-        <NavLink to="/arguments" className={tabClass}>{t('arguments')}</NavLink>
+        <NavLink to="/articles" className={tabClass}>{t('articles')}</NavLink>
         <NavLink to="/ai" className={tabClass}>
           <span>{t('ai')}</span>
           <span className="pro-label">{t('pro')}</span>

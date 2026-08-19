@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router'
 import { events } from '../data/events'
+import { articlePath } from '../data/articles'
 import { useAppStore } from '../store/useAppStore'
 import { languageLocale, local, translate } from '../utils/i18n'
 
@@ -283,8 +284,8 @@ export function ChronoView() {
                     type="button"
                     className="chrono-card"
                     data-event-card
-                    onClick={() => navigate(`/event/${event.id}`)}
-                    aria-label={`${t('openEvent')}: ${local(event.title, language)}`}
+                    onClick={() => navigate(articlePath(event.id))}
+                    aria-label={`${t('openArticle')}: ${local(event.title, language)}`}
                   >
                     <span className="chrono-card-date">{formatDate(event.date)}</span>
                     <span className="chrono-card-title">{local(event.title, language)}</span>

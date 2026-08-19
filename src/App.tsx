@@ -1,12 +1,11 @@
 import { useEffect } from 'react'
-import { Navigate, Route, Routes, useLocation } from 'react-router'
+import { Navigate, Route, Routes, useLocation, useParams } from 'react-router'
 import { AppHeader } from './components/AppHeader'
 import { useAppStore } from './store/useAppStore'
 import { AIAssistantView } from './views/AIAssistantView'
 import { ChronoView } from './views/ChronoView'
 import { ConnectionsView } from './views/ConnectionsView'
-import { EventView } from './views/EventView'
-import { ArgumentView, ArgumentsView } from './views/ArgumentsView'
+import { ArticleView, ArticlesView } from './views/ArticlesView'
 
 function RouteEffects() {
   const location = useLocation()
@@ -14,8 +13,8 @@ function RouteEffects() {
     const view = location.pathname.split('/')[1] || 'chrono'
     document.title = view === 'connections'
       ? 'PRAVDA — Связи'
-      : view === 'arguments' || view === 'argument'
-        ? 'PRAVDA — Аргументы'
+      : view === 'articles'
+        ? 'PRAVDA — Статьи'
       : view === 'ai'
         ? 'PRAVDA — AI'
         : view === 'event'
@@ -23,6 +22,16 @@ function RouteEffects() {
           : 'PRAVDA — Хроно'
   }, [location.pathname])
   return null
+}
+
+function LegacyEventRedirect() {
+  const { eventId } = useParams()
+  return <Navigate to={eventId ? `/articles/${eventId}` : '/articles'} replace />
+}
+
+function LegacyArgumentRedirect() {
+  const { argumentId } = useParams()
+  return <Navigate to={argumentId ? `/articles/${argumentId}` : '/articles'} replace />
 }
 
 export default function App() {
@@ -42,10 +51,12 @@ export default function App() {
         <Routes>
           <Route path="/chrono" element={<ChronoView />} />
           <Route path="/connections" element={<ConnectionsView />} />
-          <Route path="/arguments" element={<ArgumentsView />} />
-          <Route path="/argument/:argumentId" element={<ArgumentView />} />
+          <Route path="/articles" element={<ArticlesView />} />
+          <Route path="/articles/:articleId" element={<ArticleView />} />
+          <Route path="/arguments" element={<Navigate to="/articles" replace />} />
+          <Route path="/argument/:argumentId" element={<LegacyArgumentRedirect />} />
           <Route path="/ai" element={<AIAssistantView />} />
-          <Route path="/event/:eventId" element={<EventView />} />
+          <Route path="/event/:eventId" element={<LegacyEventRedirect />} />
           <Route path="*" element={<Navigate to="/chrono" replace />} />
         </Routes>
       </main>

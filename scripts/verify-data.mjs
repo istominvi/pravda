@@ -92,4 +92,4 @@ if (errors.length) {
   process.exit(1)
 }
 
-console.log(`PRAVDA data OK: ${eventIds.length} events, ${conceptIds.length} concepts, ${argumentIds.length} arguments, ${relations.length} explicit relations.`)
+console.log(`PRAVDA data OK: ${nodeIds.size} article nodes (${eventIds.length} events, ${conceptIds.length} concepts, ${argumentIds.length} arguments), ${relations.length} explicit relations.`)

@@ -125,6 +125,21 @@ export interface ArgumentRecord {
   tags: string[]
 }
 
+export type ArticleKind = 'event' | 'document' | 'concept' | 'argument'
+
+export interface ArticleRecord {
+  id: string
+  nodeId: string
+  kind: ArticleKind
+  title: Localized
+  eyebrow: Localized
+  summary: Localized
+  date?: string
+  eventId?: string
+  argumentId?: string
+  tags: string[]
+}
+
 export interface DetectedTopic {
   topic: AITopic
   score: number
