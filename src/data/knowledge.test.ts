@@ -16,6 +16,15 @@ describe('knowledge graph data', () => {
     }
   })
 
+  it('does not leave article nodes isolated from the graph', () => {
+    for (const node of knowledgeNodes) {
+      expect(
+        knowledgeRelations.some((relation) => relation.source === node.id || relation.target === node.id),
+        node.id,
+      ).toBe(true)
+    }
+  })
+
   it('keeps event-backed nodes linked to existing events', () => {
     const eventIds = new Set(events.map((event) => event.id))
     for (const node of knowledgeNodes) {

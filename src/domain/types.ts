@@ -130,11 +130,15 @@ export type ArticleKind = 'event' | 'document' | 'concept' | 'argument'
 export interface ArticleRecord {
   id: string
   nodeId: string
+  number: number
   kind: ArticleKind
   title: Localized
   eyebrow: Localized
   summary: Localized
   date?: string
+  chronologyDate?: string
+  chronologyAnchorId?: string
+  chronologyIsDirect: boolean
   eventId?: string
   argumentId?: string
   tags: string[]

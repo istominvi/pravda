@@ -804,7 +804,7 @@ html[data-theme="dark"] .knowledge-node { box-shadow: 0 14px 38px rgba(0, 0, 0, 
 .argument-list { display: grid; }
 .argument-card { display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; column-gap: 18px; align-items: start; width: 100%; padding: 22px 3px; border-bottom: 1px solid var(--line-soft); background: transparent; text-align: left; cursor: pointer; transition: background 0.18s ease, padding 0.2s var(--ease); }
 .argument-card:hover { padding-inline: 10px; background: var(--hover); }
-.argument-card-index { color: var(--muted); font-size: 8px; font-variant-numeric: tabular-nums; }
+.argument-card-index { color: var(--muted); font-size: 8px; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .argument-card-copy small, .argument-card-copy strong, .argument-card-copy em { display: block; }
 .argument-card-copy small { margin-bottom: 7px; color: var(--muted); font-size: 8px; letter-spacing: 0.09em; text-transform: uppercase; }
 .argument-card-copy strong { font-size: 17px; font-weight: 590; line-height: 1.25; }
@@ -849,6 +849,7 @@ html[data-theme="dark"] .knowledge-node { box-shadow: 0 14px 38px rgba(0, 0, 0, 
 .article-catalog-meta { display: flex; align-items: center; justify-content: space-between; padding: 15px 3px 5px; color: var(--muted); font-size: 8px; letter-spacing: 0.06em; text-transform: uppercase; }
 .article-card-meta { display: grid; justify-items: end; gap: 8px; color: var(--muted); font-size: 8px; white-space: nowrap; }
 .article-card-meta time { color: var(--text); font-size: 11px; font-variant-numeric: tabular-nums; }
+.article-card-meta time small { display: block; margin-top: 3px; color: var(--muted); font-size: 6px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; }
 .article-list-pagination { display: flex; align-items: center; justify-content: center; gap: 5px; padding-top: 34px; }
 .article-list-pagination button { display: inline-grid; place-items: center; width: 34px; height: 34px; border: 1px solid transparent; border-radius: 7px; background: transparent; color: var(--muted); font-size: 8px; cursor: pointer; }
 .article-list-pagination button:hover:not(:disabled), .article-list-pagination button.is-active { border-color: var(--line); background: var(--hover); color: var(--text); }

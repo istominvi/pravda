@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import { ArrowLeftIcon, ArrowRightIcon, ExternalIcon, SearchIcon } from '../components/Icons'
-import { articlePath, articlesById, articlesData, sourcesForArticle } from '../data/articles'
+import { articleNumberById, articlePath, articlesById, articlesData, sourcesForArticle } from '../data/articles'
 import { argumentsById, transcriptUrl, youtubeTimestampUrl } from '../data/arguments'
 import { eventsById } from '../data/events'
 import { knowledgeNodesById, knowledgeRelations } from '../data/knowledge'
@@ -114,25 +114,29 @@ export function ArticlesView() {
         </header>
 
         <div className="article-catalog-meta">
-          <span>{filtered.length} {t('articleCount')}</span>
+          <span>{filtered.length} {t('articleCount')} · {t('chronologicalOrder')}</span>
           <span>{currentPage} / {pageCount}</span>
         </div>
 
         <div className="argument-list article-list" aria-live="polite">
           {visible.length === 0 && <p className="arguments-empty">{t('noArticles')}</p>}
           {visible.map((article) => {
-            const globalIndex = articlesData.findIndex((item) => item.id === article.id) + 1
             const sourceCount = sourcesForArticle(article.id).length
             return (
               <button className="argument-card article-card" type="button" key={article.id} onClick={() => navigate(articlePath(article.id))}>
-                <span className="argument-card-index">{String(globalIndex).padStart(2, '0')}</span>
+                <span className="argument-card-index">№ {String(article.number).padStart(2, '0')}</span>
                 <span className="argument-card-copy">
                   <small>{kindLabel(article.kind, language)} · {local(article.eyebrow, language)}</small>
                   <strong>{local(article.title, language)}</strong>
                   <em>{local(article.summary, language)}</em>
                 </span>
                 <span className="article-card-meta">
-                  {article.date && <time dateTime={article.date}>{article.date.slice(0, 4)}</time>}
+                  {article.chronologyDate && (
+                    <time dateTime={article.chronologyDate}>
+                      {article.chronologyDate.slice(0, 4)}
+                      {!article.chronologyIsDirect && <small>{t('chronologyContextShort')}</small>}
+                    </time>
+                  )}
                   <span>{sourceCount} {t('sourceCount')}</span>
                 </span>
               </button>
@@ -182,7 +186,7 @@ function ArticleRelations({ articleId }: { articleId: string }) {
       <button type="button" key={relation.id} onClick={() => navigate(articlePath(other.id))}>
         <span className={`relation-confidence confidence-${relation.confidence}`} />
         <span>
-          <small>{relationConfidenceLabel(relation.confidence, language)} · {local(relation.label, language)}</small>
+          <small>№ {String(articleNumberById.get(other.id) ?? 0).padStart(2, '0')} · {relationConfidenceLabel(relation.confidence, language)} · {local(relation.label, language)}</small>
           <strong>{local(other.title, language)}</strong>
           <em>{local(relation.note, language)}</em>
         </span>
@@ -239,6 +243,15 @@ export function ArticleView() {
   const formattedDate = article.date
     ? new Intl.DateTimeFormat(languageLocale(language), { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(article.date))
     : undefined
+  const formattedChronologyDate = article.chronologyDate
+    ? new Intl.DateTimeFormat(languageLocale(language), { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(article.chronologyDate))
+    : undefined
+  const chronologyAnchorArticle = article.chronologyAnchorId && article.chronologyAnchorId !== article.id
+    ? articlesById.get(article.chronologyAnchorId)
+    : undefined
+  const chronologyLabel = formattedChronologyDate
+    ? `${t('chronologyContext')}: ${formattedChronologyDate}${chronologyAnchorArticle ? ` · ${local(chronologyAnchorArticle.title, language)}` : ''}`
+    : undefined
 
   const openGraph = () => {
     setMapFocusId(article.nodeId)
@@ -255,8 +268,9 @@ export function ArticleView() {
         <div className="event-article-grid">
           <div className="event-article-main">
             <div className="event-kicker">
+              <span>{t('article')} № {String(article.number).padStart(2, '0')}</span>
               <span>{kindLabel(article.kind, language)}</span>
-              <span>{formattedDate ?? local(article.eyebrow, language)}</span>
+              <span>{formattedDate ?? chronologyLabel ?? local(article.eyebrow, language)}</span>
             </div>
             <h1>{local(article.title, language)}</h1>
             <p className="event-lead">{event ? local(event.lead, language) : local(article.summary, language)}</p>
@@ -387,10 +401,10 @@ export function ArticleView() {
         <nav className="event-pagination" aria-label={t('adjacentArticles')}>
           <button type="button" disabled={!previous} onClick={() => previous && navigate(articlePath(previous.id))}>
             <ArrowLeftIcon />
-            <span><small>{t('previousArticle')}</small><strong>{previous ? local(previous.title, language) : '—'}</strong></span>
+            <span><small>{t('previousArticle')}{previous ? ` · № ${String(previous.number).padStart(2, '0')}` : ''}</small><strong>{previous ? local(previous.title, language) : '—'}</strong></span>
           </button>
           <button type="button" disabled={!next} onClick={() => next && navigate(articlePath(next.id))}>
-            <span><small>{t('nextArticle')}</small><strong>{next ? local(next.title, language) : '—'}</strong></span>
+            <span><small>{t('nextArticle')}{next ? ` · № ${String(next.number).padStart(2, '0')}` : ''}</small><strong>{next ? local(next.title, language) : '—'}</strong></span>
             <ArrowRightIcon />
           </button>
         </nav>

@@ -14,7 +14,7 @@ import {
   type NodeProps,
 } from '@xyflow/react'
 import { knowledgeNodes, knowledgeNodesById, knowledgeRelations } from '../data/knowledge'
-import { articlePath } from '../data/articles'
+import { articleNumberById, articlePath } from '../data/articles'
 import type { KnowledgeNode, KnowledgeRelation } from '../domain/types'
 import { useAppStore } from '../store/useAppStore'
 import { buildFocusedKnowledgeGraph } from '../utils/buildFocusedGraph'
@@ -44,7 +44,7 @@ function PravdaKnowledgeNode({ data }: NodeProps<PravdaNode>) {
     <article className={`knowledge-node type-${knowledgeNode.type}${active ? ' is-active' : ''}`}>
       <Handle type="target" position={Position.Left} className="knowledge-handle" />
       <div className="knowledge-node-meta">
-        <span>{local(knowledgeNode.eyebrow, language)}</span>
+        <span>{local(knowledgeNode.eyebrow, language)} · № {String(articleNumberById.get(knowledgeNode.id) ?? 0).padStart(2, '0')}</span>
         {date && <span>{date}</span>}
       </div>
       <h3>{local(knowledgeNode.title, language)}</h3>
