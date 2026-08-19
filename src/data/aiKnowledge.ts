@@ -37,14 +37,14 @@ export const aiTopics: AITopic[] = [
     id: 'nato',
     title: L('НАТО и безопасность', 'NATO and security', 'НАТО та безпека'),
     keywords: {
-      ru: ['нато', 'расширение', 'бухарест', 'неделимая безопасность', 'военная инфраструктура', 'официальные источники', 'официальная позиция', 'официальная риторика', 'кремль', 'враг', 'диалог', 'риск', 'безопасность', 'цена решения', 'гибкость позиций', 'волатильность сигналов', 'чехия', 'франция', 'израиль', 'европа'],
-      en: ['nato', 'enlargement', 'bucharest', 'indivisible security', 'military infrastructure', 'official sources', 'official position', 'official rhetoric', 'kremlin', 'enemy', 'dialogue', 'risk', 'security', 'policy trade-off', 'signal volatility', 'czech republic', 'france', 'israel', 'europe'],
-      uk: ['нато', 'розширення', 'бухарест', 'неподільна безпека', 'військова інфраструктура', 'офіційні джерела', 'офіційна позиція', 'кремль', 'ворог', 'діалог', 'ризик', 'безпека', 'волатильність сигналів', 'чехія', 'франція', 'ізраїль', 'європа'],
+      ru: ['нато', 'расширение', 'бухарест', 'неделимая безопасность', 'военная инфраструктура', 'официальные источники', 'официальная позиция', 'официальная риторика', 'кремль', 'враг', 'диалог', 'риск', 'безопасность', 'цена решения', 'гибкость позиций', 'волатильность сигналов', 'чехия', 'франция', 'израиль', 'европа', 'риторика угрозы', 'сплочение', 'образ врага'],
+      en: ['nato', 'enlargement', 'bucharest', 'indivisible security', 'military infrastructure', 'official sources', 'official position', 'official rhetoric', 'kremlin', 'enemy', 'dialogue', 'risk', 'security', 'policy trade-off', 'signal volatility', 'czech republic', 'france', 'israel', 'europe', 'threat rhetoric', 'cohesion', 'enemy image'],
+      uk: ['нато', 'розширення', 'бухарест', 'неподільна безпека', 'військова інфраструктура', 'офіційні джерела', 'офіційна позиція', 'кремль', 'ворог', 'діалог', 'ризик', 'безпека', 'волатильність сигналів', 'чехія', 'франція', 'ізраїль', 'європа', 'риторика загрози', 'згуртування', 'образ ворога'],
     },
     summary: L('Анализировать НАТО нужно в двух измерениях: легитимность выбора и управляемый политический риск; официальная позиция важна как сигнал, но решение принимается через цену риска и последствия для безопасности.', 'NATO should be analyzed in two dimensions: legitimacy of the choice and manageable political risk; official position is a signal, while policy choice depends on risk appetite and security consequences.', 'Аналіз НАТО має бути в двох вимірах: легітимність вибору та контрольований політичний ризик; офіційна позиція важлива як сигнал, але рішення залежить від ціни ризику й безпекових наслідків.'),
-    nodeIds: ['nato-russia-act', 'bucharest', 'astana', 'concept-alliance-choice', 'concept-indivisible-security', 'concept-security-dilemma'],
+    nodeIds: ['nato-russia-act', 'bucharest', 'astana', 'concept-alliance-choice', 'concept-indivisible-security', 'concept-security-dilemma', 'concept-threat-rhetoric'],
     sourceEventIds: ['nato-russia-act', 'bucharest', 'astana'],
-    argumentIds: ['security-dilemma-and-escalation-chain'],
+    argumentIds: ['security-dilemma-and-escalation-chain', 'threat-rhetoric-and-political-cohesion'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Разделить уровень', text:'Зафиксируйте, где идёт юридический вопрос (есть ли право на выбор), а где политическая оценка риска (насколько этот выбор оптимален сегодня).' },
@@ -99,14 +99,14 @@ export const aiTopics: AITopic[] = [
     id: 'power-2014',
     title: L('Смена власти в 2014 году', 'Transfer of power in 2014', 'Зміна влади у 2014 році'),
     keywords: {
-      ru: ['майдан', 'переворот', 'янукович', 'смена власти', '2014', 'мандат', 'самоустранение', 'всеукраинский референдум', 'референдум 1991', 'референдум 2000'],
-      en: ['maidan', 'coup', 'yanukovych', 'transfer of power', '2014', 'mandate', 'withdrawal from duties', 'all-Ukrainian referendum', '1991 referendum', '2000 referendum'],
-      uk: ['майдан', 'переворот', 'янукович', 'зміна влади', '2014', 'мандат', 'самоусунення', 'всеукраїнський референдум', 'референдум 1991', 'референдум 2000'],
+      ru: ['майдан', 'переворот', 'янукович', 'смена власти', '2014', 'мандат', 'самоустранение', 'всеукраинский референдум', 'референдум 1991', 'референдум 2000', 'амнистия', 'статья 109', 'закон 743'],
+      en: ['maidan', 'coup', 'yanukovych', 'transfer of power', '2014', 'mandate', 'withdrawal from duties', 'all-Ukrainian referendum', '1991 referendum', '2000 referendum', 'amnesty', 'article 109', 'law 743'],
+      uk: ['майдан', 'переворот', 'янукович', 'зміна влади', '2014', 'мандат', 'самоусунення', 'всеукраїнський референдум', 'референдум 1991', 'референдум 2000', 'амністія', 'стаття 109', 'закон 743'],
     },
     summary: L('Не смешивайте вопрос о буквальной конституционной процедуре с вопросом о последующей непрерывности институтов и выборах.', 'Do not conflate literal constitutional procedure with later institutional continuity and elections.', 'Не змішуйте буквальну конституційну процедуру з подальшою безперервністю інституцій та виборами.'),
-    nodeIds: ['power-2014', 'concept-constitutional-procedure', 'crimea', 'ato'],
+    nodeIds: ['power-2014', 'concept-constitutional-procedure', 'concept-amnesty-vs-verdict', 'concept-evidence-trust', 'crimea', 'ato'],
     sourceEventIds: ['power-2014'],
-    argumentIds: ['transfer-2014-and-ato-authority', 'electoral-mandate-vs-moral-judgment', 'armed-escalation-cannot-be-single-cause'],
+    argumentIds: ['transfer-2014-and-ato-authority', 'electoral-mandate-vs-moral-judgment', 'armed-escalation-cannot-be-single-cause', 'amnesty-law-is-not-adjudication'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Попросить критерий', text:'Какую конкретно конституционную процедуру вы считаете соблюдённой или нарушенной и на каком этапе?' },
@@ -135,13 +135,14 @@ export const aiTopics: AITopic[] = [
     id: 'crimea',
     title: L('Крым и референдум', 'Crimea and the referendum', 'Крим і референдум'),
     keywords: {
-      ru: ['крым', 'референдум', 'самоопределение', 'севастополь', 'аннексия', 'чеченский референдум'],
-      en: ['crimea', 'referendum', 'self-determination', 'sevastopol', 'annexation', 'Chechnya referendum'],
-      uk: ['крим', 'референдум', 'самовизначення', 'севастополь', 'анексія', 'чеченський референдум'],
+      ru: ['крым', 'референдум', 'самоопределение', 'севастополь', 'аннексия', 'чеченский референдум', 'передача крыма', '1954', 'приглашение войск', 'признание'],
+      en: ['crimea', 'referendum', 'self-determination', 'sevastopol', 'annexation', 'Chechnya referendum', 'Crimea transfer', '1954', 'troop invitation', 'recognition'],
+      uk: ['крим', 'референдум', 'самовизначення', 'севастополь', 'анексія', 'чеченський референдум', 'передача Криму', '1954', 'запрошення військ', 'визнання'],
     },
     summary: L('Разделите мнение населения, внутреннюю процедуру, условия проведения и международно-правовой статус.', 'Separate popular preference, domestic procedure, conditions of the vote and international legal status.', 'Розділіть думку населення, внутрішню процедуру, умови проведення та міжнародно-правовий статус.'),
-    nodeIds: ['crimea', 'concept-self-determination', 'concept-territorial-integrity', 'budapest'],
-    sourceEventIds: ['crimea', 'budapest'],
+    nodeIds: ['crimea-transfer-1954', 'crimea', 'concept-self-determination', 'concept-territorial-integrity', 'concept-valid-consent', 'concept-de-facto-vs-de-jure', 'budapest'],
+    sourceEventIds: ['crimea-transfer-1954', 'crimea', 'budapest'],
+    argumentIds: ['foreign-troop-consent-needs-authority-and-timing', 'control-does-not-equal-recognition', 'crimea-transfer-procedure-needs-full-chain'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Разложить тезис', text:'Вы сейчас говорите о предпочтениях жителей, о законности процедуры или о международном признании результата?' },
@@ -345,14 +346,14 @@ export const aiTopics: AITopic[] = [
     id: 'full-invasion',
     title: L('Причины и оценка войны 2022 года', 'Causes and assessment of the 2022 war', 'Причини та оцінка війни 2022 року'),
     keywords: {
-      ru: ['2022', 'война', 'вторжение', 'специальная военная операция', 'причины конфликта', 'почему россия'],
-      en: ['2022', 'war', 'invasion', 'special military operation', 'causes of the conflict', 'why russia'],
-      uk: ['2022', 'війна', 'вторгнення', 'спеціальна військова операція', 'причини конфлікту', 'чому росія'],
+      ru: ['2022', 'война', 'вторжение', 'специальная военная операция', 'причины конфликта', 'почему россия', 'стамбульские переговоры', 'борис джонсон', 'мирный договор'],
+      en: ['2022', 'war', 'invasion', 'special military operation', 'causes of the conflict', 'why russia', 'Istanbul talks', 'Boris Johnson', 'peace treaty'],
+      uk: ['2022', 'війна', 'вторгнення', 'спеціальна військова операція', 'причини конфлікту', 'чому росія', 'стамбульські переговори', 'борис джонсон', 'мирний договір'],
     },
     summary: L('Стройте причинную цепочку, но отдельно проверяйте правовое основание, заявленные цели и фактические последствия.', 'Build a causal chain, while separately testing legal basis, stated aims and actual consequences.', 'Будуйте причинний ланцюг, але окремо перевіряйте правову підставу, заявлені цілі та фактичні наслідки.'),
-    nodeIds: ['concept-security-dilemma', 'minsk', 'concept-cause-vs-justification', 'full-invasion', 'concept-use-of-force'],
-    sourceEventIds: ['full-invasion', 'un-charter'],
-    argumentIds: ['security-dilemma-and-escalation-chain', 'war-as-political-instrument', 'urban-objectives-and-civilian-risk'],
+    nodeIds: ['concept-security-dilemma', 'minsk', 'concept-cause-vs-justification', 'full-invasion', 'concept-use-of-force', 'istanbul-talks-2022', 'concept-negotiation-status'],
+    sourceEventIds: ['full-invasion', 'istanbul-talks-2022', 'un-charter'],
+    argumentIds: ['security-dilemma-and-escalation-chain', 'war-as-political-instrument', 'urban-objectives-and-civilian-risk', 'istanbul-draft-not-concluded-peace'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Уточнить уровень', text:'Мы сейчас выясняем причины решения, заявленное правовое обоснование или моральную оценку последствий? Это три разных вопроса.' },
@@ -378,13 +379,14 @@ export const aiTopics: AITopic[] = [
     id: 'election-legitimacy',
     title: L('Легитимность выборов и мандат власти', 'Electoral legitimacy and political mandate', 'Легітимність виборів і мандат влади'),
     keywords: {
-      ru: ['выборы', 'легитимность', 'мандат', 'обновление элит', 'контроль фальсификаций', 'платежи', 'деньги в политике', 'доверие к институтам'],
-      en: ['elections', 'legitimacy', 'mandate', 'elite renewal', 'election integrity', 'money in politics', 'institutional trust'],
-      uk: ['вибори', 'легітимність', 'мандат', 'оновлення еліт', 'цілісність виборів', 'гроші в політиці', 'довіра до інститутів'],
+      ru: ['выборы', 'легитимность', 'мандат', 'обновление элит', 'контроль фальсификаций', 'платежи', 'деньги в политике', 'доверие к институтам', 'срок зеленского', 'выборы во время войны', 'военное положение'],
+      en: ['elections', 'legitimacy', 'mandate', 'elite renewal', 'election integrity', 'money in politics', 'institutional trust', 'Zelenskyy term', 'wartime elections', 'martial law'],
+      uk: ['вибори', 'легітимність', 'мандат', 'оновлення еліт', 'цілісність виборів', 'гроші в політиці', 'довіра до інститутів', 'строк Зеленського', 'вибори під час війни', 'воєнний стан'],
     },
     summary: L('Александр разделяет качество процедуры, конституционный порядок и политическую ответственность, даже когда речь о фальсификациях и разочаровании избирателей.', 'Alexander separates procedural quality, constitutional limits, and political responsibility, even when discussing fraud narratives and voter fatigue.', 'Олександр розділяє якість процедури, конституційні межі та політичну відповідальність, навіть коли йдеться про фальсифікації та розчарування виборців.'),
-    nodeIds: ['concept-election-integrity', 'concept-democratic-accountability', 'concept-constitutional-procedure'],
-    sourceEventIds: ['power-2014', 'full-invasion'],
+    nodeIds: ['concept-election-integrity', 'concept-democratic-accountability', 'concept-constitutional-procedure', 'concept-wartime-electoral-continuity', 'martial-law'],
+    sourceEventIds: ['power-2014', 'full-invasion', 'martial-law'],
+    argumentIds: ['electoral-mandate-vs-moral-judgment', 'wartime-elections-and-continuity'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Отделить уровни', text:'Уточните, вы о споре с технической стороны подсчёта, о нарушении процедуры или о политической непрозрачности. Это разные тезисы.' },
@@ -410,13 +412,14 @@ export const aiTopics: AITopic[] = [
     id: 'constitutional-practice',
     title: L('Конституционный порядок и реальная политика', 'Constitutional rules and real-world politics', 'Конституційний порядок і реальна політика'),
     keywords: {
-      ru: ['конституция', 'конституционный кризис', 'закон', 'право', 'презумпция', 'переинтерпретация', 'незаконные решения'],
-      en: ['constitution', 'constitutional crisis', 'legal order', 'law', 'revisionism', 'statute interpretation', 'unconstitutional acts'],
-      uk: ['конституція', 'конституційна криза', 'правопорядок', 'закон', 'перетлумачення', 'неконституційні кроки'],
+      ru: ['конституция', 'конституционный кризис', 'закон', 'право', 'презумпция', 'переинтерпретация', 'незаконные решения', 'согласие на ввод войск', 'амнистия', 'передача крыма'],
+      en: ['constitution', 'constitutional crisis', 'legal order', 'law', 'revisionism', 'statute interpretation', 'unconstitutional acts', 'consent to troops', 'amnesty', 'Crimea transfer'],
+      uk: ['конституція', 'конституційна криза', 'правопорядок', 'закон', 'перетлумачення', 'неконституційні кроки', 'згода на введення військ', 'амністія', 'передача Криму'],
     },
     summary: L('Он спорит с тезисом «всё просто незаконно/все законно», настаивая на разложении текста, полномочий и фактов конкретного акта.', 'He challenges both “everything was illegal” and “everything was legal” claims by separating text, competence, and evidence in each concrete act.', 'Він не зводить спір до «усе незаконно» чи «все законно», а розділяє текст, повноваження і докази для кожного конкретного акта.'),
-    nodeIds: ['concept-constitutional-interpretation', 'concept-constitutional-procedure', 'concept-elite-continuity'],
-    sourceEventIds: ['power-2014'],
+    nodeIds: ['concept-constitutional-interpretation', 'concept-constitutional-procedure', 'concept-elite-continuity', 'concept-valid-consent', 'concept-amnesty-vs-verdict', 'crimea-transfer-1954'],
+    sourceEventIds: ['power-2014', 'crimea-transfer-1954'],
+    argumentIds: ['transfer-2014-and-ato-authority', 'foreign-troop-consent-needs-authority-and-timing', 'amnesty-law-is-not-adjudication', 'crimea-transfer-procedure-needs-full-chain'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Уточнить норму', text:'Какая именно норма и какая процедура нарушены/соблюдены: момент вступления в силу, форма акта, порядок имплементации.' },
@@ -508,8 +511,9 @@ export const aiTopics: AITopic[] = [
       uk: ['чехія', 'ізраїль', 'європа', 'сша', 'франція', 'санкції', 'підтримка', 'союзники', 'нато', 'цілі україни'],
     },
     summary: L('Он отделяет сигналы внешних акторов от юридических обязательств: заявления важны, но в споре решает, что оформлено как договор и как политический контекст.', 'He distinguishes external actor signaling from binding commitments: statements matter, but legal force depends on institutionalization and context.' , 'Він відокремлює сигнали зовнішніх акторів від юридичних зобов’язань: заяви важливі, але юридична сила залежить від інституціоналізації та контексту.'),
-    nodeIds: ['concept-alliance-signals', 'concept-russia-ukraine-relationship', 'concept-security-dilemma'],
+    nodeIds: ['concept-alliance-signals', 'concept-russia-ukraine-relationship', 'concept-security-dilemma', 'concept-threat-rhetoric'],
     sourceEventIds: ['full-invasion'],
+    argumentIds: ['threat-rhetoric-and-political-cohesion'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Классифицировать уровень', text:'Что это: официальная позиция, политический жест, или юридически оформленный механизм?' },
@@ -539,7 +543,7 @@ export const aiTopics: AITopic[] = [
     summary: L('В споре он настаивает на доказательной цепочке: цитата, источник, проверка, а не произвольное повторение эмоциональной версии.', 'In argumentation he repeatedly asks for citation, source, and method, rather than repeating an emotional narrative as proof.', 'У дискусіях він наполягає на доказовій ланцюжку: цитата, джерело, перевірка, а не лише емоційна версія.'), 
     nodeIds: ['concept-evidence-trust', 'concept-constitutional-interpretation'],
     sourceEventIds: ['full-invasion', 'annexation-2022'],
-    argumentIds: ['ideological-examples-and-social-prevalence', 'tactical-effect-vs-strategic-outcome', 'armed-escalation-cannot-be-single-cause'],
+    argumentIds: ['ideological-examples-and-social-prevalence', 'tactical-effect-vs-strategic-outcome', 'armed-escalation-cannot-be-single-cause', 'amnesty-law-is-not-adjudication', 'istanbul-draft-not-concluded-peace', 'control-does-not-equal-recognition'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Попросить первоисточник', text:'«Что именно сказано в тексте/документе?» — это закрывает 80% споров по смыслу.' },
@@ -624,14 +628,14 @@ export const aiTopics: AITopic[] = [
     id: 'war-end-game',
     title: L('Как заканчивается война и почему не по формуле', 'How war ends and why it is not a simple formula', 'Як закінчується війна і чому це не проста формула'),
     keywords: {
-      ru: ['когда закончится', 'переговоры', 'соглашения', 'прекращение огня', 'мир', 'цена риска', 'представительство'],
-      en: ['when war ends', 'negotiations', 'ceasefire', 'peace', 'risk price', 'war incentives'],
-      uk: ['коли закінчиться', 'переговори', 'припинення вогню', 'мир', 'ціна ризику', 'військові стимули'],
+      ru: ['когда закончится', 'переговоры', 'соглашения', 'прекращение огня', 'мир', 'цена риска', 'представительство', 'стамбул', 'борис джонсон', 'устойчивый мир'],
+      en: ['when war ends', 'negotiations', 'ceasefire', 'peace', 'risk price', 'war incentives', 'Istanbul', 'Boris Johnson', 'durable peace'],
+      uk: ['коли закінчиться', 'переговори', 'припинення вогню', 'мир', 'ціна ризику', 'військові стимули', 'Стамбул', 'Борис Джонсон', 'сталий мир'],
     },
     summary: L('Александр показывает, что «закончится/не закончится» — это не бинарная моральная формула, а набор ограничений: безопасность, переговорная цена и политические последствия.', 'He frames end-of-war framing as a constrained process, not a binary moral formula: security, negotiation costs, and political consequences matter together.', 'Олександр показує, що питання «коли закінчиться» — це не бінарна моральна формула, а набір обмежень: безпека, вартість переговорів і політичні наслідки.'),
-    nodeIds: ['concept-war-endgame', 'concept-cause-vs-justification', 'full-invasion'],
-    sourceEventIds: ['full-invasion', 'un-charter'],
-    argumentIds: ['war-as-political-instrument', 'security-dilemma-and-escalation-chain', 'self-determination-needs-consistent-criteria'],
+    nodeIds: ['concept-war-endgame', 'concept-cause-vs-justification', 'concept-negotiation-status', 'concept-durable-peace', 'istanbul-talks-2022', 'full-invasion'],
+    sourceEventIds: ['full-invasion', 'istanbul-talks-2022', 'un-charter'],
+    argumentIds: ['war-as-political-instrument', 'security-dilemma-and-escalation-chain', 'self-determination-needs-consistent-criteria', 'istanbul-draft-not-concluded-peace', 'ceasefire-is-not-durable-peace'],
     suggestions: {
       ru: [
         { kind:'clarify', title:'Разбить на сценарии', text:'Задайте отдельные сценарии: прекращение огня, политическое урегулирование, долгосрочный режим безопасности.' },

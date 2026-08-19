@@ -91,6 +91,115 @@ export const events = [
     "media": []
   },
   {
+    "id": "crimea-transfer-1954",
+    "date": "1954-02-19",
+    "lane": 1,
+    "title": {
+      "ru": "Передача Крымской области в УССР",
+      "en": "Transfer of Crimea to the Ukrainian SSR",
+      "uk": "Передача Кримської області до УРСР"
+    },
+    "short": {
+      "ru": "Советская административная передача и последующий спор о процедуре согласия РСФСР.",
+      "en": "A Soviet administrative transfer and the later dispute over the RSFSR consent procedure.",
+      "uk": "Радянська адміністративна передача й подальша суперечка про процедуру згоди РРФСР."
+    },
+    "lead": {
+      "ru": "Узел для проверки популярной формулы «Крым подарили»: какие органы приняли решения в 1954 году, что требовали союзная и республиканская конституции и что в действительности установило постановление России 1992 года.",
+      "en": "A node for testing the familiar claim that Crimea was simply “gifted”: which bodies acted in 1954, what the Soviet and republican constitutions required, and what Russia's 1992 resolution actually said.",
+      "uk": "Вузол для перевірки поширеної формули «Крим подарували»: які органи ухвалили рішення 1954 року, чого вимагали союзна й республіканська конституції та що насправді встановила постанова Росії 1992 року."
+    },
+    "context": {
+      "ru": [
+        "19 февраля 1954 года Президиум Верховного Совета СССР утвердил совместное представление президиумов РСФСР и УССР о передаче Крымской области. 26 апреля Верховный Совет СССР утвердил указ законом и изменил конституционное перечисление территорий республик.",
+        "Статья 16 Конституции РСФСР и статья 18 Конституции СССР требовали согласия республики на изменение территории, но сами эти формулы не устанавливали референдум как единственный способ выразить согласие.",
+        "В 1992 году Верховный Совет России назвал постановление Президиума РСФСР от 5 февраля 1954 года не имевшим юридической силы, но одновременно признал, что передача была закреплена последующим законодательством и договором России и Украины 1990 года, и предложил межгосударственные переговоры."
+      ],
+      "en": [
+        "On 19 February 1954 the Presidium of the USSR Supreme Soviet approved a joint submission by the RSFSR and Ukrainian SSR presidiums transferring Crimea. On 26 April the USSR Supreme Soviet approved the decree by law and amended the constitutional lists of republican territories.",
+        "Article 16 of the RSFSR Constitution and Article 18 of the USSR Constitution required republican consent to territorial change, but neither formula made a referendum the only possible form of consent.",
+        "In 1992 Russia's Supreme Soviet called the RSFSR Presidium resolution of 5 February 1954 legally void, while also acknowledging that the transfer had been embedded in later legislation and the 1990 Russia–Ukraine treaty, and proposed interstate negotiations."
+      ],
+      "uk": [
+        "19 лютого 1954 року Президія Верховної Ради СРСР затвердила спільне подання президій РРФСР та УРСР про передачу Кримської області. 26 квітня Верховна Рада СРСР затвердила указ законом і змінила конституційний перелік територій республік.",
+        "Стаття 16 Конституції РРФСР і стаття 18 Конституції СРСР вимагали згоди республіки на зміну території, але самі ці формули не визначали референдум єдиним способом висловити згоду.",
+        "1992 року Верховна Рада Росії назвала постанову Президії РРФСР від 5 лютого 1954 року такою, що не мала юридичної сили, але водночас визнала закріплення передачі подальшим законодавством і договором Росії та України 1990 року й запропонувала міждержавні переговори."
+      ]
+    },
+    "dispute": {
+      "ru": [
+        "Спор Александра точно указывает на проблему компетенции республиканского президиума, но делает дополнительный вывод, что согласие мог дать только всероссийский референдум. Этот вывод не следует прямо из текста статьи 16 и должен проверяться по всей цепочке актов, а не по одному постановлению."
+      ],
+      "en": [
+        "Alexander correctly identifies a competence question around the republican presidium, but adds that only an all-Russian referendum could supply consent. Article 16 does not say that expressly, so the conclusion must be tested against the full chain of acts rather than one resolution."
+      ],
+      "uk": [
+        "Олександр точно вказує на проблему компетенції республіканської президії, але додає, що згоду міг дати лише всеросійський референдум. Стаття 16 прямо цього не каже, тому висновок слід перевіряти за всім ланцюгом актів, а не за однією постановою."
+      ]
+    },
+    "checks": {
+      "ru": [
+        "Различаются ли постановление Президиума РСФСР, указ Президиума СССР и закон Верховного Совета СССР.",
+        "Где в действовавшей Конституции прямо назван способ получения согласия РСФСР.",
+        "Учитываются ли последующие изменения конституций и российско-украинское признание границ.",
+        "Цитируется ли постановление 1992 года полностью, включая оговорку о последующем правовом закреплении передачи."
+      ],
+      "en": [
+        "Whether the RSFSR Presidium resolution, USSR Presidium decree and USSR Supreme Soviet law are kept distinct.",
+        "Where the constitution in force expressly specified how RSFSR consent had to be given.",
+        "Whether later constitutional amendments and Russia–Ukraine recognition of borders are included.",
+        "Whether the 1992 resolution is quoted in full, including its acknowledgement of later legal consolidation."
+      ],
+      "uk": [
+        "Чи розрізняють постанову Президії РРФСР, указ Президії СРСР і закон Верховної Ради СРСР.",
+        "Де в чинній тоді Конституції прямо визначено спосіб отримання згоди РРФСР.",
+        "Чи враховано подальші зміни конституцій і російсько-українське визнання кордонів.",
+        "Чи повністю цитують постанову 1992 року, включно із застереженням про подальше правове закріплення передачі."
+      ]
+    },
+    "meta": {
+      "place": {
+        "ru": "Москва / Крымская область",
+        "en": "Moscow / Crimean Oblast",
+        "uk": "Москва / Кримська область"
+      },
+      "actors": {
+        "ru": "Президиумы РСФСР, УССР и СССР; Верховный Совет СССР",
+        "en": "RSFSR, Ukrainian SSR and USSR presidiums; USSR Supreme Soviet",
+        "uk": "Президії РРФСР, УРСР і СРСР; Верховна Рада СРСР"
+      },
+      "status": {
+        "ru": "Исторический административно-правовой акт",
+        "en": "Historical administrative and legal act",
+        "uk": "Історичний адміністративно-правовий акт"
+      }
+    },
+    "tags": [
+      "Крым",
+      "1954",
+      "Конституция СССР",
+      "границы"
+    ],
+    "sources": [
+      {
+        "title": "Указ Президиума Верховного Совета СССР о передаче Крымской области, 19 февраля 1954 года",
+        "institution": "Электронная библиотека исторических документов",
+        "url": "https://docs.historyrussia.org/ru/nodes/521406"
+      },
+      {
+        "title": "Закон Верховного Совета СССР об утверждении указов, 26 апреля 1954 года",
+        "institution": "Электронная библиотека исторических документов",
+        "url": "https://docs.historyrussia.org/ru/nodes/521407-ob-utverzhdenii-ukazov-prezidiuma-verhovnogo-soveta-sssr-zakon-prinyatyy-verhovnym-sovetom-sssr-4-go-sozyva-na-pervoy-sessii-moskva-26-aprelya-1954-g"
+      },
+      {
+        "title": "Заявление Верховной Рады Украины о постановлении Верховного Совета России 1992 года",
+        "institution": "Верховная Рада Украины",
+        "url": "https://zakon.rada.gov.ua/laws/show/2399-12"
+      }
+    ],
+    "media": []
+  },
+  {
     "id": "ukraine-sovereignty-1990",
     "date": "1990-07-16",
     "lane": 1,
@@ -1416,6 +1525,115 @@ export const events = [
         "title": "Конституция Украины",
         "institution": "Верховная Рада Украины",
         "url": "https://zakon.rada.gov.ua/laws/show/254%D0%BA/96-%D0%B2%D1%80?lang=en"
+      }
+    ],
+    "media": []
+  },
+  {
+    "id": "istanbul-talks-2022",
+    "date": "2022-03-29",
+    "lane": 2,
+    "title": {
+      "ru": "Стамбульский раунд переговоров",
+      "en": "Istanbul round of negotiations",
+      "uk": "Стамбульський раунд переговорів"
+    },
+    "short": {
+      "ru": "Предложения о нейтралитете и гарантиях безопасности без подписанного мирного договора.",
+      "en": "Proposals on neutrality and security guarantees without a signed peace treaty.",
+      "uk": "Пропозиції щодо нейтралітету й гарантій безпеки без підписаного мирного договору."
+    },
+    "lead": {
+      "ru": "Ключевой проверочный узел для тезиса, что весной 2022 года существовало готовое мирное соглашение, от которого Украина отказалась по указанию Бориса Джонсона.",
+      "en": "A key verification node for the claim that a completed peace agreement existed in spring 2022 and that Ukraine abandoned it at Boris Johnson's direction.",
+      "uk": "Ключовий вузол перевірки тези, що навесні 2022 року існувала готова мирна угода, від якої Україна відмовилася за вказівкою Бориса Джонсона."
+    },
+    "context": {
+      "ru": [
+        "29 марта 2022 года делегации России и Украины встретились в Стамбуле. Украинская сторона представила предложения о нейтральном и неядерном статусе в обмен на многосторонние юридически обязательные гарантии безопасности.",
+        "В официальном сообщении главы украинской делегации в тот же день прямо сказано, что документы не подписывались: делегация озвучила предложения для дальнейшей работы.",
+        "Турецкий посредник сообщал о заметном сближении по отдельным вопросам, но подчёркивал принцип «ничего не согласовано, пока не согласовано всё» и необходимость следующих уровней переговоров."
+      ],
+      "en": [
+        "On 29 March 2022 Russian and Ukrainian delegations met in Istanbul. Ukraine presented proposals for neutral and non-nuclear status in exchange for multilateral, legally binding security guarantees.",
+        "The Ukrainian delegation head's official statement that day expressly said no documents had been signed; proposals were presented for further work.",
+        "The Turkish facilitator reported meaningful convergence on some issues while stressing that nothing was agreed until everything was agreed and that further negotiating levels were required."
+      ],
+      "uk": [
+        "29 березня 2022 року делегації Росії та України зустрілися у Стамбулі. Українська сторона представила пропозиції про нейтральний і без’ядерний статус в обмін на багатосторонні юридично зобов’язальні гарантії безпеки.",
+        "В офіційному повідомленні голови української делегації того ж дня прямо зазначено, що документи не підписували: делегація озвучила пропозиції для подальшої роботи.",
+        "Турецький посередник повідомляв про помітне зближення з окремих питань, але наголошував на принципі «нічого не погоджено, доки не погоджено все» й необхідності наступних рівнів переговорів."
+      ]
+    },
+    "dispute": {
+      "ru": [
+        "Наличие переговорного проекта не тождественно заключённому соглашению. Версия об одном визите как достаточной причине срыва требует доказать состояние текста до визита, полномочия сторон, нерешённые вопросы и причинную связь с последующим прекращением переговоров."
+      ],
+      "en": [
+        "A negotiating draft is not a concluded agreement. Treating one visit as the sufficient cause of failure requires evidence about the draft before that visit, the parties' authority, unresolved issues and the causal link to the later end of talks."
+      ],
+      "uk": [
+        "Переговорний проєкт не є укладеною угодою. Версія про один візит як достатню причину зриву потребує довести стан тексту до візиту, повноваження сторін, невирішені питання й причинний зв’язок із подальшим припиненням переговорів."
+      ]
+    },
+    "checks": {
+      "ru": [
+        "Был ли документ предложением, проектом, парафированным текстом или подписанным договором.",
+        "Какие вопросы оставались открытыми и какие государства согласились стать гарантами.",
+        "На каком первичном источнике основана причинная роль визита Бориса Джонсона.",
+        "Не подменяется ли многофакторный провал переговоров одной фигурой или одним эпизодом."
+      ],
+      "en": [
+        "Whether the document was a proposal, draft, initialled text or signed treaty.",
+        "Which issues remained open and which states had accepted guarantor status.",
+        "Which primary source supports the causal role assigned to Boris Johnson's visit.",
+        "Whether a multi-factor negotiating failure is reduced to one person or episode."
+      ],
+      "uk": [
+        "Чи був документ пропозицією, проєктом, парафованим текстом або підписаним договором.",
+        "Які питання лишалися відкритими й які держави погодилися стати гарантами.",
+        "На якому первинному джерелі ґрунтується причинна роль візиту Бориса Джонсона.",
+        "Чи не зводять багатофакторний провал переговорів до однієї постаті або епізоду."
+      ]
+    },
+    "meta": {
+      "place": {
+        "ru": "Стамбул / российско-украинские переговоры",
+        "en": "Istanbul / Russia–Ukraine negotiations",
+        "uk": "Стамбул / російсько-українські переговори"
+      },
+      "actors": {
+        "ru": "Делегации России и Украины, Турция, потенциальные гаранты",
+        "en": "Russian and Ukrainian delegations, Türkiye, prospective guarantors",
+        "uk": "Делегації Росії та України, Туреччина, потенційні гаранти"
+      },
+      "status": {
+        "ru": "Переговорный раунд; итоговый договор не заключён",
+        "en": "Negotiating round; no final treaty concluded",
+        "uk": "Переговорний раунд; підсумкової угоди не укладено"
+      }
+    },
+    "tags": [
+      "Стамбул",
+      "переговоры",
+      "нейтралитет",
+      "гарантии безопасности"
+    ],
+    "sources": [
+      {
+        "title": "Предложения украинской делегации о системе гарантий безопасности, 29 марта 2022 года",
+        "institution": "Президент Украины",
+        "url": "https://www.president.gov.ua/en/news/na-peregovorah-iz-rosiyeyu-ukrayinska-delegaciya-oficijno-pr-73933"
+      },
+      {
+        "title": "Интервью министра иностранных дел Турции о результатах стамбульского раунда, 31 марта 2022 года",
+        "institution": "Министерство иностранных дел Турции",
+        "url": "https://www.mfa.gov.tr/disisleri-bakani-sayin-mevlut-cavusoglu-nun-a-haber-e-verdigi-ozel-roportaj--31-mart-2022.tr.mfa"
+      },
+      {
+        "title": "Обращение президента Украины после стамбульского раунда, 29 марта 2022 года",
+        "institution": "Президент Украины",
+        "url": "https://www.president.gov.ua/en/news/signali-z-peregovoriv-mozhna-nazvati-pozitivnimi-ale-voni-ne-73937"
       }
     ],
     "media": []

@@ -32,7 +32,7 @@
 - Постоянный голосовой банк заморожен на 108 подтвержденных примерах Александра и
   20 чистых отрицательных примерах. Не переобучать его на автоматически размеченных
   роликах.
-- Уже обработаны и проанализированы первые десять самых старых роликов вплоть до `rVX-YnJht-4`.
+- Уже обработаны и проанализированы первые тридцать самых старых роликов вплоть до `Hq6QtPJ2YxE`.
   Следующий проход начинается с ролика сразу после него в актуальном порядке канала.
 - Анализ аргументов выполняется после формирования канонического транскрипта:
   выписывать тезисы Александра с `VIDEO_ID` и таймкодами, проверять контекст и только
@@ -53,7 +53,7 @@
 
 ## Текущее состояние
 
-Первые десять канонических транскриптов проанализированы и интегрированы в пользовательский интерфейс. В проекте есть 17 событий/документов, 37 понятий и 14 структурированных аргументов — всего 68 узлов и 68 статей с одинаковыми идентификаторами. Вкладка «Аргументы» заменена единым каталогом «Статьи» с поиском, фильтром и пагинацией. Хроно, граф и AI ведут на `/articles/:id`; каждая статья открывает тот же узел в Связях. `package-lock.json` и зависимости установлены, строгая проверка TypeScript работает.
+Первые тридцать канонических транскриптов проанализированы и интегрированы в пользовательский интерфейс. В проекте есть 19 событий/документов, 44 понятия и 22 структурированных аргумента — всего 85 узлов и 85 статей с одинаковыми идентификаторами. Вкладка «Аргументы» заменена единым каталогом «Статьи» с поиском, фильтром и пагинацией. Хроно, граф и AI ведут на `/articles/:id`; каждая статья открывает тот же узел в Связях. `package-lock.json` и зависимости установлены, строгая проверка TypeScript работает.
 
 ### Единая архитектура представлений
 
@@ -79,10 +79,32 @@
 | `XzvQa4nB5LE` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/XzvQa4nB5LE.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/XzvQa4nB5LE/XzvQa4nB5LE.speaker-identified.jsonl` |
 | `ZCO6n5SsXwQ` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/ZCO6n5SsXwQ.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/ZCO6n5SsXwQ/ZCO6n5SsXwQ.speaker-identified.jsonl` |
 | `rVX-YnJht-4` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/rVX-YnJht-4.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/rVX-YnJht-4/rVX-YnJht-4.speaker-identified.jsonl` |
+| `R0EoG5eVsOo` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/R0EoG5eVsOo.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/R0EoG5eVsOo/R0EoG5eVsOo.speaker-identified.jsonl` |
+| `lapcK0stuxA` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/lapcK0stuxA.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/lapcK0stuxA/lapcK0stuxA.speaker-identified.jsonl` |
+| `KxBa0Lt-Mok` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/KxBa0Lt-Mok.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/KxBa0Lt-Mok/KxBa0Lt-Mok.speaker-identified.jsonl` |
+| `Q-iePxBnNTQ` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/Q-iePxBnNTQ.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/Q-iePxBnNTQ/Q-iePxBnNTQ.speaker-identified.jsonl` |
+| `_gO2fCj04xU` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/_gO2fCj04xU.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/_gO2fCj04xU/_gO2fCj04xU.speaker-identified.jsonl` |
+| `sf52Mzd6sss` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/sf52Mzd6sss.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/sf52Mzd6sss/sf52Mzd6sss.speaker-identified.jsonl` |
+| `FzMfd4Y0FY8` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/FzMfd4Y0FY8.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/FzMfd4Y0FY8/FzMfd4Y0FY8.speaker-identified.jsonl` |
+| `L-S-zI9CGOs` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/L-S-zI9CGOs.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/L-S-zI9CGOs/L-S-zI9CGOs.speaker-identified.jsonl` |
+| `UiyzcTNxSho` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/UiyzcTNxSho.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/UiyzcTNxSho/UiyzcTNxSho.speaker-identified.jsonl` |
+| `KhamiqPbdHA` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/KhamiqPbdHA.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/KhamiqPbdHA/KhamiqPbdHA.speaker-identified.jsonl` |
+| `iqJaKlLyg1k` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/iqJaKlLyg1k.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/iqJaKlLyg1k/iqJaKlLyg1k.speaker-identified.jsonl` |
+| `h1g_8rzhqps` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/h1g_8rzhqps.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/h1g_8rzhqps/h1g_8rzhqps.speaker-identified.jsonl` |
+| `url6SajVXEg` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/url6SajVXEg.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/url6SajVXEg/url6SajVXEg.speaker-identified.jsonl` |
+| `JKo3cmvTaNw` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/JKo3cmvTaNw.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/JKo3cmvTaNw/JKo3cmvTaNw.speaker-identified.jsonl` |
+| `nHsb1-k5M8o` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/nHsb1-k5M8o.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/nHsb1-k5M8o/nHsb1-k5M8o.speaker-identified.jsonl` |
+| `LMXxNA8cWEM` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/LMXxNA8cWEM.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/LMXxNA8cWEM/LMXxNA8cWEM.speaker-identified.jsonl` |
+| `d5rh2vhGNyE` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/d5rh2vhGNyE.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/d5rh2vhGNyE/d5rh2vhGNyE.speaker-identified.jsonl` |
+| `hchsw5sDcfg` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/hchsw5sDcfg.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/hchsw5sDcfg/hchsw5sDcfg.speaker-identified.jsonl` |
+| `YIB-Z9HBA8w` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/YIB-Z9HBA8w.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/YIB-Z9HBA8w/YIB-Z9HBA8w.speaker-identified.jsonl` |
+| `Hq6QtPJ2YxE` | `transcripts/vzglyad-iz-chetvertogo-izmereniya/Hq6QtPJ2YxE.md` | `.local/transcription-cache/vzglyad-iz-chetvertogo-izmereniya/Hq6QtPJ2YxE/Hq6QtPJ2YxE.speaker-identified.jsonl` |
 
 `4x8stl4ZzdE` просмотрен полностью, но отдельный аргумент из него не создан: ролик состоит преимущественно из бытовой полемики, иронии и обрывочных формулировок. Это осознанное ограничение, а не пропуск.
 
 `ZCO6n5SsXwQ` также просмотрен полностью без создания отдельного аргумента: тезис о зеркальном отводе войск является чтением прямой речи Зеленского, а версия о «надувании ВВП» дана как одиночная личная оценка без доказательной цепочки.
+
+В диапазоне 11–30 отдельные статьи не создавались для `KxBa0Lt-Mok` и `iqJaKlLyg1k`: содержательные фрагменты повторяют уже зафиксированные линии без нового проверяемого шага. Тезисы из `Q-iePxBnNTQ` о Львове и из `YIB-Z9HBA8w` о реакциях в соцсетях также не вынесены в самостоятельные аргументы из-за недостаточной доказательной базы. Повторы из остальных роликов добавлены к существующим аргументам как дополнительные цитаты.
 
 ### Добавленные аргументы
 
@@ -100,6 +122,14 @@
 - избирательный мандат против подмены процедуры моральной оценкой президента;
 - многоакторная причинность эскалации 2014 года вместо сведения войны к Гиркину или одному решению;
 - единые критерии для сопоставления самоопределения Украины и притязаний Донбасса.
+- действительное согласие на ввод иностранных сил: полномочия автора, хронология и пределы;
+- различие закона об амнистии и судебного установления состава государственного переворота;
+- политическая функция риторики угрозы без вывода о вымышленности самой угрозы;
+- непрерывность президентских полномочий и запрет выборов во время военного положения;
+- стамбульские предложения 2022 года как переговорный проект, а не подписанный мирный договор;
+- различие фактического контроля и международно-правового признания территории;
+- полная цепочка актов передачи Крыма 1954 года и отдельный вопрос демократического участия;
+- различие прекращения огня и устойчивого мирного порядка.
 
 ### Что не использовать как установленный факт
 
@@ -118,8 +148,16 @@
 - цитату Зеленского о зеркальном отводе войск как собственную позицию Александра;
 - предположение о намеренном «надувании ВВП» и прибыли неназванных лиц;
 - прогноз о переговорах Трампа без названного предложения, документа и проверяемых условий.
+- гипотезу о непубличном согласии Януковича до 1 марта 2014 года без отдельного источника;
+- включение статьи 109 УК в закон № 743-VII как судебное доказательство государственного переворота;
+- политическую выгоду от образа внешней угрозы как доказательство её заведомой ложности;
+- тезис об автоматическом прекращении полномочий президента по истечении пяти лет без учёта статей 103/108 Конституции и запрета выборов при военном положении;
+- стамбульский проект как подписанный договор и визит Бориса Джонсона как единственную доказанную причину прекращения переговоров;
+- фактический территориальный контроль как автоматическое международное признание;
+- отсутствие референдума 1954 года как достаточное доказательство ничтожности передачи без указания обязательной на тот момент нормы;
+- тезисы о «фашистской ориентации Львова» и выводы из лайков/дизлайков без репрезентативных данных.
 
-Следующий видео-проход начинается с ролика сразу после `rVX-YnJht-4` по актуальному порядку канала. Локальные незакоммиченные транскрипты более поздних роликов не входили в анализ 6–10; их нужно сверить с порядком канала и рассматривать отдельным следующим диапазоном.
+Следующий видео-проход начинается с ролика сразу после `Hq6QtPJ2YxE` по актуальному порядку канала. Диапазон 11–30 полностью прочитан; продолжение нужно сверить с текущим списком YouTube, поскольку порядок канала может измениться.
 
 ## Приоритет P0
 

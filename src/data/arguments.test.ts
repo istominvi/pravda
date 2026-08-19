@@ -4,7 +4,7 @@ import { events } from './events'
 import { knowledgeNodesById } from './knowledge'
 
 describe('canonical transcript arguments', () => {
-  it('uses unique argument ids and the ten reviewed video ids', () => {
+  it('uses unique argument ids and the thirty reviewed video ids', () => {
     expect(new Set(argumentsData.map((argument) => argument.id)).size).toBe(argumentsData.length)
     expect(argumentVideoIds).toEqual([
       '4x8stl4ZzdE',
@@ -17,6 +17,26 @@ describe('canonical transcript arguments', () => {
       'XzvQa4nB5LE',
       'ZCO6n5SsXwQ',
       'rVX-YnJht-4',
+      'R0EoG5eVsOo',
+      'lapcK0stuxA',
+      'KxBa0Lt-Mok',
+      'Q-iePxBnNTQ',
+      '_gO2fCj04xU',
+      'sf52Mzd6sss',
+      'FzMfd4Y0FY8',
+      'L-S-zI9CGOs',
+      'UiyzcTNxSho',
+      'KhamiqPbdHA',
+      'iqJaKlLyg1k',
+      'h1g_8rzhqps',
+      'url6SajVXEg',
+      'JKo3cmvTaNw',
+      'nHsb1-k5M8o',
+      'LMXxNA8cWEM',
+      'd5rh2vhGNyE',
+      'hchsw5sDcfg',
+      'YIB-Z9HBA8w',
+      'Hq6QtPJ2YxE',
     ])
   })
 

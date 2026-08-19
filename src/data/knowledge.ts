@@ -290,6 +290,55 @@ const conceptNodes: KnowledgeNode[] = [
     summary: L('Идеологию общества проверяют по массовому распространению, институтам и политике, а не по одному автору, памятнику или цитате.', 'A society’s ideology is tested through prevalence, institutions, and policy—not one author, monument, or quotation.', 'Ідеологію суспільства перевіряють за масовим поширенням, інституціями й політикою, а не за одним автором, пам’ятником чи цитатою.'),
     tags: ['идеология', 'сравнение', 'доказательность'],
   },
+  {
+    id: 'concept-valid-consent', type: 'concept',
+    title: L('Действительное согласие на иностранные силы', 'Valid consent to foreign forces', 'Дійсна згода на іноземні сили'),
+    eyebrow: L('Правовое исключение', 'Legal exception', 'Правовий виняток'),
+    summary: L('Согласие государства оценивается по полномочиям автора, свободе, времени и пределам разрешённых действий.', 'State consent is tested through the authority of its author, freedom, timing, and scope.', 'Згоду держави перевіряють за повноваженнями автора, свободою, часом і межами дозволених дій.'),
+    tags: ['применение силы', 'согласие', 'полномочия'],
+  },
+  {
+    id: 'concept-amnesty-vs-verdict', type: 'concept',
+    title: L('Амнистия и судебный вердикт', 'Amnesty and adjudication', 'Амністія та судовий вирок'),
+    eyebrow: L('Доказательное различие', 'Evidentiary distinction', 'Доказове розрізнення'),
+    summary: L('Освобождение от ответственности по перечню возможных составов не устанавливает совершение каждого преступления.', 'Release from liability across possible offences does not establish that every offence was committed.', 'Звільнення від відповідальності за переліком можливих складів не встановлює вчинення кожного злочину.'),
+    tags: ['амнистия', 'суд', 'доказательства'],
+  },
+  {
+    id: 'concept-threat-rhetoric', type: 'concept',
+    title: L('Риторика угрозы и мобилизация', 'Threat rhetoric and mobilisation', 'Риторика загрози та мобілізація'),
+    eyebrow: L('Политическая коммуникация', 'Political communication', 'Політична комунікація'),
+    summary: L('Образ угрозы может сплачивать общество, но его политическая функция не подтверждает и не опровергает реальный риск.', 'A threat image can mobilise society, but its political use neither proves nor disproves objective risk.', 'Образ загрози може згуртовувати суспільство, але його політична функція не доводить і не спростовує реальний ризик.'),
+    tags: ['угроза', 'риторика', 'мобилизация'],
+  },
+  {
+    id: 'concept-wartime-electoral-continuity', type: 'concept',
+    title: L('Непрерывность выборной власти во время войны', 'Continuity of elected office during war', 'Безперервність виборної влади під час війни'),
+    eyebrow: L('Конституционная рамка', 'Constitutional frame', 'Конституційна рамка'),
+    summary: L('Запрет выборов, обычный срок мандата и выполнение полномочий до преемника образуют связанную, но не тождественную систему норм.', 'The election ban, ordinary term, and continuation until a successor form a connected but non-identical set of rules.', 'Заборона виборів, звичайний строк і виконання повноважень до наступника утворюють пов’язану, але не тотожну систему норм.'),
+    tags: ['выборы', 'военное положение', 'Конституция'],
+  },
+  {
+    id: 'concept-negotiation-status', type: 'concept',
+    title: L('Статус переговорного документа', 'Status of a negotiating document', 'Статус переговорного документа'),
+    eyebrow: L('Дипломатический критерий', 'Diplomatic test', 'Дипломатичний критерій'),
+    summary: L('Предложение, проект, рамочная договорённость, подписанный договор и вступившее в силу соглашение — разные стадии.', 'A proposal, draft, framework understanding, signed treaty, and in-force agreement are distinct stages.', 'Пропозиція, проєкт, рамкова домовленість, підписаний договір і чинна угода — різні стадії.'),
+    tags: ['переговоры', 'договор', 'Стамбул'],
+  },
+  {
+    id: 'concept-de-facto-vs-de-jure', type: 'concept',
+    title: L('Де-факто контроль и де-юре признание', 'De facto control and de jure recognition', 'Де-факто контроль і де-юре визнання'),
+    eyebrow: L('Правовое различие', 'Legal distinction', 'Правове розрізнення'),
+    summary: L('Фактическое управление территорией не обязывает другие государства признавать изменение суверенитета.', 'Effective administration of territory does not oblige other states to recognise a change in sovereignty.', 'Фактичне управління територією не зобов’язує інші держави визнавати зміну суверенітету.'),
+    tags: ['признание', 'контроль', 'суверенитет'],
+  },
+  {
+    id: 'concept-durable-peace', type: 'concept',
+    title: L('Устойчивый мир', 'Durable peace', 'Сталий мир'),
+    eyebrow: L('Критерий соглашения', 'Agreement test', 'Критерій угоди'),
+    summary: L('Мирное соглашение оценивается и по снижению насилия, и по исполнимости правил, предотвращающих новую эскалацию.', 'A peace agreement is tested both by reduced violence and by enforceable rules that prevent renewed escalation.', 'Мирну угоду оцінюють і за зменшенням насильства, і за здійсненними правилами, що запобігають новій ескалації.'),
+    tags: ['мир', 'прекращение огня', 'исполнение'],
+  },
 ]
 
 const argumentNodes: KnowledgeNode[] = argumentsData.map((argument) => ({
@@ -385,6 +434,17 @@ export const knowledgeRelations: KnowledgeRelation[] = [
   { id:'r-invasion-spiderweb', source:'full-invasion', target:'spiderweb-2025', kind:'political-context', label:L('создаёт военный контекст', 'creates the war context', 'створює воєнний контекст'), note:L('Операция была проведена Украиной внутри продолжающейся полномасштабной войны и нацелена на российскую стратегическую авиацию.', 'Ukraine conducted the operation during the ongoing full-scale war against Russian strategic aviation.', 'Україна провела операцію під час повномасштабної війни проти російської стратегічної авіації.'), confidence:'documented' },
   { id:'r-spiderweb-effect', source:'spiderweb-2025', target:'concept-strategic-effect', kind:'raises-question', label:L('требует измерения эффекта', 'requires measuring the effect', 'потребує вимірювання ефекту'), note:L('Официальные заявления фиксируют тактическую цель и заявленный ущерб; долгосрочный стратегический эффект оценивается отдельно.', 'Official statements identify a tactical aim and claimed damage; long-term strategic effect remains a separate assessment.', 'Офіційні заяви фіксують тактичну мету й заявлену шкоду; довгостроковий стратегічний ефект оцінюють окремо.'), confidence:'interpretive' },
   { id:'r-civilian-force', source:'concept-civilian-protection', target:'concept-use-of-force', kind:'legal-context', label:L('ограничивает ведение войны', 'constrains hostilities', 'обмежує ведення війни'), note:L('Даже атака военной цели подчиняется различению, соразмерности и практически возможным мерам предосторожности.', 'Even an attack on a military objective remains subject to distinction, proportionality, and feasible precautions.', 'Навіть атака військової цілі підпорядковується розрізненню, пропорційності та можливим запобіжним заходам.'), confidence:'direct' },
+  { id:'r-un-valid-consent', source:'un-charter', target:'concept-valid-consent', kind:'legal-context', label:L('дополняется правилом согласия', 'is complemented by consent rules', 'доповнюється правилом згоди'), note:L('Согласие рассматривается как отдельное основание, которое действует только при действительности и в своих пределах.', 'Consent is a separate circumstance that operates only when valid and within its scope.', 'Згода є окремою обставиною, що діє лише за умови дійсності та у своїх межах.'), confidence:'documented' },
+  { id:'r-consent-crimea', source:'concept-valid-consent', target:'crimea', kind:'raises-question', label:L('требует проверки приглашения', 'requires testing an invitation', 'вимагає перевірки запрошення'), note:L('Для Крыма нужно установить автора, дату, свободу и объём предполагаемого согласия на иностранные силы.', 'Crimea requires identifying the author, date, freedom, and scope of any claimed consent to foreign forces.', 'Для Криму треба встановити автора, дату, свободу й межі передбачуваної згоди на іноземні сили.'), confidence:'interpretive' },
+  { id:'r-transfer-crimea', source:'crimea-transfer-1954', target:'crimea', kind:'precedes', label:L('создаёт исторический контекст', 'creates historical context', 'створює історичний контекст'), note:L('Передача 1954 года предшествует постсоветскому спору, но не заменяет анализ границ и применения силы после 1991 года.', 'The 1954 transfer precedes the post-Soviet dispute but does not replace analysis of borders and force after 1991.', 'Передача 1954 року передує пострадянській суперечці, але не замінює аналіз кордонів і сили після 1991 року.'), confidence:'documented' },
+  { id:'r-transfer-interpretation', source:'crimea-transfer-1954', target:'concept-constitutional-interpretation', kind:'raises-question', label:L('требует чтения всей процедуры', 'requires reading the full procedure', 'вимагає читання всієї процедури'), note:L('Оценка включает февральский указ, согласия республик, союзный закон и последующие конституционные изменения.', 'The assessment includes the February decree, republic consents, the Union law, and later constitutional amendments.', 'Оцінка охоплює лютневий указ, згоди республік, союзний закон і подальші конституційні зміни.'), confidence:'documented' },
+  { id:'r-amnesty-evidence', source:'concept-amnesty-vs-verdict', target:'concept-evidence-trust', kind:'reaffirms', label:L('повышает стандарт вывода', 'raises the inference standard', 'підвищує стандарт висновку'), note:L('Перечень статей в законе об освобождении нельзя читать как судебное установление каждого состава.', 'A list of offences in a release statute cannot be read as judicial proof of every offence.', 'Перелік статей у законі про звільнення не можна читати як судове встановлення кожного складу.'), confidence:'direct' },
+  { id:'r-threat-dilemma', source:'concept-threat-rhetoric', target:'concept-security-dilemma', kind:'contested-link', label:L('разделяет стимул и риск', 'separates incentive from risk', 'відокремлює стимул і ризик'), note:L('Политическая выгода от риторики и объективная динамика угрозы должны проверяться независимо.', 'Political benefit from rhetoric and objective threat dynamics must be tested independently.', 'Політичну вигоду від риторики й об’єктивну динаміку загрози треба перевіряти незалежно.'), confidence:'interpretive' },
+  { id:'r-martial-election-continuity', source:'martial-law', target:'concept-wartime-electoral-continuity', kind:'legal-context', label:L('останавливает выборный календарь', 'pauses the election calendar', 'зупиняє виборчий календар'), note:L('Военное положение запрещает проведение выборов, а конституционная непрерывность предотвращает вакансию должности.', 'Martial law bars elections while constitutional continuity prevents an office vacancy.', 'Воєнний стан забороняє вибори, а конституційна безперервність запобігає вакансії посади.'), confidence:'direct' },
+  { id:'r-istanbul-status', source:'istanbul-talks-2022', target:'concept-negotiation-status', kind:'raises-question', label:L('фиксирует стадию предложений', 'records the proposal stage', 'фіксує стадію пропозицій'), note:L('Официальные сообщения 29 марта описывали предложения и прогресс, одновременно подчёркивая отсутствие подписанного документа.', 'Official 29 March statements described proposals and progress while stressing that no document had been signed.', 'Офіційні повідомлення 29 березня описували пропозиції та прогрес, водночас наголошуючи на відсутності підписаного документа.'), confidence:'direct' },
+  { id:'r-istanbul-durable', source:'istanbul-talks-2022', target:'concept-durable-peace', kind:'raises-question', label:L('требует механизма исполнения', 'requires an implementation mechanism', 'потребує механізму виконання'), note:L('Гарантии, последовательность и проверка исполнения важны наряду с остановкой боевых действий.', 'Guarantees, sequencing, and verification matter alongside stopping hostilities.', 'Гарантії, послідовність і перевірка виконання важливі поряд із зупинкою бойових дій.'), confidence:'interpretive' },
+  { id:'r-minsk-durable', source:'minsk', target:'concept-durable-peace', kind:'raises-question', label:L('показывает проблему исполнения', 'shows the implementation problem', 'показує проблему виконання'), note:L('Неисполненная последовательность Минска показывает разрыв между текстом соглашения и устойчивым результатом.', 'Minsk’s failed sequencing shows the gap between an agreement’s text and a durable outcome.', 'Невиконана послідовність Мінська показує розрив між текстом угоди та сталим результатом.'), confidence:'documented' },
+  { id:'r-annex-recognition', source:'annexation-2022', target:'concept-de-facto-vs-de-jure', kind:'legal-context', label:L('разделяет контроль и статус', 'separates control from status', 'відокремлює контроль і статус'), note:L('Генеральная Ассамблея ООН потребовала не признавать заявленное изменение статуса территорий.', 'The UN General Assembly called for non-recognition of the claimed status changes.', 'Генеральна Асамблея ООН закликала не визнавати заявлені зміни статусу територій.'), confidence:'documented' },
   ...argumentRelations,
 ]
 

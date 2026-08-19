@@ -44,9 +44,13 @@
   `docs/TRANSCRIPTION_PIPELINE.md`. При расхождении со старыми заметками следовать
   ему.
 - Для канала «Взгляд из Четвертого Измерения» готовы и проанализированы первые
-  десять самых старых роликов: `4x8stl4ZzdE`, `LkHavUQ4nwc`, `Ol0ue_sDD48`,
+  тридцать самых старых роликов: `4x8stl4ZzdE`, `LkHavUQ4nwc`, `Ol0ue_sDD48`,
   `wsqPJMI6noM`, `g0wrgfZqVm4`, `-GlUMn0YE1Q`, `QJaaNbt62EA`, `XzvQa4nB5LE`,
-  `ZCO6n5SsXwQ`, `rVX-YnJht-4`. Продолжать со следующего после `rVX-YnJht-4`,
+  `ZCO6n5SsXwQ`, `rVX-YnJht-4`, `R0EoG5eVsOo`, `lapcK0stuxA`, `KxBa0Lt-Mok`,
+  `Q-iePxBnNTQ`, `_gO2fCj04xU`, `sf52Mzd6sss`, `FzMfd4Y0FY8`, `L-S-zI9CGOs`,
+  `UiyzcTNxSho`, `KhamiqPbdHA`, `iqJaKlLyg1k`, `h1g_8rzhqps`, `url6SajVXEg`,
+  `JKo3cmvTaNw`, `nHsb1-k5M8o`, `LMXxNA8cWEM`, `d5rh2vhGNyE`, `hchsw5sDcfg`,
+  `YIB-Z9HBA8w`, `Hq6QtPJ2YxE`. Продолжать со следующего после `Hq6QtPJ2YxE`,
   сверив порядок с актуальным списком YouTube.
 - `transcripts/raw-youtube/` не изменяем: это резервный низкокачественный источник, а не основа анализа.
 - Основную расшифровку делаем через `scripts/transcribe-multilingual.py`: локальный `faster-whisper` с полной моделью `large-v3`, исходное YouTube-аудио без повторного сжатия и фиксированный `language="ru"`, поскольку проект извлекает русскоязычные аргументы Александра. Флаг `--multilingual` оставляем для исключительных роликов, где важна украинская речь. Технические JSONL/TXT/метаданные храним в `.local/transcription-cache/`, а в `transcripts/` сохраняем только итоговый `VIDEO_ID.md`.
